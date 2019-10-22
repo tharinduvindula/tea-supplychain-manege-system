@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "ordersummary.component.scss"
+    ],
+    "names": [],
+    "file": "ordersummary.component.css"
+}
