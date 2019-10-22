@@ -6,6 +6,7 @@ contract Login {
         uint boxId;
         uint productId;
         uint rate;
+        //
     }
     struct Box{
         uint boxtId;
