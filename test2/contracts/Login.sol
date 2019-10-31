@@ -6,18 +6,20 @@ contract Login {
         uint boxId;
         uint productId;
         uint rate;
-        //
     }
     struct Box{
         uint boxtId;
         uint containerId;
         uint orderId;
+        uint[] distributorIndex;
+        uint256[]  time;
     }
     struct Container{
         uint containerId;
         uint orderId;
         uint rate;
-
+        uint[] distributorIndex;
+        uint256[]  time;
     }
     struct Order{
         uint packetId;
@@ -81,7 +83,12 @@ contract Login {
         }
 
         if(_appId==1){
-            return true;
+            require(isUser(email),"dosen't macth this email");
+            if(adminArray[email].passwordCode == password ){
+                return true;
+            } else{
+                require(false,"dosen't macth this password");
+            }
         }
         else if(_appId==2){
             return true;
@@ -101,7 +108,6 @@ contract Login {
         string name;
         uint contactNumber;
         string userAddress;
-        uint userType;
         uint userAccess;
         uint index;
     }
@@ -120,49 +126,71 @@ contract Login {
 
     //
      mapping(bytes32 => Admin) public adminArray;
+     mapping(uint => Box) public boxes;
+     mapping(uint => Packet) public packets;
      DisplayAdmin[] private userIndex;
 
     // event LogNewUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
     // event LogUpdateUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
     // event LogDeleteUser(address indexed userAddress, uint index);
 
-    event LogNewAdmin(bytes32 indexed emailCode, uint index,string email, bytes32 passwordCode,
-        bytes32 passwordRestToken,string name, uint contactNumber,string userAddress,
-        uint userType,uint userAccess);
-    event LogUpdateAdmin(bytes32 indexed emailCode, uint index,string email, bytes32 passwordCode,
-        bytes32 passwordRestToken,string name, uint contactNumber,string userAddress,
-        uint userType,uint userAccess);
-        
+    event LogNewAdmin(
+        bytes32 indexed emailCode,
+        uint index,string email,
+        bytes32 passwordCode,
+        bytes32 passwordRestToken,
+        string name,
+        uint contactNumber,
+        string userAddress,
+        uint userAccess
+        );
+    event LogUpdateAdmin(
+        bytes32 indexed emailCode,
+        uint index,string email,
+        bytes32 passwordCode,
+        bytes32 passwordRestToken,
+        string name,
+        uint contactNumber,
+        string userAddress,
+        uint userAccess
+        );
+
+    function isUser(bytes32 _emailCode)public view returns(bool isIndeed) {
+        if(userIndex.length == 0) return false;
+        return (userIndex[adminArray[_emailCode].index].emailCode == _emailCode);
+   }
+
     function setDisplayAdmin(bytes32 _emailCode,string memory _email,string memory _name) public returns(bool){
-        
+
         DisplayAdmin memory displayAdmin;
-        displayAdmin.emailCode =_emailCode;
-        displayAdmin.email =_email;
+        displayAdmin.emailCode = _emailCode;
+        displayAdmin.email = _email;
         displayAdmin.name = _name;
-        displayAdmin.contactNumber = 0;
-        displayAdmin.userAddress = "";
+        displayAdmin.contactNumber = 717615678;
+        displayAdmin.userAddress = "1335,bogahawaththa Road,pannipitiya,colombo,sri lanka,10230";
         displayAdmin.userAccess = 1;
         userIndex.push(displayAdmin);
         return true;
-        
+
     }
-    
 
     function insertAdmin(string memory _email,string memory _name) public returns(uint index)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
-        
+        bytes32 _passwordCode = keccak256(abi.encodePacked(("")));
+        require(isUser(_emailCode) != true,'user allredy in system');
+
         adminArray[_emailCode].email = _email;
         adminArray[_emailCode].emailCode = _emailCode;
-        adminArray[_emailCode].passwordCode = "";
+        adminArray[_emailCode].passwordCode = _passwordCode;
         adminArray[_emailCode].passwordRestToken = "";
         adminArray[_emailCode].name = _name;
         adminArray[_emailCode].contactNumber = 0;
         adminArray[_emailCode].userAddress = "";
-        adminArray[_emailCode].userType = 1;
         adminArray[_emailCode].userAccess = 1;
         setDisplayAdmin(_emailCode,_email,_name);
         adminArray[_emailCode].index = userIndex.length-1;
+
         emit LogNewAdmin(
             _emailCode,
             adminArray[_emailCode].index,
@@ -172,7 +200,6 @@ contract Login {
             _name,
             adminArray[_emailCode].contactNumber,
             adminArray[_emailCode].userAddress,
-            adminArray[_emailCode].userType,
             adminArray[_emailCode].userAccess
             );
         return userIndex.length-1;
@@ -193,12 +220,41 @@ contract Login {
     uint contactNumber,string memory userAddress, uint userAccess)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
-        return(  
+        require(isUser(_emailCode) == true,'user not in system');
+        return(
             adminArray[_emailCode].email,
             adminArray[_emailCode].name,
             adminArray[_emailCode].contactNumber,
             adminArray[_emailCode].userAddress,
-            adminArray[_emailCode].userAccess);
+            adminArray[_emailCode].userAccess
+            );
+    }
+    // function getAdmins() public view returns(string[] memory email){
+    //     email = new string[](5);
+    //     // string[] memory name;
+    //     // uint[] memory contactNumber;
+    //     // string[] memory userAddress;
+    //     // uint[] memory userAccess;
+    //      for (uint i = 0; i < userIndex.length; i++) {
+    //         email[i] = userIndex[i].email;
+    //     }
+    // }
+    function getAdmini(uint i) public view returns(
+        bytes32,
+        string memory,
+        string memory,
+        uint,
+        string memory,
+        uint
+        ){
+            return (
+                userIndex[i].emailCode,
+                userIndex[i].email,
+                userIndex[i].name,
+                userIndex[i].contactNumber,
+                userIndex[i].userAddress,
+                userIndex[i].userAccess
+                );
     }
     // function updateUserEmail(address userAddress, bytes32 userEmail) public returns(bool success)
     // {
@@ -206,20 +262,141 @@ contract Login {
     //     emit LogUpdateUser(userAddress,  userStructs[userAddress].index, userEmail, userStructs[userAddress].userAge);
     //     return true;
     // }
-    function updateAdminAddress (string memory _email,string memory _userAddress,uint _contactNumber) public returns(bool success)
+    function updateAdminName (string memory _email,string memory _name) public returns(bool success)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
-        
+        require(isUser(_emailCode) == true,'user not in system');
+        adminArray[_emailCode].name = _name;
+        userIndex[adminArray[_emailCode].index].name = _name;
+        emit LogUpdateAdmin(
+            _emailCode,
+            adminArray[_emailCode].index,
+            _email,
+            adminArray[_emailCode].passwordCode,
+            adminArray[_emailCode].passwordRestToken,
+            _name,
+            adminArray[_emailCode].contactNumber,
+            adminArray[_emailCode].userAddress,
+            adminArray[_emailCode].userAccess
+            );
+        return true;
+    }
+    function updateAdminAddress (string memory _email,string memory _userAddress) public returns(bool success)
+    {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        require(isUser(_emailCode) == true,'user not in system');
         adminArray[_emailCode].userAddress = _userAddress;
+        userIndex[adminArray[_emailCode].index].userAddress = _userAddress;
+        emit LogUpdateAdmin(
+            _emailCode,
+            adminArray[_emailCode].index,
+            _email,
+            adminArray[_emailCode].passwordCode,
+            adminArray[_emailCode].passwordRestToken,
+            adminArray[_emailCode].name,
+            adminArray[_emailCode].contactNumber,
+            _userAddress,
+            adminArray[_emailCode].userAccess
+            );
+        return true;
+    }
+     function updateAdminContactNumber (string memory _email,uint _contactNumber) public returns(bool success)
+    {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        require(isUser(_emailCode) == true,'user not in system');
         adminArray[_emailCode].contactNumber = _contactNumber;
-        emit LogUpdateAdmin(_emailCode, adminArray[_emailCode].index,_email,adminArray[_emailCode].passwordCode,adminArray[_emailCode].passwordRestToken,
-        adminArray[_emailCode].name,_contactNumber,_userAddress,adminArray[_emailCode].userType,adminArray[_emailCode].userAccess);
+        userIndex[adminArray[_emailCode].index].contactNumber = _contactNumber;
+        emit LogUpdateAdmin(
+            _emailCode,
+            adminArray[_emailCode].index,
+            _email,
+            adminArray[_emailCode].passwordCode,
+            adminArray[_emailCode].passwordRestToken,
+            adminArray[_emailCode].name,
+            _contactNumber,
+            adminArray[_emailCode].userAddress,
+            adminArray[_emailCode].userAccess
+            );
+        return true;
+    }
+    function updateAdmin(
+        string memory _email,
+        uint[] memory index,
+        string memory _name,
+        string memory _userAddress,
+        uint _contactNumber
+        ) public returns(bool success)
+    {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        require(isUser(_emailCode) == true,'user not in system');
+        uint i;
+        uint num = adminArray[_emailCode].index;
+
+        for (i = 0;i<index.length;i++){
+            if(index[i]==1){
+                adminArray[_emailCode].name = _name;
+                userIndex[num].name = _name;
+                emit LogUpdateAdmin(
+                    _emailCode,
+                    adminArray[_emailCode].index,
+                    _email,adminArray[_emailCode].passwordCode,
+                    adminArray[_emailCode].passwordRestToken,
+                    _name,
+                    adminArray[_emailCode].contactNumber,
+                    adminArray[_emailCode].userAddress,
+                    adminArray[_emailCode].userAccess
+                    );
+
+            }
+            else if(index[i]==2){
+                adminArray[_emailCode].userAddress = _userAddress;
+
+                userIndex[num].userAddress = _userAddress;
+
+                emit LogUpdateAdmin(
+                    _emailCode,
+                    adminArray[_emailCode].index,
+                    _email,
+                    adminArray[_emailCode].passwordCode,
+                    adminArray[_emailCode].passwordRestToken,
+                    adminArray[_emailCode].name,
+                    adminArray[_emailCode].contactNumber,
+                    _userAddress,
+                    adminArray[_emailCode].userAccess
+                    );
+
+            }
+            else if(index[i]==3){
+                adminArray[_emailCode].contactNumber = _contactNumber;
+                userIndex[num].contactNumber = _contactNumber;
+                emit LogUpdateAdmin(
+                    _emailCode,
+                    adminArray[_emailCode].index,
+                    _email,
+                    adminArray[_emailCode].passwordCode,
+                    adminArray[_emailCode].passwordRestToken,
+                    adminArray[_emailCode].name,
+                    _contactNumber,
+                    adminArray[_emailCode].userAddress,
+                    adminArray[_emailCode].userAccess
+                    );
+
+            }
+        }
         return true;
     }
 
-    function getUserCount() public view returns(uint count)
+
+    function getUserCount() public view returns(uint)
     {
         return userIndex.length;
     }
 
+    function createBox() public returns(bool){
+
+    }
+
+    function creatPacket() public returns(bool){
+
+    }
 }
