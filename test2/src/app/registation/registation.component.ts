@@ -9,6 +9,11 @@ export class RegistationComponent implements OnInit {
 
   constructor() { }
 
+  form = {
+    email: '',
+    password: ''
+  };
+
   ngOnInit() {
   }
 
