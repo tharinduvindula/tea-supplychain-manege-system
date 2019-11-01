@@ -71,7 +71,7 @@ export class EthcontractService {
         console.log(er);
       }
     });
-    console.log(l)
+    
     for (i = 0; i < Xc.methods.getUserCount().call((er: any, ev: number) => {return ev; }); i++) {
     Xc.methods.getAdmini(i).call((er: any, ev: any) => {
       if (er == null) {
