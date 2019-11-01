@@ -30,32 +30,8 @@ export class LoginComponent {
     // this.initAndDisplayAccount();
   }
 
-  initAndDisplayAccount = () => {
-    const that = this;
-    this.ethcontractService.getAccountInfo().then(function (acctInfo) {
-      that.transferFrom = this.acctInfo.fromAccount;
-      that.balance = this.acctInfo.balance;
-    }).catch(function (error) {
-      console.log(error);
-    });
-
-  };
-
-  transferEther(event) {
-    const that = this;
-
-    this.ethcontractService.transferEther(
-      this.transferFrom,
-      this.transferTo,
-      this.amount,
-      this.remarks
-    ).then(function () {
-      that.initAndDisplayAccount();
-    }).catch(function (error) {
-      console.log(error);
-      that.initAndDisplayAccount();
-    });
+  login() {
+    this.ethcontractService.login(this.form.email, this.form.password)
   }
-
 
 }

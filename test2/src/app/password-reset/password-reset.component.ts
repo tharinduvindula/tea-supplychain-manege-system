@@ -9,6 +9,11 @@ export class PasswordResetComponent implements OnInit {
 
   constructor() { }
 
+  form = {
+    email: '',
+    password: ''
+  };
+
   ngOnInit() {
   }
 

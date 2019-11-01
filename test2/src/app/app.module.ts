@@ -41,11 +41,13 @@ import { EthcontractService } from './web3-servise/ethcontract.service';
 import { RegistationComponent } from './registation/registation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    CommonModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,

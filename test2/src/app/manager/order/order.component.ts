@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-order',
@@ -11,5 +12,12 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  isMobile() {
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
+  };
 
 }

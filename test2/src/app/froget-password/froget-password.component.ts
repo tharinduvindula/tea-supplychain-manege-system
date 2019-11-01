@@ -12,4 +12,10 @@ export class FrogetPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
+  form = {
+    email: '',
+    password: ''
+  };
+
+
 }

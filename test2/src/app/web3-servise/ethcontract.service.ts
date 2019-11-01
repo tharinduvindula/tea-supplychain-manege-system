@@ -3,9 +3,12 @@ import Web3 from 'web3';
 import * as TruffleContract from 'truffle-contract';
 import contract from 'truffle-contract';
 import { resolveTxt } from 'dns';
+import { error } from '@angular/compiler/src/util';
+import { async } from '@angular/core/testing';
 
 declare let require: any;
 declare let window: any;
+declare let l: number;
 
 const Tx = require('ethereumjs-tx');
 const tokenAbi = require('../../../build/contracts/Login.json');
@@ -31,71 +34,53 @@ export class EthcontractService {
 
     this.web3 = new Web3(this.web3Provider);
     this.get();
-    this.set();
-    this.get();
   }
 
+  login(_userName, _password) {
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
 
-  getAccountInfo() {
-    return new Promise((resolve, reject) => {
-      window.web3.eth.getCoinbase(function (err, account) {
-
-        if (err === null) {
-          // tslint:disable-next-line: no-shadowed-variable
-          this.web3.eth.getBalance(account, function ( err: any, balance: any) {
-            if (err === null) {
-              return resolve({ fromAccount: account, balance: this.web3.fromWei(balance, 'ether') });
-            } else {
-              return reject('error!');
-            }
-          });
-        }
-      });
+    Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
+      if (er == null) {
+        console.log(ev);
+        return ev;
+      } else {
+        console.log(er);
+        return er
+      }
     });
-  }
 
-  transferEther(
-    _transferFrom,
-    _transferTo,
-    _amount,
-    _remarks
-  ) {
-    const that = this;
-
-    return new Promise((resolve, reject) => {
-      const paymentContract = TruffleContract(tokenAbi);
-      paymentContract.setProvider(that.web3Provider);
-
-      paymentContract.deployed().then(function (instance) {
-        return instance.transferFund(
-          _transferTo,
-          {
-            from: _transferFrom,
-            value: window.web3.toWei(_amount, 'ether')
-          });
-      }).then(function (status) {
-        if (status) {
-          return resolve({ status: true });
-        }
-      }).catch(function (error) {
-        console.log(error);
-
-        return reject('Error in transferEther service call');
-      });
-    });
   }
 
 
   get() {
-    const MyContract = contract(tokenAbi);
-    MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0xc382F0cDa16Ea3030132911BA33EEb3C901498f5');
-    Xc.methods.set(125).call((er, ev) => {
-      console.log(ev);
+    // const MyContract = contract(tokenAbi);
+    // MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    // Xc.methods.setu(125).call((er, ev) => {
+    //   console.log(ev);
+    // });
+    let i: number;
+    Xc.methods.getUserCount().call((er: any, ev: number) => {
+      if (er == null) {
+        console.log(ev);
+        if (ev < 10) {
+          setTimeout(() => this.set(), 3000);
+        }
+        return ev;
+      } else {
+        console.log(er);
+      }
     });
-    Xc.methods.get().call((er, ev) => {
-      console.log(ev);
+    
+    for (i = 0; i < Xc.methods.getUserCount().call((er: any, ev: number) => {return ev; }); i++) {
+    Xc.methods.getAdmini(i).call((er: any, ev: any) => {
+      if (er == null) {
+        console.log(ev);
+      } else {
+        console.log(er);
+      }
     });
+    }
     // MyContract.deployed().then(deployed => {
     //   deployed.set(('hi'), (er) => {
     //     console.log('Transfer event came in, refreshing balance');
@@ -147,13 +132,13 @@ export class EthcontractService {
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
     const MyContract = contract(tokenAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const token = new this.web3.eth.Contract(tokenAbi.abi, '0xc382F0cDa16Ea3030132911BA33EEb3C901498f5');
-   
-    MyContract.deployed().then(deployed => {
-      console.log(deployed);
-      deployed.set(125, { from: '0x94b19125bd7A34722e482ebFC020aa403A8E35CF' });
+    const token = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    MyContract.deployed().then((deployed: { insertAdmin: (arg0: string, arg1: string, arg2: { from: string; }) => void; }) => {
+      let i: string | number;
+      for ( i = 0; i < 10; i++) {
+        const s = 'tharinduvindulatharinduvindula' + i + '@gmail.com';
+        deployed.insertAdmin(s, 'j.k.a. tharindu vindula tharindu vindula', { from: '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6' });
+      }
     });
-    console.log(tokenAbi)
-
   }
 }
