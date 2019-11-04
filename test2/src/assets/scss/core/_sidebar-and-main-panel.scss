@@ -296,7 +296,7 @@
     }
 
 
-    &[data-background-color="black"]{
+    &[data-background-color="black"] {
         @include sidebar-background-color($gray-base, $white-color);
 
         .nav li .dropdown-menu .dropdown-item{
