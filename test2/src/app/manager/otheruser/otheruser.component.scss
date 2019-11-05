@@ -1,17 +1,4 @@
 /**** Sass Variables ****/
-$bodyFont: 'Open Sans', sans-serif;
-
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: $bodyFont;
-  background: #333;
-}
 
 .container {
   max-width: 100%;
@@ -20,26 +7,26 @@ body {
   margin: 0 auto;
 }
 
-.card-wrapper {
+.card1-wrapper {
   width: 400px;
   height: 300px;
   position: relative;
 }
 
-.card {
-  position: absolute;
+.card1 {
+  position: relative;
   top: 50%;
   left: 50%;
   width: 175px;
   height: 275px;
-  transform: translate(-60%, -30%);
+  transform: translate(-50%, 0%);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
   cursor: pointer;
   transition: 0.5s; 
   
-  .card-image {
+  .card1-image {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -48,31 +35,38 @@ body {
     z-index: 2;
     background-color: #000;
     transition: .5s;
+    transform: translateY(-50px);
   }
   
   &:hover img {
     opacity: 0.4;
     transition: .5s;
   }
+  
 }
 
-.card:hover .card-image {
-  transform: translateY(-100px);
-  transition: all .9s;
+.card1:hover .card1-image {
+  transform: translateY(-90px);
+  transition: all .5s;
+}
+
+.card1:hover .details{
+  transform: translateY(-20px);
+  transition: all .5s;
 }
 
 
 
-.card:hover li:nth-child(1) a {
+.card1:hover li:nth-child(1) a {
     transition-delay: 0.1s;
 }
-.card:hover li:nth-child(2) a {
+.card1:hover li:nth-child(2) a {
   transition-delay: 0.2s;
 }
-.card:hover li:nth-child(3) a {
+.card1:hover li:nth-child(3) a {
   transition-delay: 0.3s;
 }
-.card:hover li:nth-child(4) a {
+.card1:hover li:nth-child(4) a {
   transition-delay: 0.4s;
 }
 
@@ -84,23 +78,26 @@ body {
   left: 0;
   background: #fff;
   width: 100%;
-  height: 120px;
+  height: 90px;
   z-index: 1;
   padding: 10px;
-
+  
   h2 {
-    margin: 30px 0;
+    margin: 27px 0;
     padding: 0;
+    font-size: 1rem;
     text-align: center;
+    line-height: 0px;
      
     .job-title {
-        font-size: 1rem;
-        line-height: 2.5rem;
+        font-size: 0.5rem;
+        line-height: 0px;
         color: #333;
         font-weight: 300;
     }
   }
 }
+
 
 .jane {
   position: absolute;
@@ -119,11 +116,11 @@ body {
   border-radius: 50%;
 }
 
-.card:hover .profile-img--two {
+.card1:hover .profile-img--two {
   transform: rotateY(180deg);
 }
 
-.card:hover .jane {
+.card1:hover .jane {
   bottom: 0;
   left: 0;
   transition-delay: 0.5s;
