@@ -42,6 +42,7 @@ import { RegistationComponent } from './registation/registation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
 import { CommonModule } from '@angular/common';
+import { ProductupdateComponent } from './admin/product/productupdate/productupdate.component';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -73,6 +74,7 @@ import { CommonModule } from '@angular/common';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
+    ProductupdateComponent,
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]
