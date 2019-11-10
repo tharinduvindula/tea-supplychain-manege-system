@@ -1,3 +1,91 @@
-<p>
-  distributoradd works!
-</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Demonstrator Registration Form</h4>
+            <p class="card-category">Complete the following details</p>
+          </div>
+          <div class="card-body">
+
+            <form (submit)="AddDemo($event)">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Full Name" type="text" [(ngModel)]="fullname"
+                      [ngModelOptions]="{standalone: true}" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" type="text" [(ngModel)]="firstname"
+                      [ngModelOptions]="{standalone: true}" required>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="last Name" type="text" [(ngModel)]="lastname"
+                      [ngModelOptions]="{standalone: true}" required>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="NIC" type="text" [(ngModel)]="nic"
+                      [ngModelOptions]="{standalone: true}" required>
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Address" type="text" [(ngModel)]="address"
+                      [ngModelOptions]="{standalone: true}">
+                    <mat-icon matSuffix>location_on</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Contact Number" type="tel" [(ngModel)]="telephone"
+                      [ngModelOptions]="{standalone: true}">
+                    <mat-icon matSuffix>phone</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email Address" type="email" [(ngModel)]="email"
+                      [ngModelOptions]="{standalone: true}" required>
+                    <mat-icon matSuffix>email</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              
+              <button class="btn btn-danger pull-right">Register Demonstrator</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

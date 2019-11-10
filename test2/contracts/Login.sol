@@ -94,8 +94,7 @@ contract Login {
                     require(!(adminArray[email].userAccess == 4),"user deleted from system");
                     return false;
                 }
-                
-            } else{
+            } else {
                 require(false,"dosen't macth this password");
                 return false;
             }
@@ -110,7 +109,6 @@ contract Login {
             return false;
         }
     }
-    
     struct Admin{
         string email;
         bytes32 emailCode;
@@ -151,8 +149,6 @@ contract Login {
 
     // event LogNewUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
     // event LogUpdateUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
-    
-
     event LogNewAdmin(
         bytes32 indexed emailCode,
         uint index,string email,
@@ -163,7 +159,6 @@ contract Login {
         string userAddress,
         uint userAccess
         );
-        
     event LogUpdateAdmin(
         bytes32 indexed emailCode,
         uint index,string email,
@@ -174,7 +169,6 @@ contract Login {
         string userAddress,
         uint userAccess
         );
-        
     event LogDeleteAdmin(
         bytes32 indexed emailcode,
         uint index
@@ -184,20 +178,17 @@ contract Login {
         if(adminIndex.length == 0) return false;
         return (adminIndex[adminArray[_emailCode].index].emailCode == _emailCode);
    }
-   
     function createAdminToken(bytes32 _emailCode)private returns(bytes32){
         bytes32 token = randomtoken();
         RegistationToken memory registationToken;
-        registationToken.emailCode=_emailCode;
-        registationToken.token=token;
+        registationToken.emailCode = _emailCode;
+        registationToken.token = token;
         adminRegistationToken.push(registationToken);
         return token;
     }
-    
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked(block.timestamp,block.difficulty));
-   }
-    
+       return keccak256(abi.encodePacked( block.timestamp, block.difficulty ));
+    }
     function setDisplayAdmin(bytes32 _emailCode,string memory _email,string memory _name) private returns(bool){
 
         DisplayAdmin memory displayAdmin;
@@ -218,7 +209,7 @@ contract Login {
     function insertAdmin(string memory _email,string memory _name) public returns(bytes32)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
-        bytes32 _passwordCode = keccak256(abi.encodePacked(("")));
+        bytes32 _passwordCode = keccak256(abi.encodePacked(("a")));
         require(isUser(_emailCode) != true,'user allredy in system');
 
         adminArray[_emailCode].email = _email;
@@ -232,7 +223,7 @@ contract Login {
         setDisplayAdmin(_emailCode,_email,_name);
         adminArray[_emailCode].index = adminIndex.length-1;
 
-        emit LogNewAdmin(
+        emit LogNewAdmin (
             _emailCode,
             adminArray[_emailCode].index,
             _email,
@@ -250,16 +241,16 @@ contract Login {
     {
         uint i;
         string memory name;
-        for(i=0;i<adminRegistationToken.length;i++){
+        for( i = 0; i < adminRegistationToken.length; i++) {
             if(adminRegistationToken[i].emailCode == email){
-                adminRegistationToken[i].emailCode=adminRegistationToken[adminRegistationToken.length-1].emailCode;
-                adminRegistationToken[i].token=adminRegistationToken[adminRegistationToken.length-1].token;
+                adminRegistationToken[i].emailCode = adminRegistationToken[adminRegistationToken.length-1].emailCode;
+                adminRegistationToken[i].token = adminRegistationToken[adminRegistationToken.length-1].token;
                 adminRegistationToken.length--;
             }
         }
         adminArray[email].userAccess = 4;
-        adminIndex[adminArray[email].index].userAccess=4;
-        name =adminIndex[adminArray[email].index].name;
+        adminIndex[adminArray[email].index].userAccess = 4;
+        name = adminIndex[adminArray[email].index].name;
         emit LogDeleteAdmin(
             email,
             adminArray[email].index
@@ -310,8 +301,6 @@ contract Login {
     //     emit LogUpdateUser(userAddress,  userStructs[userAddress].index, userEmail, userStructs[userAddress].userAge);
     //     return true;
     // }
-    
-    
     function updateAdminName (string memory _email,string memory _name) public returns(bool success)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
@@ -331,7 +320,6 @@ contract Login {
             );
         return true;
     }
-    
     function updateAdminAddress (string memory _email,string memory _userAddress) public returns(bool success)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
@@ -351,7 +339,6 @@ contract Login {
             );
         return true;
     }
-    
      function updateAdminContactNumber (string memory _email,uint _contactNumber) public returns(bool success)
     {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
@@ -371,7 +358,6 @@ contract Login {
             );
         return true;
     }
-    
     function updateAdmin(
         string memory _email,
         uint[] memory index,
@@ -438,35 +424,26 @@ contract Login {
         }
         return true;
     }
-    
-    
     ///////
     function updateAdminEmail (string memory _email) public returns(bool success)
     {
        // return true;
     }
-    
     ///
     function registation(bytes32 token) public returns(bool)
     {
        // return true;
     }
-    
     function frogetPassword(string memory _email) public returns(bool){
         
     }
-    
     function resetPassword(bytes32 token,string memory password)public returns(bool)
     {
         
     }
-
-    
-
     function createBox() public returns(bool){
 
     }
-
     function creatPacket() public returns(bool){
 
     }
