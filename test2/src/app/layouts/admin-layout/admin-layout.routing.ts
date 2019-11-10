@@ -1,3 +1,4 @@
+import { ProductupdateComponent } from './../../admin/product/productupdate/productupdate.component';
 import { Routes } from '@angular/router';
 
 import { UserProfileComponent } from '../../manager/user-profile/user-profile.component';

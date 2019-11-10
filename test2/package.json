@@ -68,6 +68,7 @@
     "nyc": "^14.1.1",
     "perfect-scrollbar": "1.1.0",
     "popper.js": "1.14.3",
+    "react-images-uploader": "^1.2.0-rc1",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
     "truffle-contract": "^4.0.4",
