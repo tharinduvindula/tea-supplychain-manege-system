@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -19,7 +19,9 @@ import { MatButtonModule,
          MatTooltipModule,
          MatIconModule,
          MatToolbarModule,
-         MatSidenavModule } from '@angular/material';
+         MatSidenavModule,
+         MatSlideToggleModule,
+         MatDialogModule} from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.component';
@@ -43,6 +45,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
 import { CommonModule } from '@angular/common';
 import { ProductupdateComponent } from './admin/product/productupdate/productupdate.component';
+import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -65,6 +69,9 @@ import { ProductupdateComponent } from './admin/product/productupdate/productupd
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -75,6 +82,7 @@ import { ProductupdateComponent } from './admin/product/productupdate/productupd
     PasswordResetComponent,
     FrogetPasswordComponent,
     ProductupdateComponent,
+    DistributorupdateComponent,
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]

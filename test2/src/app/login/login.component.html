@@ -11,23 +11,41 @@
                     </span>
                 </div>
 
-                <span class="login100-form-title p-b-34 p-t-27">
+                <span class="login100-form-title p-b-34 p-t-27" >
                     Log in
                 </span>
-                <div class="alert alert-danger" [hidden]="!error">
-                    <!-- {{error}}-->
+                <div class="alert alert-danger" [hidden]="!error" style="padding: 5px;text-align: center;">
+                    {{error}}
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Enter username">
-                    <input type="email" name="email" class="input100" id="inputEmail3" placeholder="Email"
-                        [(ngModel)]="form.email" required>
+                <div class="wrap-input100 validate-input" style="margin-top: 20px;" data-validate="Enter user Email">
+                    <input type="email" type="email"  email="email" class="input100" id="inputEmail3" placeholder="Email"
+                        [(ngModel)]="form.email" required  #email="ngModel" [ngModelOptions]="{standalone: true}">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                
+                    <div *ngIf="email.errors.required">
+                        email is required.
+                    </div>
+                    <div *ngIf="email.errors.type">
+                        email is not valid.
+                    </div>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
                     <input type="password" name="password" class="input100" id="inputPassword3" placeholder="Password"
-                        [(ngModel)]="form.password" required>
+                        [(ngModel)]="form.password" required minlength="10"#password="ngModel" [ngModelOptions]="{standalone: true}" required>
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                
+                    <div *ngIf="password.errors.required">
+                        password is required.
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        password must be at least 10 characters long.
+                    </div>
                 </div>
 
                 <div class="contact100-form-checkbox">
@@ -38,9 +56,11 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn" [disabled]="!loginForm.valid">Login</button>
+                    <button type="submit" (onclick)="login()" class="login100-form-btn" ng-disabled="!loginForm.valid &&
+                    !password.errors.minlength && !password.errors.required && !email.errors.required ? 'disabled': null">Login</button>
                 </div>
 
+            
                 <div class="text-center p-t-90">
                     <a class="txt1" routerLink="/froget-password">
                         Forgot Password?

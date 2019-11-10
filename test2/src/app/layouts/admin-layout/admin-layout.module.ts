@@ -13,6 +13,10 @@ import {
   MatSelectModule,
   MatIconModule,
   MatToolbarModule,
+  MatSlideToggleModule,
+  MatDatepickerModule,
+  MatRadioModule,
+  MatNativeDateModule,
 } from '@angular/material';
 import { ProductaddComponent } from 'app/admin/product/productadd/productadd.component';
 import { UserviewComponent } from 'app/admin/user/userview/userview.component';
@@ -48,6 +52,10 @@ import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.c
     MatSelectModule,
     MatTooltipModule,
     MatIconModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
     AllShareModule,
   ],
   declarations: [

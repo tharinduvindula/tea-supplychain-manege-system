@@ -5,6 +5,7 @@ import contract from 'truffle-contract';
 import { resolveTxt } from 'dns';
 import { error } from '@angular/compiler/src/util';
 import { async } from '@angular/core/testing';
+import { Observable } from 'rxjs';
 
 declare let require: any;
 declare let window: any;
@@ -12,6 +13,8 @@ declare let l: number;
 
 const Tx = require('ethereumjs-tx');
 const tokenAbi = require('../../../build/contracts/Login.json');
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +25,7 @@ export class EthcontractService {
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
+  public curentaccount = '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6'
 
 
 
@@ -33,64 +37,62 @@ export class EthcontractService {
     }
 
     this.web3 = new Web3(this.web3Provider);
-    this.get();
+    // this.get();
+    // this.set();
   }
 
-  login(_userName, _password) {
+  login({ _userName, _password }: { _userName; _password; }): Promise<any> {
     const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
-
-    Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
-      if (er == null) {
-        console.log(ev);
-        return ev;
-      } else {
-        console.log(er);
-        return er
+    // tslint:disable-next-line: no-shadowed-variable
+    return new Promise((data, error) => { Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
+      if (er != null) {
+        error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
       }
-    });
 
+      data(ev);
+    })});
   }
 
 
-  get() {
-    // const MyContract = contract(tokenAbi);
-    // MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
-    // Xc.methods.setu(125).call((er, ev) => {
-    //   console.log(ev);
-    // });
-    let i: number;
-    Xc.methods.getUserCount().call((er: any, ev: number) => {
-      if (er == null) {
-        console.log(ev);
-        if (ev < 10) {
-          setTimeout(() => this.set(), 3000);
-        }
-        return ev;
-      } else {
-        console.log(er);
-      }
-    });
-    
-    for (i = 0; i < Xc.methods.getUserCount().call((er: any, ev: number) => {return ev; }); i++) {
-    Xc.methods.getAdmini(i).call((er: any, ev: any) => {
-      if (er == null) {
-        console.log(ev);
-      } else {
-        console.log(er);
-      }
-    });
-    }
-    // MyContract.deployed().then(deployed => {
-    //   deployed.set(('hi'), (er) => {
-    //     console.log('Transfer event came in, refreshing balance');
-    //   });
-    //   deployed.get((er, ev) => {
-    //     console.log(ev);
-    //     console.log('Transfer event came in, refreshing balance');
-    //   });
-    // });
-  }
+  // get() {
+  //    const MyContract = contract(tokenAbi);
+  //    MyContract.setProvider(this.web3.currentProvider);
+  //   const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+  //   // Xc.methods.setu(125).call((er, ev) => {
+  //   //   console.log(ev);
+  //   // });
+  //   let i: number;
+  //   Xc.methods.getUserCount().call((er: any, ev: number) => {
+  //     if (er == null) {
+  //       console.log(ev);
+  //       if (ev < 10) {
+  //         setTimeout(() => this.set(), 3000);
+  //       }
+  //       return ev;
+  //     } else {
+  //       console.log(er);
+  //     }
+  //   });
+
+  //   for (i = 0; i < Xc.methods.getUserCount().call((er: any, ev: number) => {return ev; }); i++) {
+  //   Xc.methods.getAdmini(i).call((er: any, ev: any) => {
+  //     if (er == null) {
+  //       console.log(ev);
+  //     } else {
+  //       console.log(er);
+  //     }
+  //   });
+  //   }
+  //   // MyContract.deployed().then(deployed => {
+  //   //   deployed.set(('hi'), (er) => {
+  //   //     console.log('Transfer event came in, refreshing balance');
+  //   //   });
+  //   //   deployed.get((er, ev) => {
+  //   //     console.log(ev);
+  //   //     console.log('Transfer event came in, refreshing balance');
+  //   //   });
+  //   // });
+  // }
 
   set() {
     /*const token = new this.web3.eth.Contract(tokenAbi.abi, '0xc382F0cDa16Ea3030132911BA33EEb3C901498f5');
@@ -141,4 +143,18 @@ export class EthcontractService {
       }
     });
   }
+
+  setvalue() {
+    const MyContract = contract(tokenAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getvalue() {
+    const MyContract = contract(tokenAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    return Xc.methods;
+  }
+
 }
