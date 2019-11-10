@@ -25,6 +25,7 @@ export class EthcontractService {
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
+  public curentaccount = '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6'
 
 
 
@@ -42,6 +43,7 @@ export class EthcontractService {
 
   login({ _userName, _password }: { _userName; _password; }): Promise<any> {
     const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    // tslint:disable-next-line: no-shadowed-variable
     return new Promise((data, error) => { Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
       if (er != null) {
         error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
@@ -141,4 +143,18 @@ export class EthcontractService {
       }
     });
   }
+
+  setvalue() {
+    const MyContract = contract(tokenAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getvalue() {
+    const MyContract = contract(tokenAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    return Xc.methods;
+  }
+
 }
