@@ -39,6 +39,8 @@ import { UserblockComponent } from 'app/admin/user/userblock/userblock.component
 import { WorkeraddComponent } from 'app/admin/worker/workeradd/workeradd.component';
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.component';
+import { ProductupdateComponent } from 'app/admin/product/productupdate/productupdate.component';
+import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -80,6 +82,8 @@ import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.c
     WorkerviewComponent,
     WorkereditComponent,
     WorkerblockComponent,
+    ProductupdateComponent,
+    DistributorupdateComponent,
   ]
 })
 
