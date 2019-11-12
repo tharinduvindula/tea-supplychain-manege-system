@@ -204,7 +204,36 @@ contract Login {
     }
 
 /////////////////////////
+    function insertdistributor(string memory _email,string memory _name) public returns(bytes32)
+    {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked(("a")));
+        require(isUser(_emailCode) != true,'user allredy in system');
 
+        adminArray[_emailCode].email = _email;
+        adminArray[_emailCode].emailCode = _emailCode;
+        adminArray[_emailCode].passwordCode = _passwordCode;
+        adminArray[_emailCode].passwordRestToken = "";
+        adminArray[_emailCode].name = _name;
+        adminArray[_emailCode].contactNumber = 0;
+        adminArray[_emailCode].userAddress = "";
+        adminArray[_emailCode].userAccess = 1;
+        setDisplayAdmin(_emailCode,_email,_name);
+        adminArray[_emailCode].index = adminIndex.length-1;
+
+        emit LogNewAdmin (
+            _emailCode,
+            adminArray[_emailCode].index,
+            _email,
+            adminArray[_emailCode].passwordCode,
+            adminArray[_emailCode].passwordRestToken,
+            _name,
+            adminArray[_emailCode].contactNumber,
+            adminArray[_emailCode].userAddress,
+            adminArray[_emailCode].userAccess
+            );
+        return createAdminToken(_emailCode);
+    }
 
     function insertAdmin(string memory _email,string memory _name) public returns(bytes32)
     {
@@ -434,12 +463,13 @@ contract Login {
     {
        // return true;
     }
-    function frogetPassword(string memory _email) public returns(bool){
+    function frogetPassword(string memory _email) public returns(bool)
+    {
         
     }
     function resetPassword(bytes32 token,string memory password)public returns(bool)
     {
-        
+
     }
     function createBox() public returns(bool){
 
