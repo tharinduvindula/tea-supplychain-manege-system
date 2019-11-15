@@ -46,6 +46,7 @@ import { FrogetPasswordComponent } from './froget-password/froget-password.compo
 import { CommonModule } from '@angular/common';
 import { ProductupdateComponent } from './admin/product/productupdate/productupdate.component';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
 
 @NgModule({
   imports: [
@@ -71,7 +72,8 @@ import { DistributorupdateComponent } from './admin/distributor/distributorupdat
     MatIconModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    UcWidgetModule,
   ],
   declarations: [
     AppComponent,

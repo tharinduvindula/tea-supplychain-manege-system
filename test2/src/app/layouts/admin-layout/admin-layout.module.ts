@@ -39,6 +39,7 @@ import { UserblockComponent } from 'app/admin/user/userblock/userblock.component
 import { WorkeraddComponent } from 'app/admin/worker/workeradd/workeradd.component';
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.component';
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
 @NgModule({
   imports: [
     CommonModule,
@@ -57,6 +58,7 @@ import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.c
     MatNativeDateModule,
     MatRadioModule,
     AllShareModule,
+    UcWidgetModule,
   ],
   declarations: [
     NotificationsComponent,
