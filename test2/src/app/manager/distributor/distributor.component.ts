@@ -18,7 +18,6 @@ export class DistributorComponent implements OnInit {
     userAccess: null,
     userAddress: null,
   };
-  distributors: DISTRIBUTOR[] = [];
   items: FormArray;
 
   constructor(private service: AdminserviceService, private formBuilder: FormBuilder) {

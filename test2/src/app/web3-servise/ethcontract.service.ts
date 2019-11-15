@@ -13,6 +13,11 @@ declare let l: number;
 
 const Tx = require('ethereumjs-tx');
 const tokenAbi = require('../../../build/contracts/Login.json');
+const adminAbi = require('../../../build/contracts/AdminContract.json');
+const distributorAbi = require('../../../build/contracts/DistributorContract.json');
+const loaderAbi = require('../../../build/contracts/LoaderContract.json');
+const managerAbi = require('../../../build/contracts/ManagerContract.json');
+const supervisorAbi = require('../../../build/contracts/SupervisorContract.json');
 
 
 
@@ -38,11 +43,11 @@ export class EthcontractService {
 
     this.web3 = new Web3(this.web3Provider);
     // this.get();
-    // this.set();
+   // this.set();
   }
 
   login({ _userName, _password }: { _userName; _password; }): Promise<any> {
-    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xe87A136d95C3c3Dc31Abb0096886B8aa49D402b9');
     // tslint:disable-next-line: no-shadowed-variable
     return new Promise((data, error) => { Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
       if (er != null) {
@@ -132,28 +137,82 @@ export class EthcontractService {
 
     });*/
     this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
-    const MyContract = contract(tokenAbi);
+    const MyContract = contract(adminAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const token = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    // const token = new this.web3.eth.Contract(adminAbi.abi, '0x02276f676c66273695850ef1712D25aee963f838');
     MyContract.deployed().then((deployed: { insertAdmin: (arg0: string, arg1: string, arg2: { from: string; }) => void; }) => {
       let i: string | number;
-      for ( i = 0; i < 10; i++) {
+      for ( i = 0; i < 100; i++) {
         const s = 'tharinduvindulatharinduvindula' + i + '@gmail.com';
         deployed.insertAdmin(s, 'j.k.a. tharindu vindula tharindu vindula', { from: '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6' });
+        console.log("s"+i);
       }
     });
   }
 
-  setvalue() {
-    const MyContract = contract(tokenAbi);
+  setMangervalue() {
+    const MyContract = contract(managerAbi);
     MyContract.setProvider(this.web3.currentProvider);
     return MyContract.deployed()
   }
 
-  getvalue() {
-    const MyContract = contract(tokenAbi);
+  getManagervalue() {
+    const MyContract = contract(managerAbi);
     MyContract.setProvider(this.web3.currentProvider);
     const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    return Xc.methods;
+  }
+
+  setAdminvalue() {
+    const MyContract = contract(adminAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getAdminvalue() {
+    const MyContract = contract(adminAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(adminAbi.abi, '0x02276f676c66273695850ef1712D25aee963f838');
+    console.log(Xc.methods)
+    return Xc.methods;
+  }
+
+  setDistributorvalue() {
+    const MyContract = contract(distributorAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getDistributorvalue() {
+    const MyContract = contract(distributorAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0xf11264130D90298b8526C19d03Ff12B94C4493aA');
+    return Xc.methods;
+  }
+
+  setSupervisorvalue() {
+    const MyContract = contract(supervisorAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getSupervisorvalue() {
+    const MyContract = contract(supervisorAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0xdbeD56E869bB860a557487D3Aaf149e322C5f7cA');
+    return Xc.methods;
+  }
+
+  setLoadervalue() {
+    const MyContract = contract(loaderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getLoadervalue() {
+    const MyContract = contract(loaderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
     return Xc.methods;
   }
 
