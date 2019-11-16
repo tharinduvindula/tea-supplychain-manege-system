@@ -57,4 +57,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'worker/view', component: WorkerviewComponent },
     { path: 'worker/edit', component: WorkerblockComponent },
     { path: 'worker/block', component: WorkerblockComponent },
+    { path: 'product/update', component: ProductupdateComponent },
 ];
