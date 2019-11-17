@@ -26,6 +26,7 @@ import { DistributorComponent } from 'app/manager/distributor/distributor.compon
 import { EstateComponent } from 'app/manager/estate/estate.component';
 import { OtheruserComponent } from 'app/manager/otheruser/otheruser.component';
 import { OrderComponent } from 'app/manager/order/order.component';
+import { DistributorserviceService } from 'app/service/distributorservice.service';
 
 @NgModule({
     imports: [
@@ -55,6 +56,8 @@ import { OrderComponent } from 'app/manager/order/order.component';
         EstateComponent,
         OrderComponent,
         OtheruserComponent,
-    ]
+    ],
+    providers: [DistributorserviceService],
+    
 })
 export class AllShareModule { }

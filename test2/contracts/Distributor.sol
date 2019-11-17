@@ -72,20 +72,21 @@ contract DistributorContract {
     function randomtoken() private view returns (bytes32) {
        return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
     }
-    function setDisplayDistributor(bytes32 _emailCode,string memory _email,string memory _name) private returns(bool){
+    function setDisplayDistributor(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
+     private returns(bool){
 
         DisplayDistributor memory displayDistributor;
         displayDistributor.emailCode = _emailCode;
         displayDistributor.email = _email;
         displayDistributor.name = _name;
-        displayDistributor.contactNumber = 717615678;
-        displayDistributor.userAddress = "1335,bogahawaththa Road,pannipitiya,colombo,sri lanka,10230";
+        displayDistributor.contactNumber = _telephone;
+        displayDistributor.userAddress = _address;
         displayDistributor.userAccess = 1;
         distributorIndex.push(displayDistributor);
         return true;
 
     }
-    function insertdistributor(string memory _email,string memory _name) public returns(bytes32){
+    function insertDistributor(string memory _email,string memory _name,string memory _address,uint _telephone) public returns(bool){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 _passwordCode = keccak256(abi.encodePacked(("a")));
         require(isDistributor(_emailCode) != true,'user allredy in system');
@@ -93,12 +94,12 @@ contract DistributorContract {
         distributorArray[_emailCode].email = _email;
         distributorArray[_emailCode].emailCode = _emailCode;
         distributorArray[_emailCode].passwordCode = _passwordCode;
-        distributorArray[_emailCode].passwordRestToken = "";
+        distributorArray[_emailCode].passwordRestToken = createDistributorToken(_emailCode);
         distributorArray[_emailCode].name = _name;
-        distributorArray[_emailCode].contactNumber = 0;
-        distributorArray[_emailCode].userAddress = "";
+        distributorArray[_emailCode].contactNumber = _telephone;
+        distributorArray[_emailCode].userAddress = _address;
         distributorArray[_emailCode].userAccess = 1;
-        setDisplayDistributor(_emailCode,_email,_name);
+        setDisplayDistributor(_emailCode,_email,_name,_telephone,_address);
         distributorArray[_emailCode].index = distributorIndex.length-1;
 
         emit LogNewDistributor (
@@ -108,11 +109,11 @@ contract DistributorContract {
             distributorArray[_emailCode].passwordCode,
             distributorArray[_emailCode].passwordRestToken,
             _name,
-            distributorArray[_emailCode].contactNumber,
-            distributorArray[_emailCode].userAddress,
+            _telephone,
+            _address,
             distributorArray[_emailCode].userAccess
             );
-        return createDistributorToken(_emailCode);
+        return true;
     }
     function deleteDistributor (bytes32 email) public returns(string memory){
         uint i;
@@ -153,7 +154,7 @@ contract DistributorContract {
             distributorArray[_emailCode].userAccess
             );
     }
-    function getDistributor(uint i) public view returns(
+    function getDistributori(uint i) public view returns(
         bytes32,
         string memory,
         string memory,

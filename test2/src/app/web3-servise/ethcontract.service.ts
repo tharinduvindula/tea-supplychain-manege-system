@@ -44,6 +44,7 @@ export class EthcontractService {
     this.web3 = new Web3(this.web3Provider);
     // this.get();
    // this.set();
+    this.setDistributorvalue();
   }
 
   login({ _userName, _password }: { _userName; _password; }): Promise<any> {
@@ -140,7 +141,7 @@ export class EthcontractService {
     const MyContract = contract(adminAbi);
     MyContract.setProvider(this.web3.currentProvider);
     // const token = new this.web3.eth.Contract(adminAbi.abi, '0x02276f676c66273695850ef1712D25aee963f838');
-    MyContract.deployed().then((deployed: { insertAdmin: (arg0: string, arg1: string, arg2: { from: string; }) => void; }) => {
+    MyContract.deployed().then((deployed: { insertAdmin: (arg0: string, arg1: string, arg2: { from: string; }) => string; }) => {
       let i: string | number;
       for ( i = 0; i < 100; i++) {
         const s = 'tharinduvindulatharinduvindula' + i + '@gmail.com';
@@ -180,13 +181,13 @@ export class EthcontractService {
   setDistributorvalue() {
     const MyContract = contract(distributorAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    return MyContract.deployed()
+    return MyContract.deployed();
   }
 
   getDistributorvalue() {
     const MyContract = contract(distributorAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0xf11264130D90298b8526C19d03Ff12B94C4493aA');
+    const Xc = new this.web3.eth.Contract(distributorAbi.abi, '0xf11264130D90298b8526C19d03Ff12B94C4493aA');
     return Xc.methods;
   }
 

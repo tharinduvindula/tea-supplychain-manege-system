@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminserviceService } from 'app/service/adminservice.service';
+import { DistributorserviceService } from 'app/service/Distributorservice.service';
 import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
@@ -15,12 +15,13 @@ export class DistributorComponent implements OnInit {
     email: null,
     emailCode: null,
     name: null,
+    photo: null,
     userAccess: null,
     userAddress: null,
   };
   items: FormArray;
 
-  constructor(private service: AdminserviceService, private formBuilder: FormBuilder) {
+  constructor(private service: DistributorserviceService, private formBuilder: FormBuilder) {
     this.create();
    }
 
@@ -31,16 +32,18 @@ export class DistributorComponent implements OnInit {
   async create() {
     let x;
     let i;
-    await this.service.getAdminCount().then(  val => x = val )
+    await this.service.getDistributorCount().then(  val => x = val )
+  
     console.log(x);
     for (i = 0; i < x; i++) {
       console.log(i)
-      await this.service.getAdmini(i).then(val => {
+      await this.service.getDistributori(i).then(val => {
         this.items.push(this.formBuilder.group({
           contactNumber: val[3],
           email: val[1],
           emailCode: val[0],
-          name: val[2],
+          name: val[2].split('#')[0],
+          photo: val[2].split('#')[1],
           userAccess: val[5],
           userAddress: val[4]
         }));
