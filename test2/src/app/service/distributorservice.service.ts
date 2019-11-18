@@ -134,6 +134,30 @@ export class DistributorserviceService {
           }
         });
     });
+  
+  }
+  deleteDistributor(email): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setDistributorvalue()
+        .then(async (deployed: {
+          deleteDistributor: (arg0: string, arg2: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            this.result = await deployed.deleteDistributor(email,{ from: this.web3.curentaccount })
+          } catch (error) {
+            console.log('error');
+          }
+          if (this.result != null) {
+            dt(this.result.logs[0].args.name);
+          } else {
+            er('user alredy in system');
+            console.log(this.result)
+          }
+        });
+    });
   }
   blockDistributor(email): Promise<any> {
     // tslint:disable-next-line: max-line-length

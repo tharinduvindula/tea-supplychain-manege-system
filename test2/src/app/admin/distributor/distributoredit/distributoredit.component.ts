@@ -38,12 +38,26 @@ export class DistributoreditComponent implements OnInit {
   onedit(event, email) {
     event.preventDefault();
     this.form.email = email;
-    this.router.navigate(['/admin/distributor/update'], { queryParams: { Email: email }, skipLocationChange: true });
+    this.router.navigate(['/admin/distributor/update'], { queryParams: { Email: email } });
   }
-  ondelete(event, email) {
-    // event.preventDefault();
-    // this.form.email = email;
-    // this.router.navigate(['/admin/d'], { queryParams: { Email: email }, skipLocationChange: true });
+  async ondelete(event, email) {
+    event.preventDefault();
+    await this.service.deleteDistributor(email).then(
+      data => {
+        if (data != null) {
+          console.log(data)
+        }
+
+      },
+      error => {
+        // this.handleError(error)
+        if (error != null) {
+          console.log(error)
+        }
+      }
+
+    );
+    this.create();
   }
 
   async create() {

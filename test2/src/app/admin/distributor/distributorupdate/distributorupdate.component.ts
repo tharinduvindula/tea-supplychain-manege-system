@@ -101,7 +101,7 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigateByUrl('/admin/distributor/edit');
+      
     }
     // tslint:disable-next-line: max-line-length
     if (this.form.name == this.form.name && this.form1.photo == this.form.photo && this.form1.address == this.form.address && this.form1.contry == this.form.contry && this.form1.telephone !== this.form.telephone) {
@@ -120,7 +120,7 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigateByUrl('/admin/distributor/edit');
+      this.router.navigate(['/admin/distributor/edit']);
     } else {
       let arr: number[] = [];
       if (this.form1.name !== this.form.name || this.form1.photo !== this.form.photo) {
@@ -153,7 +153,7 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigateByUrl('/admin/distributor/edit');
+      this.router.navigate(['/admin/distributor/edit']);
     }
     this.form2.email = this.form.email;
   }
