@@ -40,6 +40,7 @@ import { WorkeraddComponent } from 'app/admin/worker/workeradd/workeradd.compone
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
+import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -66,6 +67,7 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
     DistributoreditComponent,
     DistributorprogressComponent,
     DistributorblockComponent,
+    DistributorupdateComponent,
     EstateaddComponent,
     EstateeditComponent,
     EstateprogressComponent,

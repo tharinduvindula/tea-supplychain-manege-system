@@ -49,7 +49,7 @@ export class DistributoraddComponent implements OnInit {
     await this.service.insertDistributor(this.form.email, name, address,telephone).then(
       data => {
         if ( data != null){
-        console.log(data)
+        console.log(data);
         this.formValues.resetForm();
         }
 

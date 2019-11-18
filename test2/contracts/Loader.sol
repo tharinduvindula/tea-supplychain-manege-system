@@ -136,16 +136,30 @@ contract LoaderContract {
     function blockLoader(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(loaderArray[email].userAccess == 5){
         loaderArray[email].userAccess = 3;
         loaderIndex[loaderArray[email].index].userAccess = 3;
         name = loaderIndex[loaderArray[email].index].name;
+        }
+        if(loaderArray[email].userAccess == 3){
+        loaderArray[email].userAccess = 5;
+        loaderIndex[loaderArray[email].index].userAccess = 5;
+        name = loaderIndex[loaderArray[email].index].name;
+        }
         return name;
+    }
+    editUserAccess(string memory _email,uint usreAccess){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        loaderArray[email].userAccess = userAccess;
+        loaderIndex[loaderArray[email].index].userAccess = userAccess;
+
     }
     function getLoader(string memory _email) public view returns(string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isLoader(_emailCode) == true,'user not in system');
         return(
+            _emailCode,
             loaderArray[_emailCode].email,
             loaderArray[_emailCode].name,
             loaderArray[_emailCode].contactNumber,

@@ -136,16 +136,30 @@ contract SupervisorContract {
     function blockSupervisor(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(supervisorArray[email].userAccess == 5){
         supervisorArray[email].userAccess = 3;
         supervisorIndex[supervisorArray[email].index].userAccess = 3;
         name = supervisorIndex[supervisorArray[email].index].name;
+        }
+        if(supervisorArray[email].userAccess == 3){
+        supervisorArray[email].userAccess = 5;
+        supervisorIndex[supervisorArray[email].index].userAccess = 5;
+        name = supervisorIndex[supervisorArray[email].index].name;
+        }
         return name;
+    }
+    editUserAccess(string memory _email,uint usreAccess){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        supervisorArray[email].userAccess = usreAccess;
+        supervisorIndex[supervisorArray[email].index].userAccess = usreAccess;
+
     }
     function getSupervisor(string memory _email) public view returns(string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isSupervisor(_emailCode) == true,'user not in system');
         return(
+            _emailCode,
             supervisorArray[_emailCode].email,
             supervisorArray[_emailCode].name,
             supervisorArray[_emailCode].contactNumber,

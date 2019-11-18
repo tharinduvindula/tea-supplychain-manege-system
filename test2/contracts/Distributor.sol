@@ -137,16 +137,30 @@ contract DistributorContract {
     function blockDistributor(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(distributorArray[email].userAccess == 5){
         distributorArray[email].userAccess = 3;
         distributorIndex[distributorArray[email].index].userAccess = 3;
         name = distributorIndex[distributorArray[email].index].name;
+        }
+        if(distributorArray[email].userAccess == 3){
+        distributorArray[email].userAccess = 5;
+        distributorIndex[distributorArray[email].index].userAccess = 5;
+        name = distributorIndex[distributorArray[email].index].name;
+        }
         return name;
+    }
+    editUserAccess(string memory _email,uint usreAccess){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        distributorArray[email].userAccess = usreAccess;
+        distributorIndex[distributorArray[email].index].userAccess = usreAccess;
+
     }
     function getDistributor(string memory _email) public view returns(string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isDistributor(_emailCode) == true,'user not in system');
         return(
+            _emailCode,
             distributorArray[_emailCode].email,
             distributorArray[_emailCode].name,
             distributorArray[_emailCode].contactNumber,

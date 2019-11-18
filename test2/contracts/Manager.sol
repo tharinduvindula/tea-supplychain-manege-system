@@ -136,16 +136,30 @@ contract ManagerContract {
     function blockManager(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(managerArray[email].userAccess == 5){
         managerArray[email].userAccess = 3;
         managerIndex[managerArray[email].index].userAccess = 3;
         name = managerIndex[managerArray[email].index].name;
+        }
+        if(managerArray[email].userAccess == 3){
+        managerArray[email].userAccess = 5;
+        managerIndex[managerArray[email].index].userAccess = 5;
+        name = managerIndex[managerArray[email].index].name;
+        }
         return name;
+    }
+    editUserAccess(string memory _email,uint usreAccess){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        managerArray[email].userAccess = usreAccess;
+        managerIndex[managerArray[email].index].userAccess = usreAccess;
+
     }
     function getManager(string memory _email) public view returns(string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isManager(_emailCode) == true,'user not in system');
         return(
+            _emailCode,
             managerArray[_emailCode].email,
             managerArray[_emailCode].name,
             managerArray[_emailCode].contactNumber,

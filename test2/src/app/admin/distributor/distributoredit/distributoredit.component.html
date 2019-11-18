@@ -16,7 +16,7 @@
               <th>Delete</th>
             </thead>
             <tbody>
-              <tr *ngFor="let user of items">
+              <tr *ngFor="let user of items.value">
                 <td><img class="img"  [src]="user.photo"  alt="Card image cap"
                     style="width:80px;height: 80px;border-radius: 50%;"></td>
                 <td class="text-dark">{{user.name}}</td>
@@ -24,7 +24,7 @@
                 <td><button mat-raised-button type="submit" (click)=onedit($event,user.email)
                     style="background-color: blue;" class="btn">Edit
                     Profile</button></td>
-                <td><button mat-raised-button type="submit" (click)=ondelete($event,user.email)
+                <td><button mat-raised-button type="submit" (click)=ondelete($event,user.emailCode)
                     class="btn btn-danger">Delete
                     Profile</button></td>
               </tr>

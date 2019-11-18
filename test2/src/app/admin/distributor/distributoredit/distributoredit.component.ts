@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-distributoredit',
@@ -20,17 +21,13 @@ export class DistributoreditComponent implements OnInit {
     userAccess: null,
   };
   items: FormArray;
-
-  constructor(private service: DistributorserviceService, private formBuilder: FormBuilder) {
-    this.create();
+  constructor(private service: DistributorserviceService, private formBuilder: FormBuilder, private router: Router) {
+   
   }
 
   ngOnInit() {
     this.items = this.formBuilder.array([]);
-  }
-
-  isOtheruser() {
-    // return this.users.filter(x => (x.id !== this.Token.payload(this.Token.gettoken()).sub) && (x.permenetdisable === 0));
+    this.create();
   }
   isMobileMenu() {
     if (screen.width > 991) {
@@ -41,26 +38,12 @@ export class DistributoreditComponent implements OnInit {
   onedit(event, email) {
     event.preventDefault();
     this.form.email = email;
-    // this.UserHandle.multiuserhandleforuser(this.form).subscribe(
-    //   data => {
-    //     this.router.navigate(['/admin/User-Profile-edit'], { queryParams: { Email: email }, skipLocationChange: true });
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // );
+    this.router.navigate(['/admin/distributor/update'], { queryParams: { Email: email }, skipLocationChange: true });
   }
   ondelete(event, email) {
-    event.preventDefault();
-    this.form.email = email;
-    // this.UserHandle.multiuserhandleforuser(this.form).subscribe(
-    //   data => {
-    //     this.router.navigate(['/admin/User-Profile-delete'], { queryParams: { Email: email }, skipLocationChange: true });
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // );
+    // event.preventDefault();
+    // this.form.email = email;
+    // this.router.navigate(['/admin/d'], { queryParams: { Email: email }, skipLocationChange: true });
   }
 
   async create() {
@@ -69,6 +52,7 @@ export class DistributoreditComponent implements OnInit {
     await this.service.getDistributorCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(val => {
+        if (val[5] !== 4) {
         this.items.push(this.formBuilder.group({
           email: val[1],
           emailCode: val[0],
@@ -76,6 +60,7 @@ export class DistributoreditComponent implements OnInit {
           photo: val[2].split('#')[1],
           userAccess: val[5]
         }));
+      }
       });
     }
   }
@@ -83,6 +68,5 @@ export class DistributoreditComponent implements OnInit {
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-
 
 }

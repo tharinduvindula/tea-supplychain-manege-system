@@ -141,10 +141,23 @@ contract AdminContract {
     function blockAdmin(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(adminArray[email].userAccess == 5){
         adminArray[email].userAccess = 3;
         adminIndex[adminArray[email].index].userAccess = 3;
         name = adminIndex[adminArray[email].index].name;
+        }
+        if(adminArray[email].userAccess == 3){
+        adminArray[email].userAccess = 5;
+        adminIndex[adminArray[email].index].userAccess = 5;
+        name = adminIndex[adminArray[email].index].name;
+        }
         return name;
+    }
+    editUserAccess(string memory _email,uint usreAccess){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        adminArray[email].userAccess = usreAccess;
+        adminIndex[adminArray[email].index].userAccess = usreAccess;
+
     }
     
     function getAdmin(string memory _email) public view returns(string memory email,string memory name,
@@ -153,6 +166,7 @@ contract AdminContract {
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         return(
+            _emailCode
             adminArray[_emailCode].email,
             adminArray[_emailCode].name,
             adminArray[_emailCode].contactNumber,
