@@ -151,7 +151,7 @@ export class EthcontractService {
     });
   }
 
-  setMangervalue() {
+  setManagervalue() {
     const MyContract = contract(managerAbi);
     MyContract.setProvider(this.web3.currentProvider);
     return MyContract.deployed()

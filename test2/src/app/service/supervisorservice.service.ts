@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { EthcontractService } from 'app/web3-servise/ethcontract.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class AdminserviceService {
+export class SupervisorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
   }
 
-  async getAdminCount() {
-    console.log(this.web3.getAdminvalue)
-    await this.web3.getAdminvalue().getAdminCount().call((er: any, ev: number) => {
+  async getSupervisorCount() {
+    console.log(this.web3.getSupervisorvalue)
+    await this.web3.getSupervisorvalue().getSupervisorCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -23,41 +22,41 @@ export class AdminserviceService {
     return this.result;
   }
 
-  insertAdmin(email, name, adress, telepone): Promise<any> {
+  insertSupervisor(email, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
-      .then(async (deployed: {
-        insertAdmin: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
-          { er: string; ev: string; }
-      }) => {
-        try {
-          this.result = await deployed.insertAdmin(email, name, adress, telepone, { from: this.web3.curentaccount })
-        } catch (error) {
-          console.log('error');
-        }
-        if (this.result != null) {
-          this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
-          dt(this.result.logs[0].args.name);
-        } else {
-          er('user alredy in system');
-          console.log(this.result)
-        }
-      });
-    });
-  }
-  updateAdminName(email, name): Promise<any> {
-    // tslint:disable-next-line: max-line-length
-    // tslint:disable-next-line: no-unused-expression
-    return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          updateAdminName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          insertSupervisor: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminName(email, name, { from: this.web3.curentaccount })
+            this.result = await deployed.insertSupervisor(email, name, adress, telepone, { from: this.web3.curentaccount })
+          } catch (error) {
+            console.log('error');
+          }
+          if (this.result != null) {
+            this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
+            dt(this.result.logs[0].args.name);
+          } else {
+            er('user alredy in system');
+            console.log(this.result)
+          }
+        });
+    });
+  }
+  updateSupervisorName(email, name): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setSupervisorvalue()
+        .then(async (deployed: {
+          updateSupervisorName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            this.result = await deployed.updateSupervisorName(email, name, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -70,17 +69,17 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdminAddress(email, address): Promise<any> {
+  updateSupervisorAddress(email, address): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          updateAdminAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateSupervisorAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminAddress(email, address, { from: this.web3.curentaccount })
+            this.result = await deployed.updateSupervisorAddress(email, address, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -93,17 +92,17 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdminContactNumber(email, telephone): Promise<any> {
+  updateSupervisorContactNumber(email, telephone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          updateAdminContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateSupervisorContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminContactNumber(email, telephone, { from: this.web3.curentaccount })
+            this.result = await deployed.updateSupervisorContactNumber(email, telephone, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -116,17 +115,17 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdmin(email, index, name, adress, telepone): Promise<any> {
+  updateSupervisor(email, index, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          updateAdmin: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
+          updateSupervisor: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdmin(email, index, name, adress, telepone, { from: this.web3.curentaccount })
+            this.result = await deployed.updateSupervisor(email, index, name, adress, telepone, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -140,17 +139,17 @@ export class AdminserviceService {
     });
 
   }
-  deleteAdmin(email): Promise<any> {
+  deleteSupervisor(email): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          deleteAdmin: (arg0: string, arg2: { from: string; }) =>
+          deleteSupervisor: (arg0: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.deleteAdmin(email, { from: this.web3.curentaccount })
+            this.result = await deployed.deleteSupervisor(email, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -163,16 +162,16 @@ export class AdminserviceService {
         });
     });
   }
-  blockAdmin(email): Promise<any> {
+  blockSupervisor(email): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setSupervisorvalue()
         .then(async (deployed: {
-          blockAdmin: (arg0: string, arg4: { from: string; }) => any
+          blockSupervisor: (arg0: string, arg4: { from: string; }) => any
         }) => {
           try {
-            this.result = await deployed.blockAdmin(email, { from: this.web3.curentaccount })
+            this.result = await deployed.blockSupervisor(email, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -186,8 +185,8 @@ export class AdminserviceService {
     });
   }
 
-  async getAdmini(index) {
-    await this.web3.getAdminvalue().getAdmini(index).call((er: any, ev: any) => {
+  async getSupervisori(index) {
+    await this.web3.getSupervisorvalue().getSupervisori(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -196,8 +195,8 @@ export class AdminserviceService {
     });
     return this.result;
   }
-  async getAdmin(email) {
-    await this.web3.getAdminvalue().getAdmin(email).call((er: any, ev: any) => {
+  async getSupervisor(email) {
+    await this.web3.getSupervisorvalue().getSupervisor(email).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {

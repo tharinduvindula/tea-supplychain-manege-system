@@ -12,43 +12,7 @@
             <div class="form-group row">
               <div class="col-md-12">
                 <mat-form-field class="example-full-width">
-                  <input matInput name="fullname" id="fullname" placeholder="Full Name" type="text"
-                    [(ngModel)]="form.fullname" required>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                  <input matInput name="firstname" placeholder="Fist Name" type="text" [(ngModel)]="form.firstname"
-                    required>
-                </mat-form-field>
-              </div>
-              <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                  <input matInput name="lastname" placeholder="Last Name" type="text" [(ngModel)]="form.lastname"
-                    required>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-3">
-                <mat-form-field class="example-full-width">
-                  <input type="tel" name="nic" id="nic" matInput placeholder="NIC Number" [(ngModel)]="form.nic"
-                    required>
-                  <span matSuffix>v &nbsp;</span>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-3">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Sex</mat-label>
-                  <mat-select name="sex" [(ngModel)]="form.sex">
-                    <mat-option value="male">Male</mat-option>
-                    <mat-option value="female">Female</mat-option>
-
-                  </mat-select>
+                  <input matInput name="name" id="name" placeholder="Full Name" type="text" [(ngModel)]="form.name" required>
                 </mat-form-field>
               </div>
             </div>
@@ -60,13 +24,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="form-group row">
-              <div class="col-md-12">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Adress" type="text" name="address" [(ngModel)]="form.address">
-                </mat-form-field>
-              </div>
-            </div>
+            
             <div class="form-group row">
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
@@ -76,23 +34,13 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="form-group row">
-              <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="starting date"
-                    name="startdate" [(ngModel)]="form.startdate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div>
-            </div>
+          
             <div class="form-group row">
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                   <mat-label>User Type</mat-label>
                   <mat-select name="usertype" [(ngModel)]="form.usertype">
-                    <mat-option value="lectuer">Lecture</mat-option>
-                    <mat-option value="demo">Demo</mat-option>
+                    <mat-option value="lectuer">Manager</mat-option>
                     <mat-option value="admin">Admin</mat-option>
                   </mat-select>
                 </mat-form-field>

@@ -5,15 +5,15 @@ import { EthcontractService } from 'app/web3-servise/ethcontract.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminserviceService {
+export class LoaderserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
   }
 
-  async getAdminCount() {
-    console.log(this.web3.getAdminvalue)
-    await this.web3.getAdminvalue().getAdminCount().call((er: any, ev: number) => {
+  async getLoaderCount() {
+    console.log(this.web3.getLoadervalue)
+    await this.web3.getLoadervalue().getLoaderCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -23,22 +23,41 @@ export class AdminserviceService {
     return this.result;
   }
 
-  insertAdmin(email, name, adress, telepone): Promise<any> {
+  insertLoader(email, name, adress, telepone): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {this.web3.setLoadervalue()
+      .then(async (deployed: { insertLoader: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
+     {er: string; ev: string; }}) => {
+      try {
+        this.result = await deployed.insertLoader(email, name, adress, telepone, { from: this.web3.curentaccount })
+      } catch (error) {
+        console.log('error');
+      }
+        if (this.result != null){
+        this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
+          dt(this.result.logs[0].args.name);
+      } else {
+        er('user alredy in system');
+        console.log(this.result)
+      }
+    });});
+  }
+  updateLoaderName(email, name): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setLoadervalue()
       .then(async (deployed: {
-        insertAdmin: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
+        updateLoaderName: (arg0: string, arg1: string, arg2: { from: string; }) =>
           { er: string; ev: string; }
       }) => {
         try {
-          this.result = await deployed.insertAdmin(email, name, adress, telepone, { from: this.web3.curentaccount })
+          this.result = await deployed.updateLoaderName(email, name , { from: this.web3.curentaccount })
         } catch (error) {
           console.log('error');
         }
         if (this.result != null) {
-          this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
         } else {
           er('user alredy in system');
@@ -47,17 +66,17 @@ export class AdminserviceService {
       });
     });
   }
-  updateAdminName(email, name): Promise<any> {
+  updateLoaderAddress(email, address): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateAdminName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateLoaderAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminName(email, name, { from: this.web3.curentaccount })
+            this.result = await deployed.updateLoaderAddress(email, address, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -70,17 +89,17 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdminAddress(email, address): Promise<any> {
+  updateLoaderContactNumber(email, telephone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateAdminAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateLoaderContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminAddress(email, address, { from: this.web3.curentaccount })
+            this.result = await deployed.updateLoaderContactNumber(email, telephone, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -93,17 +112,41 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdminContactNumber(email, telephone): Promise<any> {
+  updateLoader(email,index, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateAdminContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateLoader: (arg0: string,arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateAdminContactNumber(email, telephone, { from: this.web3.curentaccount })
+            this.result = await deployed.updateLoader(email,index, name, adress, telepone ,{ from: this.web3.curentaccount })
+          } catch (error) {
+            console.log('error');
+          }
+          if (this.result != null) {
+            dt(this.result.logs[0].args.name);
+          } else {
+            er('user alredy in system');
+            console.log(this.result)
+          }
+        });
+    });
+  
+  }
+  deleteLoader(email): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setLoadervalue()
+        .then(async (deployed: {
+          deleteLoader: (arg0: string, arg2: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            this.result = await deployed.deleteLoader(email,{ from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -116,78 +159,30 @@ export class AdminserviceService {
         });
     });
   }
-  updateAdmin(email, index, name, adress, telepone): Promise<any> {
+  blockLoader(email): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
-        .then(async (deployed: {
-          updateAdmin: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
-            { er: string; ev: string; }
-        }) => {
-          try {
-            this.result = await deployed.updateAdmin(email, index, name, adress, telepone, { from: this.web3.curentaccount })
-          } catch (error) {
-            console.log('error');
-          }
-          if (this.result != null) {
-            dt(this.result.logs[0].args.name);
-          } else {
-            er('user alredy in system');
-            console.log(this.result)
-          }
-        });
-    });
-
-  }
-  deleteAdmin(email): Promise<any> {
-    // tslint:disable-next-line: max-line-length
-    // tslint:disable-next-line: no-unused-expression
-    return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
-        .then(async (deployed: {
-          deleteAdmin: (arg0: string, arg2: { from: string; }) =>
-            { er: string; ev: string; }
-        }) => {
-          try {
-            this.result = await deployed.deleteAdmin(email, { from: this.web3.curentaccount })
-          } catch (error) {
-            console.log('error');
-          }
-          if (this.result != null) {
-            dt(this.result.logs[0].args.name);
-          } else {
-            er('user alredy in system');
-            console.log(this.result)
-          }
-        });
-    });
-  }
-  blockAdmin(email): Promise<any> {
-    // tslint:disable-next-line: max-line-length
-    // tslint:disable-next-line: no-unused-expression
-    return new Promise((dt, er) => {
-      this.web3.setAdminvalue()
-        .then(async (deployed: {
-          blockAdmin: (arg0: string, arg4: { from: string; }) => any
-        }) => {
-          try {
-            this.result = await deployed.blockAdmin(email, { from: this.web3.curentaccount })
-          } catch (error) {
-            console.log('error');
-          }
-          if (this.result != null) {
-            dt(this.result.logs);
-          } else {
-            er('user alredy in system');
-            console.log(this.result)
-          }
-        });
+      this.web3.setLoadervalue()
+      .then(async (deployed: {
+        blockLoader: (arg0: string, arg4: { from: string; }) => any }) => {
+        try {
+          this.result = await deployed.blockLoader(email, { from: this.web3.curentaccount })
+        } catch (error) {
+          console.log('error');
+        }
+        if (this.result != null) {
+          dt(this.result.logs);
+        } else {
+          er('user alredy in system');
+          console.log(this.result)
+        }
+      });
     });
   }
 
-  async getAdmini(index) {
-    await this.web3.getAdminvalue().getAdmini(index).call((er: any, ev: any) => {
+  async getLoaderi(index) {
+    await this.web3.getLoadervalue().getLoaderi(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -196,8 +191,8 @@ export class AdminserviceService {
     });
     return this.result;
   }
-  async getAdmin(email) {
-    await this.web3.getAdminvalue().getAdmin(email).call((er: any, ev: any) => {
+  async getLoader(email) {
+    await this.web3.getLoadervalue().getLoader(email).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -206,8 +201,8 @@ export class AdminserviceService {
     });
     return this.result;
   }
-  sendPasswordResetLink(_email, _data) {
-    console.log(_data + '   ' + _email);
+  sendPasswordResetLink( _email,_data) {
+    console.log(_data + '   ' +_email);
     return true;
   }
 }
