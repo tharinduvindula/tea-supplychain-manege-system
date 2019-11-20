@@ -6,6 +6,12 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
+
+
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 import { AppComponent } from './app.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import {
@@ -42,10 +48,18 @@ import { RegistationComponent } from './registation/registation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
 import { CommonModule } from '@angular/common';
+import { from } from 'rxjs';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+
+
+
+    HttpClientModule,         
+
+
+
     HttpModule,
     CommonModule,
     ComponentsModule,
