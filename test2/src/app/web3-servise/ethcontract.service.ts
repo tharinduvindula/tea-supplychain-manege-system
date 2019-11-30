@@ -52,6 +52,7 @@ export class EthcontractService {
     // tslint:disable-next-line: no-shadowed-variable
     return new Promise((data, error) => { Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
       if (er != null) {
+        console.log(er)
         error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
       }
 
@@ -146,7 +147,7 @@ export class EthcontractService {
       for ( i = 0; i < 100; i++) {
         const s = 'tharinduvindulatharinduvindula' + i + '@gmail.com';
         deployed.insertAdmin(s, 'j.k.a. tharindu vindula tharindu vindula', { from: '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6' });
-        console.log("s"+i);
+        console.log('s' + i);
       }
     });
   }
@@ -160,7 +161,7 @@ export class EthcontractService {
   getManagervalue() {
     const MyContract = contract(managerAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
+    const Xc = new this.web3.eth.Contract(managerAbi.abi, '0x8bB9d8E4600FD16912b9ad12C57589b4B7705C33');
     return Xc.methods;
   }
 
@@ -174,7 +175,6 @@ export class EthcontractService {
     const MyContract = contract(adminAbi);
     MyContract.setProvider(this.web3.currentProvider);
     const Xc = new this.web3.eth.Contract(adminAbi.abi, '0x02276f676c66273695850ef1712D25aee963f838');
-    console.log(Xc.methods)
     return Xc.methods;
   }
 
@@ -200,7 +200,7 @@ export class EthcontractService {
   getSupervisorvalue() {
     const MyContract = contract(supervisorAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0xdbeD56E869bB860a557487D3Aaf149e322C5f7cA');
+    const Xc = new this.web3.eth.Contract(supervisorAbi.abi, '0xdbeD56E869bB860a557487D3Aaf149e322C5f7cA');
     return Xc.methods;
   }
 
@@ -213,7 +213,7 @@ export class EthcontractService {
   getLoadervalue() {
     const MyContract = contract(loaderAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(tokenAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
     return Xc.methods;
   }
 

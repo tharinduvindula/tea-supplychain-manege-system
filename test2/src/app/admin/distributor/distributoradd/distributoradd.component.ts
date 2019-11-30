@@ -18,7 +18,7 @@ export class DistributoraddComponent implements OnInit {
     telephone: null,
     contry: null,
     cunum: 94,
-    photo: 'https://i.ibb.co/zZ7v6D1/user.png'
+    photo: null
   };
   public form1 = {
     email: null

@@ -9,10 +9,10 @@ export class AdminserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
+ // this.insertAdmin('a','t', 't#', 5555);
   }
 
   async getAdminCount() {
-    console.log(this.web3.getAdminvalue)
     await this.web3.getAdminvalue().getAdminCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
@@ -33,11 +33,13 @@ export class AdminserviceService {
           { er: string; ev: string; }
       }) => {
         try {
+          console.log(deployed.insertAdmin)
           this.result = await deployed.insertAdmin(email, name, adress, telepone, { from: this.web3.curentaccount })
         } catch (error) {
-          console.log('error');
+          console.log(error);
         }
         if (this.result != null) {
+          console.log(this.result)
           this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
         } else {
@@ -187,6 +189,7 @@ export class AdminserviceService {
   }
 
   async getAdmini(index) {
+    console.log(index)
     await this.web3.getAdminvalue().getAdmini(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
@@ -209,5 +212,14 @@ export class AdminserviceService {
   sendPasswordResetLink(_email, _data) {
     console.log(_data + '   ' + _email);
     return true;
+  }
+  async isUserAdmin(email) {
+    await this.web3.getAdminvalue().isAdminx(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
   }
 }

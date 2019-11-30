@@ -62,7 +62,7 @@ export class DistributorblockComponent implements OnInit {
     await this.service.getDistributorCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(async val => {
-        if (val[5] == 1 ) {
+         {
           // tslint:disable-next-line: no-unused-expression
           this.form.email = val[1];
           this.form.emailCode = val[0];
@@ -72,6 +72,13 @@ export class DistributorblockComponent implements OnInit {
           this.users.push(this.form);
 
         }
+        this.items.push(this.formBuilder.group({
+          email: val[1],
+          emailCode: val[0],
+          name: val[2].split('#')[0],
+          photo: val[2].split('#')[1],
+          userAccess: val[5] == 1 ? 1 : 0
+        }));
       });
     }
   }

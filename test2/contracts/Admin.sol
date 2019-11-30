@@ -47,18 +47,22 @@ contract AdminContract {
         bytes32 indexed emailcode,
         uint index
         );
-    
+        
     struct RegistationToken{
         bytes32 emailCode;
         bytes32 token;
     }
+        
+    mapping(bytes32 => Admin) public adminArray;
+    DisplayAdmin[] private adminIndex;
+    RegistationToken[] private adminRegistationToken;
     
-     mapping(bytes32 => Admin) private adminArray;
-     DisplayAdmin[] private adminIndex;
-     RegistationToken[] private adminRegistationToken;
-
-
     function isAdmin(bytes32 _emailCode)public view returns(bool isIndeed) {
+        if(adminIndex.length == 0) return false;
+        return (adminIndex[adminArray[_emailCode].index].emailCode == _emailCode);
+    }
+    function isAdminx(string memory _email)public view returns(bool isIndeed) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         if(adminIndex.length == 0) return false;
         return (adminIndex[adminArray[_emailCode].index].emailCode == _emailCode);
     }
@@ -73,21 +77,21 @@ contract AdminContract {
     function randomtoken() private view returns (bytes32) {
        return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
     }
-    function setDisplayAdmin(bytes32 _emailCode,string memory _email,string memory _name) private returns(bool){
+    function setDisplayAdmin(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
+     private returns(bool){
 
         DisplayAdmin memory displayAdmin;
         displayAdmin.emailCode = _emailCode;
         displayAdmin.email = _email;
         displayAdmin.name = _name;
-        displayAdmin.contactNumber = 717615678;
-        displayAdmin.userAddress = "1335,bogahawaththa Road,pannipitiya,colombo,sri lanka,10230";
+        displayAdmin.contactNumber = _telephone;
+        displayAdmin.userAddress = _address;
         displayAdmin.userAccess = 1;
         adminIndex.push(displayAdmin);
         return true;
 
     }
-    function insertAdmin(string memory _email,string memory _name) public returns(bytes32)
-    {
+    function insertAdmin(string memory _email,string memory _name,string memory _address,uint _telephone) public returns(bool){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 _passwordCode = keccak256(abi.encodePacked(("a")));
         require(isAdmin(_emailCode) != true,'user allredy in system');
@@ -95,12 +99,12 @@ contract AdminContract {
         adminArray[_emailCode].email = _email;
         adminArray[_emailCode].emailCode = _emailCode;
         adminArray[_emailCode].passwordCode = _passwordCode;
-        adminArray[_emailCode].passwordRestToken = "";
+        adminArray[_emailCode].passwordRestToken = createAdminToken(_emailCode);
         adminArray[_emailCode].name = _name;
-        adminArray[_emailCode].contactNumber = 0;
-        adminArray[_emailCode].userAddress = "";
+        adminArray[_emailCode].contactNumber = _telephone;
+        adminArray[_emailCode].userAddress = _address;
         adminArray[_emailCode].userAccess = 1;
-        setDisplayAdmin(_emailCode,_email,_name);
+        setDisplayAdmin(_emailCode,_email,_name,_telephone,_address);
         adminArray[_emailCode].index = adminIndex.length-1;
 
         emit LogNewAdmin (
@@ -110,15 +114,13 @@ contract AdminContract {
             adminArray[_emailCode].passwordCode,
             adminArray[_emailCode].passwordRestToken,
             _name,
-            adminArray[_emailCode].contactNumber,
-            adminArray[_emailCode].userAddress,
+            _telephone,
+            _address,
             adminArray[_emailCode].userAccess
             );
-        return createAdminToken(_emailCode);
+        return true;
     }
-
-    function deleteAdmin(bytes32 email) public returns(string memory)
-    {
+    function deleteAdmin (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
         for( i = 0; i < adminRegistationToken.length; i++) {
@@ -137,7 +139,6 @@ contract AdminContract {
         );
         return name;
     }
-    
     function blockAdmin(bytes32 email) public returns(string memory)
     {
         string memory name;
@@ -153,20 +154,19 @@ contract AdminContract {
         }
         return name;
     }
-    editUserAccess(string memory _email,uint usreAccess){
+    function editUserAccess(string memory _email,uint usreAccess)public returns(bool){
         bytes32 email = keccak256(abi.encodePacked((_email)));
         adminArray[email].userAccess = usreAccess;
         adminIndex[adminArray[email].index].userAccess = usreAccess;
+        return true;
 
     }
-    
-    function getAdmin(string memory _email) public view returns(string memory email,string memory name,
-    uint contactNumber,string memory userAddress, uint userAccess)
-    {
+    function getAdmin(string memory _email) public view returns(bytes32,string memory email,string memory name,
+    uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         return(
-            _emailCode
+            _emailCode,
             adminArray[_emailCode].email,
             adminArray[_emailCode].name,
             adminArray[_emailCode].contactNumber,
@@ -174,7 +174,6 @@ contract AdminContract {
             adminArray[_emailCode].userAccess
             );
     }
-    
     function getAdmini(uint i) public view returns(
         bytes32,
         string memory,
@@ -192,7 +191,6 @@ contract AdminContract {
                 adminIndex[i].userAccess
                 );
     }
-    
     function getAdminCount() public view returns(uint)
     {
         return adminIndex.length;
@@ -204,8 +202,7 @@ contract AdminContract {
     //     emit LogUpdateUser(userAddress,  userStructs[userAddress].index, userEmail, userStructs[userAddress].userAge);
     //     return true;
     // }
-    function updateAdminName (string memory _email,string memory _name) public returns(bool success)
-    {
+    function updateAdminName (string memory _email,string memory _name) public returns(bool success){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         adminArray[_emailCode].name = _name;
@@ -223,8 +220,7 @@ contract AdminContract {
             );
         return true;
     }
-    function updateAdminAddress (string memory _email,string memory _userAddress) public returns(bool success)
-    {
+    function updateAdminAddress (string memory _email,string memory _userAddress) public returns(bool success){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         adminArray[_emailCode].userAddress = _userAddress;
@@ -242,8 +238,7 @@ contract AdminContract {
             );
         return true;
     }
-     function updateAdminContactNumber (string memory _email,uint _contactNumber) public returns(bool success)
-    {
+    function updateAdminContactNumber (string memory _email,uint _contactNumber) public returns(bool success){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         adminArray[_emailCode].contactNumber = _contactNumber;
@@ -267,8 +262,7 @@ contract AdminContract {
         string memory _name,
         string memory _userAddress,
         uint _contactNumber
-        ) public returns(bool success)
-    {
+        ) public returns(bool success){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isAdmin(_emailCode) == true,'user not in system');
         uint i;
@@ -328,11 +322,12 @@ contract AdminContract {
         return true;
     }
     ///////
-    function updateAdminEmail (string memory _email) public returns(bool success)
+    function updateAdminiEmail (string memory _email) public returns(bool success)
     {
        // return true;
     }
     function checkAdminUserAccess(bytes32 email)public view returns(uint userAccess){
+        
         return adminArray[email].userAccess;
     }
     function checkAdminPasswordCode(bytes32 email) public view returns(bytes32 passwordCode ){

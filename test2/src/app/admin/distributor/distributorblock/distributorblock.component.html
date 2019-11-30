@@ -39,7 +39,7 @@
   </div>
 </div>
 <ng-template #elseblock>
-  <div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;">
+  <div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
     <div class="row ml-0 mr-0">
       <div class="col-lg-11">
         <div class="card">
@@ -52,12 +52,12 @@
               <thead class="text-warning">
                 <th>photo</th>
                 <th>Name</th>
-                <th>Nic Number</th>
+                <th>Email</th>
                 <th>Access</th>
 
               </thead>
               <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of items.value">
                   <td><img class="img" [src]="user.photo" alt="Card image cap"
                       style="width:80px;height: 80px;border-radius: 50%;"></td>
                   <td class="text-dark">{{user.name}}</td>

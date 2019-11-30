@@ -35,6 +35,7 @@ export class UserviewComponent implements OnInit {
     let x;
     let i;
     await this.managerservice.getManagerCount().then(val => x = val)
+    console.log(x)
     for (i = 0; i < x; i++) {
       await this.managerservice.getManageri(i).then(val => {
         this.items.push(this.formBuilder.group({

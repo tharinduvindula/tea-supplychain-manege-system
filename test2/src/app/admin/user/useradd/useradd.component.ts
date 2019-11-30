@@ -19,7 +19,7 @@ export class UseraddComponent implements OnInit {
     telephone: null,
     usertype: null,
     cunum: 94,
-    photo: 'https://i.ibb.co/zZ7v6D1/user.png'
+    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
   };
   public form1 = {
     email: null
@@ -44,10 +44,11 @@ export class UseraddComponent implements OnInit {
   }
 
   async onsubmit() {
+
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address ;
     const telephone = this.form.cunum + this.form.telephone;
-    if(this.form.usertype === 'Manager'){
+    if (this.form.usertype === 'Manager') {
       await this.managerservice.insertManager(this.form.email, name, address, telephone).then(
         data => {
           if (data != null) {
@@ -64,7 +65,8 @@ export class UseraddComponent implements OnInit {
         }
 
       );
-    } else if(this.form.usertype === 'Admin'){
+    } else if (this.form.usertype === 'Admin') {
+      console.log('hi');
       await this.adminservice.insertAdmin(this.form.email, name, address, telephone).then(
         data => {
           if (data != null) {

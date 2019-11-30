@@ -176,20 +176,20 @@ export class DistributorupdateComponent implements OnInit {
   async getdistubtor(email){
     await this.service.getDistributor(email).then(val => {
       if (val[5] !== 4) {
-        this.form.email = val[0];
-        this.form1.email = val[0];
+        this.form.email = val[1];
+        this.form1.email = val[1];
         this.form.emailCode = val[0];
         this.form1.emailCode = val[0];
-        this.form.name = val[1].split('#')[0];
-        this.form1.name = val[1].split('#')[0];
-        this.form.photo = val[1].split('#')[1],
-        this.form1.photo = val[1].split('#')[1],
-        this.form.telephone = val[2],
-        this.form1.telephone = val[2],
-        this.form.address = val[3].split('#')[0],
-        this.form1.address = val[3].split('#')[0],
-        this.form.contry = val[3].split('#')[1]
-        this.form1.contry = val[3].split('#')[1]
+        this.form.name = val[2].split('#')[0];
+        this.form1.name = val[2].split('#')[0];
+        this.form.photo = val[2].split('#')[1],
+        this.form1.photo = val[2].split('#')[1],
+        this.form.telephone = val[3],
+        this.form1.telephone = val[3],
+        this.form.address = val[4].split('#')[0],
+        this.form1.address = val[4].split('#')[0],
+        this.form.contry = val[4].split('#')[1]
+        this.form1.contry = val[4].split('#')[1]
       }
     });
   }

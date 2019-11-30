@@ -57,7 +57,7 @@ contract LoaderContract {
     DisplayLoader[] private loaderIndex;
     RegistationToken[] private loaderRegistationToken;
     
-    function isLoader(bytes32 _emailCode)private view returns(bool isIndeed) {
+    function isLoader(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(loaderIndex.length == 0) return false;
         return (loaderIndex[loaderArray[_emailCode].index].emailCode == _emailCode);
     }
@@ -72,20 +72,21 @@ contract LoaderContract {
     function randomtoken() private view returns (bytes32) {
        return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
     }
-    function setDisplayLoader(bytes32 _emailCode,string memory _email,string memory _name) private returns(bool){
+    function setDisplayLoader(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
+     private returns(bool){
 
         DisplayLoader memory displayLoader;
         displayLoader.emailCode = _emailCode;
         displayLoader.email = _email;
         displayLoader.name = _name;
-        displayLoader.contactNumber = 717615678;
-        displayLoader.userAddress = "1335,bogahawaththa Road,pannipitiya,colombo,sri lanka,10230";
+        displayLoader.contactNumber = _telephone;
+        displayLoader.userAddress = _address;
         displayLoader.userAccess = 1;
         loaderIndex.push(displayLoader);
         return true;
 
     }
-    function insertLoader(string memory _email,string memory _name) public returns(bytes32){
+    function insertLoader(string memory _email,string memory _name,string memory _address,uint _telephone) public returns(bool){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 _passwordCode = keccak256(abi.encodePacked(("a")));
         require(isLoader(_emailCode) != true,'user allredy in system');
@@ -93,12 +94,12 @@ contract LoaderContract {
         loaderArray[_emailCode].email = _email;
         loaderArray[_emailCode].emailCode = _emailCode;
         loaderArray[_emailCode].passwordCode = _passwordCode;
-        loaderArray[_emailCode].passwordRestToken = "";
+        loaderArray[_emailCode].passwordRestToken = createLoaderToken(_emailCode);
         loaderArray[_emailCode].name = _name;
-        loaderArray[_emailCode].contactNumber = 0;
-        loaderArray[_emailCode].userAddress = "";
+        loaderArray[_emailCode].contactNumber = _telephone;
+        loaderArray[_emailCode].userAddress = _address;
         loaderArray[_emailCode].userAccess = 1;
-        setDisplayLoader(_emailCode,_email,_name);
+        setDisplayLoader(_emailCode,_email,_name,_telephone,_address);
         loaderArray[_emailCode].index = loaderIndex.length-1;
 
         emit LogNewLoader (
@@ -108,11 +109,11 @@ contract LoaderContract {
             loaderArray[_emailCode].passwordCode,
             loaderArray[_emailCode].passwordRestToken,
             _name,
-            loaderArray[_emailCode].contactNumber,
-            loaderArray[_emailCode].userAddress,
+            _telephone,
+            _address,
             loaderArray[_emailCode].userAccess
             );
-        return createLoaderToken(_emailCode);
+        return true;
     }
     function deleteLoader (bytes32 email) public returns(string memory){
         uint i;
@@ -148,13 +149,14 @@ contract LoaderContract {
         }
         return name;
     }
-    editUserAccess(string memory _email,uint usreAccess){
+    function editUserAccess(string memory _email,uint usreAccess)public returns(bool){
         bytes32 email = keccak256(abi.encodePacked((_email)));
-        loaderArray[email].userAccess = userAccess;
-        loaderIndex[loaderArray[email].index].userAccess = userAccess;
+        loaderArray[email].userAccess = usreAccess;
+        loaderIndex[loaderArray[email].index].userAccess = usreAccess;
+        return true;
 
     }
-    function getLoader(string memory _email) public view returns(string memory email,string memory name,
+    function getLoader(string memory _email) public view returns(bytes32,string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isLoader(_emailCode) == true,'user not in system');
@@ -195,7 +197,7 @@ contract LoaderContract {
     //     emit LogUpdateUser(userAddress,  userStructs[userAddress].index, userEmail, userStructs[userAddress].userAge);
     //     return true;
     // }
-    function updateDistributorName (string memory _email,string memory _name) public returns(bool success){
+    function updateLoaderName (string memory _email,string memory _name) public returns(bool success){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isLoader(_emailCode) == true,'user not in system');
         loaderArray[_emailCode].name = _name;
@@ -315,11 +317,10 @@ contract LoaderContract {
         return true;
     }
     ///////
-    function updateLoaderEmail (string memory _email) public returns(bool success)
+    function updateLoaderiEmail (string memory _email) public returns(bool success)
     {
        // return true;
     }
-    
     function checkLoaderUserAccess(bytes32 email)public view returns(uint userAccess){
         
         return loaderArray[email].userAccess;

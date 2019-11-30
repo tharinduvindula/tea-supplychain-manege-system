@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 7%;">
   <div class="row">
     <div class="col-md-8">
       <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -40,8 +40,8 @@
                 <mat-form-field class="example-full-width">
                   <mat-label>User Type</mat-label>
                   <mat-select name="usertype" [(ngModel)]="form.usertype">
-                    <mat-option value="lectuer">Manager</mat-option>
-                    <mat-option value="admin">Admin</mat-option>
+                    <mat-option value="Manager">Manager</mat-option>
+                    <mat-option value="Admin">Admin</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -74,7 +74,7 @@
 
         <img class="img" style="width:230px;height: 230px;border-radius: 50%" [src]="form.photo" *ngIf="form.photo" />
 
-        <ngx-uploadcare-widget images-only="true" public-key="xxxx"
+        <ngx-uploadcare-widget images-only="true" public-key="20e3fa825a9db9a643a5"
           (on-upload-complete)="yourOnUploadHandler($event)">
         </ngx-uploadcare-widget>
 

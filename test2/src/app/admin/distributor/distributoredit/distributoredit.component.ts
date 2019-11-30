@@ -57,6 +57,8 @@ export class DistributoreditComponent implements OnInit {
       }
 
     );
+    this.items=null;
+    this.items = this.formBuilder.array([]);
     this.create();
   }
 

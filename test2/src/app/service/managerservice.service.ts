@@ -12,7 +12,6 @@ export class ManagerserviceService {
   }
 
   async getManagerCount() {
-    console.log(this.web3.getManagervalue)
     await this.web3.getManagervalue().getManagerCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
@@ -35,7 +34,7 @@ export class ManagerserviceService {
         try {
           this.result = await deployed.insertManager(email, name, adress, telepone, { from: this.web3.curentaccount })
         } catch (error) {
-          console.log('error');
+          console.log(error);
         }
         if (this.result != null) {
           this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);

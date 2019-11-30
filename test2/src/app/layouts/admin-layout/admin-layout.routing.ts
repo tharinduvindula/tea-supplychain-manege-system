@@ -31,7 +31,8 @@ import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.c
 import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
+    { path: 'dashboard',      component: DashboardComponent  },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'distributor/add', component: DistributoraddComponent },
