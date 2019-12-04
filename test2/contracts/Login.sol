@@ -102,9 +102,10 @@ contract Login {
 
         if(_appId==1){
         
-            userAccess = adminc.checkAdminUserAccess(email);
+           
             
             if(adminc.isAdmin(email)){
+                userAccess = adminc.checkAdminUserAccess(email);
                 require(!(userAccess== 1),"user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
                 bytes32 passwordCode = adminc.checkAdminPasswordCode(email);

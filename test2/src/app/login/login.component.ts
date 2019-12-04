@@ -40,16 +40,21 @@ export class LoginComponent {
   async login() {
     console.log(Date.now()/1000)
     await this.ethcontractService.login({ _userName: this.form.email, _password: this.form.password }).then(
-      data => {
+      async data => {
         console.log(data);
-        // this.adminservice.isUserAdmin(this.form.email).then(
-        //   data1 => {
-        //     this.router.navigateByUrl('/');
-        //   }, error => {
-        //     this.router.navigateByUrl('/admin');
-        //   });
+        await this.adminservice.isUserAdmin(this.form.email).then(
+          data1 => {
+            console.log(data1);
+            if (data1 == true) {
+              this.router.navigateByUrl('/admin');
+            } else {
+              this.router.navigateByUrl('/');
+            }
+          }, error => {
+            console.log(true);
+          });
         },
-      error => { 
+      error => {
         console.log(error);
         this.handleError(error);
       }
