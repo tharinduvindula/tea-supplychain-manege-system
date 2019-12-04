@@ -48,6 +48,7 @@ import { ProductupdateComponent } from './admin/product/productupdate/productupd
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -84,6 +85,7 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
     PasswordResetComponent,
     FrogetPasswordComponent,
     ProductupdateComponent,
+
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]
