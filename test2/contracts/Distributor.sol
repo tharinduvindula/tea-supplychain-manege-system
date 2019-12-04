@@ -57,7 +57,7 @@ contract DistributorContract {
     DisplayDistributor[] private distributorIndex;
     RegistationToken[] private distributorRegistationToken;
     
-    function isDistributor(bytes32 _emailCode)private view returns(bool isIndeed) {
+    function isDistributor(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(distributorIndex.length == 0) return false;
         return (distributorIndex[distributorArray[_emailCode].index].emailCode == _emailCode);
     }
@@ -137,16 +137,31 @@ contract DistributorContract {
     function blockDistributor(bytes32 email) public returns(string memory)
     {
         string memory name;
+        if(distributorArray[email].userAccess == 5){
         distributorArray[email].userAccess = 3;
         distributorIndex[distributorArray[email].index].userAccess = 3;
         name = distributorIndex[distributorArray[email].index].name;
+        }
+        if(distributorArray[email].userAccess == 3){
+        distributorArray[email].userAccess = 5;
+        distributorIndex[distributorArray[email].index].userAccess = 5;
+        name = distributorIndex[distributorArray[email].index].name;
+        }
         return name;
     }
-    function getDistributor(string memory _email) public view returns(string memory email,string memory name,
+    function editUserAccess(string memory _email,uint usreAccess)public returns(bool){
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        distributorArray[email].userAccess = usreAccess;
+        distributorIndex[distributorArray[email].index].userAccess = usreAccess;
+        return true;
+
+    }
+    function getDistributor(string memory _email) public view returns(bytes32,string memory email,string memory name,
     uint contactNumber,string memory userAddress, uint userAccess){
         bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         require(isDistributor(_emailCode) == true,'user not in system');
         return(
+            _emailCode,
             distributorArray[_emailCode].email,
             distributorArray[_emailCode].name,
             distributorArray[_emailCode].contactNumber,

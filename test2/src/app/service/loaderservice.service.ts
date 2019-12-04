@@ -5,16 +5,15 @@ import { EthcontractService } from 'app/web3-servise/ethcontract.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DistributorserviceService {
+export class LoaderserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    
   }
 
-  async getDistributorCount() {
-    console.log(this.web3.getDistributorvalue)
-    await this.web3.getDistributorvalue().getDistributorCount().call((er: any, ev: number) => {
+  async getLoaderCount() {
+    console.log(this.web3.getLoadervalue)
+    await this.web3.getLoadervalue().getLoaderCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -24,14 +23,14 @@ export class DistributorserviceService {
     return this.result;
   }
 
-  insertDistributor(email, name, adress, telepone): Promise<any> {
+  insertLoader(email, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
-    return new Promise((dt, er) => {this.web3.setDistributorvalue()
-      .then(async (deployed: { insertDistributor: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
+    return new Promise((dt, er) => {this.web3.setLoadervalue()
+      .then(async (deployed: { insertLoader: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
      {er: string; ev: string; }}) => {
       try {
-        this.result = await deployed.insertDistributor(email, name, adress, telepone, { from: this.web3.curentaccount })
+        this.result = await deployed.insertLoader(email, name, adress, telepone, { from: this.web3.curentaccount })
       } catch (error) {
         console.log('error');
       }
@@ -44,17 +43,17 @@ export class DistributorserviceService {
       }
     });});
   }
-  updateDistributorName(email, name): Promise<any> {
+  updateLoaderName(email, name): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
       .then(async (deployed: {
-        updateDistributorName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+        updateLoaderName: (arg0: string, arg1: string, arg2: { from: string; }) =>
           { er: string; ev: string; }
       }) => {
         try {
-          this.result = await deployed.updateDistributorName(email, name , { from: this.web3.curentaccount })
+          this.result = await deployed.updateLoaderName(email, name , { from: this.web3.curentaccount })
         } catch (error) {
           console.log('error');
         }
@@ -67,17 +66,17 @@ export class DistributorserviceService {
       });
     });
   }
-  updateDistributorAddress(email, address): Promise<any> {
+  updateLoaderAddress(email, address): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateDistributorAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateLoaderAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateDistributorAddress(email, address, { from: this.web3.curentaccount })
+            this.result = await deployed.updateLoaderAddress(email, address, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -90,17 +89,17 @@ export class DistributorserviceService {
         });
     });
   }
-  updateDistributorContactNumber(email, telephone): Promise<any> {
+  updateLoaderContactNumber(email, telephone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateDistributorContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateLoaderContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateDistributorContactNumber(email, telephone, { from: this.web3.curentaccount })
+            this.result = await deployed.updateLoaderContactNumber(email, telephone, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -113,17 +112,17 @@ export class DistributorserviceService {
         });
     });
   }
-  updateDistributor(email,index, name, adress, telepone): Promise<any> {
+  updateLoader(email,index, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          updateDistributor: (arg0: string,arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
+          updateLoader: (arg0: string,arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateDistributor(email,index, name, adress, telepone ,{ from: this.web3.curentaccount })
+            this.result = await deployed.updateLoader(email,index, name, adress, telepone ,{ from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -137,17 +136,17 @@ export class DistributorserviceService {
     });
   
   }
-  deleteDistributor(email): Promise<any> {
+  deleteLoader(email): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
         .then(async (deployed: {
-          deleteDistributor: (arg0: string, arg2: { from: string; }) =>
+          deleteLoader: (arg0: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.deleteDistributor(email,{ from: this.web3.curentaccount })
+            this.result = await deployed.deleteLoader(email,{ from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -160,15 +159,15 @@ export class DistributorserviceService {
         });
     });
   }
-  blockDistributor(email): Promise<any> {
+  blockLoader(email): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setDistributorvalue()
+      this.web3.setLoadervalue()
       .then(async (deployed: {
-        blockDistributor: (arg0: string, arg4: { from: string; }) => any }) => {
+        blockLoader: (arg0: string, arg4: { from: string; }) => any }) => {
         try {
-          this.result = await deployed.blockDistributor(email, { from: this.web3.curentaccount })
+          this.result = await deployed.blockLoader(email, { from: this.web3.curentaccount })
         } catch (error) {
           console.log('error');
         }
@@ -182,8 +181,8 @@ export class DistributorserviceService {
     });
   }
 
-  async getDistributori(index) {
-    await this.web3.getDistributorvalue().getDistributori(index).call((er: any, ev: any) => {
+  async getLoaderi(index) {
+    await this.web3.getLoadervalue().getLoaderi(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -192,8 +191,8 @@ export class DistributorserviceService {
     });
     return this.result;
   }
-  async getDistributor(email) {
-    await this.web3.getDistributorvalue().getDistributor(email).call((er: any, ev: any) => {
+  async getLoader(email) {
+    await this.web3.getLoadervalue().getLoader(email).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {

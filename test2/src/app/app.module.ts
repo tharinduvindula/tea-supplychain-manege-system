@@ -84,6 +84,8 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
+    ProductupdateComponent,
+
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import { EthcontractService } from 'app/web3-servise/ethcontract.service';
 import 'rxjs';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,7 @@ export class LoginComponent {
     balance: any
   };
   error = '';
-  constructor(private ethcontractService: EthcontractService) {
+  constructor(private ethcontractService: EthcontractService, private adminservice: AdminserviceService, private router: Router) {
     // this.initAndDisplayAccount();
   }
 
@@ -38,10 +40,22 @@ export class LoginComponent {
   async login() {
     console.log(Date.now()/1000)
     await this.ethcontractService.login({ _userName: this.form.email, _password: this.form.password }).then(
-      data => {
+      async data => {
         console.log(data);
+        await this.adminservice.isUserAdmin(this.form.email).then(
+          data1 => {
+            console.log(data1);
+            if (data1 == true) {
+              this.router.navigateByUrl('/admin');
+            } else {
+              this.router.navigateByUrl('/');
+            }
+          }, error => {
+            console.log(true);
+          });
         },
       error => {
+        console.log(error);
         this.handleError(error);
       }
     );

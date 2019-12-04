@@ -28,14 +28,17 @@ import { UsereditComponent } from 'app/admin/user/useredit/useredit.component';
 import { UserblockComponent } from 'app/admin/user/userblock/userblock.component';
 import { WorkeraddComponent } from 'app/admin/worker/workeradd/workeradd.component';
 import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.component';
+import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
+    { path: 'dashboard',      component: DashboardComponent  },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'distributor/add', component: DistributoraddComponent },
     { path: 'distributor/view', component: DistributorComponent },
     { path: 'distributor/edit', component: DistributoreditComponent },
+    { path: 'distributor/update', component: DistributorupdateComponent },
     { path: 'distributor/progress', component: DistributorprogressComponent },
     { path: 'distributor/block', component: DistributorblockComponent },
     { path: 'estate/add', component: EstateaddComponent },
