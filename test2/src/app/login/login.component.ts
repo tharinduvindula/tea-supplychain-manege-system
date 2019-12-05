@@ -54,6 +54,7 @@ export class LoginComponent {
             console.log(true);
           });
         },
+        
       error => {
         console.log(error);
         this.handleError(error);
