@@ -1,0 +1,15 @@
+.card .card-header {
+  background: linear-gradient(45deg, #046e0d, #48ee1e);
+}
+
+.mat-button.btn.btn-danger,
+.mat-raised-button.btn.btn-danger,
+.mat-raised-button.btn:not([class*='mat-elevation-z']).btn-danger,
+.btn.btn-danger {
+  color: #fff;
+  background: linear-gradient(45deg, #046e0d, #48ee1e);
+  border-color: #046e0d;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+          box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+}
+/*# sourceMappingURL=workeradd.component.css.map */

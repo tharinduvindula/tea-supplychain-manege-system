@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,KADC,CACD,YAAY,CAAC;EACT,UAAU,EAAE,wCAAwC;CACvD",
+    "sources": [
+        "distributorblock.component.scss"
+    ],
+    "names": [],
+    "file": "distributorblock.component.css"
+}
