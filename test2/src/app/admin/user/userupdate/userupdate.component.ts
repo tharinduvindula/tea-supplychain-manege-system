@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class UserupdateComponent implements OnInit {
 
   constructor() { }
+  public form = {
+    name: null, 
+    email: null,
+    telephone: null,
+    
+  };
 
   ngOnInit() {
   }
