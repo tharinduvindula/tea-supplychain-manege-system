@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class ProductupdateComponent implements OnInit {
 
   constructor() { }
+  public form = {
+    productName: null,
+    type: null,
+    flaver: null,
+    weight: null,
+    price: null
+  };
 
   ngOnInit() {
   }
