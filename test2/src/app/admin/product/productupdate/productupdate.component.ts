@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductupdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(){}
   public form = {
     productName: null,
     type: null,
@@ -18,5 +18,5 @@ export class ProductupdateComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
 }
