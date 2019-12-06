@@ -16,10 +16,10 @@
               <th>Delete</th>
             </thead>
             <tbody>
-              <tr *ngFor="let user of isOtheruser()">
+              <!-- <tr *ngFor="let user of isOtheruser()">
                 <td><img class="img"  [src]="'data:image/png;base64,'+ user.photo"  alt="Card image cap"
                     style="width:80px;height: 80px;border-radius: 50%;"></td>
-                <td class="text-dark">{{user.fullname}}</td>
+                <td class="text-dark">{{user.fullname}_co.isOtheruser}</td>
                 <td>{{user.nic}}</td>
                 <td><button mat-raised-button type="submit" (click)=onedit($event,user.email)
                     style="background-color: blue;" class="btn">Edit
@@ -27,7 +27,7 @@
                 <td><button mat-raised-button type="submit" (click)=ondelete($event,user.email)
                     class="btn btn-danger">Delete
                     Profile</button></td>
-              </tr>
+              </tr> -->
             </tbody>
 
           </table>
