@@ -26,7 +26,7 @@ const supervisorAbi = require('../../../build/contracts/SupervisorContract.json'
 })
 
 export class EthcontractService {
-  private web3Provider: null;
+  private web3Provider:any;
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
