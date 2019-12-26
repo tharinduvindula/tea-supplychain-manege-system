@@ -11,5 +11,8 @@ export class UsereditComponent implements OnInit {
 
   ngOnInit() {
   }
+  isOtheruse(){
+
+  }
 
 }
