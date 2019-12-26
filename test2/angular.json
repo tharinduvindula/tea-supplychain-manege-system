@@ -26,7 +26,8 @@
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css"
+              "src/assets/css/demo.css",
+              "src/assets/login/css/main.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
