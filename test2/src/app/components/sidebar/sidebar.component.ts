@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit {
   private listTitles: any[];
   location: Location;
 
-  @ViewChild('drawer') drawer: any;
+  @ViewChild('drawer', { static: false }) drawer: any;
 
   constructor(private router: Router, location: Location) {
     this.location = location;

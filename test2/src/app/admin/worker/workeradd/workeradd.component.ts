@@ -11,7 +11,7 @@ import { LoaderserviceService } from 'app/service/loaderservice.service';
 })
 export class WorkeraddComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm') formValues;
+  @ViewChild('useraddForm', { static: true }) formValues;
   public form = {
     name: null,
     email: null,

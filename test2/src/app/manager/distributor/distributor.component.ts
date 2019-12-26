@@ -32,7 +32,7 @@ export class DistributorComponent implements OnInit {
     let x;
     let i;
     await this.service.getDistributorCount().then(  val => x = val )
-  
+
     console.log(x);
     for (i = 0; i < x; i++) {
       console.log(i)
