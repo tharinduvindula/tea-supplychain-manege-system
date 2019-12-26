@@ -101,12 +101,9 @@ contract Login {
         }
 
         if(_appId==1){
-        
-           
-            
             if(adminc.isAdmin(email)){
                 userAccess = adminc.checkAdminUserAccess(email);
-                require(!(userAccess== 1),"user not register in the system");
+                require(!(userAccess == 1), "user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
                 bytes32 passwordCode = adminc.checkAdminPasswordCode(email);
                 if(passwordCode == password ){
@@ -123,7 +120,7 @@ contract Login {
                 }
             } else if(managerc.isManager(email)){
                 userAccess = managerc.checkManagerUserAccess(email);
-                require(!(userAccess== 1),"user not register in the system");
+                require(!(userAccess == 1),"user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
                 bytes32 passwordCode = managerc.checkManagerPasswordCode(email);
                 if(passwordCode == password ){
@@ -138,7 +135,6 @@ contract Login {
                     require(false,"dosen't macth this password");
                     return false;
                 }
-                
             } else {
                 require(false,"dosen't macth this email");
             }
@@ -153,9 +149,6 @@ contract Login {
             return false;
         }
     }
-    
-   
-    
 
     //mapping(address => UserStruct) private userStructs;
     //address[] private adminIndex;
@@ -167,23 +160,17 @@ contract Login {
 
     // event LogNewUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
     // event LogUpdateUser(address indexed userAddress, uint index, bytes32 userEmail, uint userAge);
-    
+
 
 /////////////////////////
-    
-
-    
     ///
-    function registation(bytes32 token) public returns(bool)
-    {
+    function registation(bytes32 token) public returns(bool) {
        // return true;
     }
-    function frogetPassword(string memory _email) public returns(bool)
-    {
-        
+    function frogetPassword(string memory _email) public returns(bool) {
+        // x
     }
-    function resetPassword(bytes32 token,string memory password)public returns(bool)
-    {
+    function resetPassword(bytes32 token,string memory password)public returns(bool) {
 
     }
     // function createBox() public returns(bool){

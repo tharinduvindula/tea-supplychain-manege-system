@@ -19,7 +19,6 @@ export class LoginComponent {
     password: ''
   };
 
-
   title = 'your first DApp in Angular';
   accounts: any;
   transferFrom = '0x0';
@@ -32,20 +31,21 @@ export class LoginComponent {
     balance: any
   };
   error = '';
+  loggedin;
   constructor(private ethcontractService: EthcontractService, private adminservice: AdminserviceService, private router: Router) {
     // this.initAndDisplayAccount();
   }
 
 
   async login() {
-    console.log(Date.now()/1000)
+    console.log(Date.now() / 1000)
     await this.ethcontractService.login({ _userName: this.form.email, _password: this.form.password }).then(
       async data => {
         console.log(data);
         await this.adminservice.isUserAdmin(this.form.email).then(
           data1 => {
             console.log(data1);
-            if (data1 == true) {
+            if (data1 === true) {
               this.router.navigateByUrl('/admin');
             } else {
               this.router.navigateByUrl('/');
@@ -54,7 +54,6 @@ export class LoginComponent {
             console.log(true);
           });
         },
-        
       error => {
         console.log(error);
         this.handleError(error);
