@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registation.component.scss']
 })
 export class RegistationComponent implements OnInit {
+  error;
+  loggedin;
+  login() {
 
+  }
   constructor() { }
 
   form = {
