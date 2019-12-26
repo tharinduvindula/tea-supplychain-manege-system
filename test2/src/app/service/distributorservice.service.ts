@@ -9,7 +9,6 @@ export class DistributorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    
   }
 
   async getDistributorCount() {
