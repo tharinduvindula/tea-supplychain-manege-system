@@ -7,12 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordResetComponent implements OnInit {
 
-  constructor() { }
-
+  error;
+  loggedin;
   form = {
     email: '',
     password: ''
   };
+  login() {
+
+  }
+  constructor() { }
+
+
 
   ngOnInit() {
   }

@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productupdate.component.scss']
 })
 export class ProductupdateComponent implements OnInit {
+  public form = {
+    productName: null,
+    type: null,
+    flaver: null,
+    weight: null,
+    price: null
+  };
+  error;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+  }
+  onsubmit() {
   }
 
 }

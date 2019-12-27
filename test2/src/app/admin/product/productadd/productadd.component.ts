@@ -26,7 +26,12 @@ export class ProductaddComponent implements OnInit {
     password: 'uosj@123',
     addingby: null,//this.Token.payload(this.Token.gettoken()).ud.fullname,
     lasteditby: null, //this.Token.payload(this.Token.gettoken()).ud.fullname,
-    photo: null
+    photo: null,
+    productname: null,
+    price: null,
+    weight: null,
+    type: null,
+    flaver: null,
   };
   public form1 = {
     email: null

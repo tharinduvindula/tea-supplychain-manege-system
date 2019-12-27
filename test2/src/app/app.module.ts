@@ -46,6 +46,8 @@ import { FrogetPasswordComponent } from './froget-password/froget-password.compo
 import { CommonModule } from '@angular/common';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
+import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
+
 
 
 @NgModule({
@@ -83,6 +85,9 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
+    OneproductComponent,
+    
+    
 
   ],
   providers: [EthcontractService],
