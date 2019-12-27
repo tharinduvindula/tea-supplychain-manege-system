@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { DistributorserviceService } from 'app/service/Distributorservice.service';
 // import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
-<<<<<<< HEAD
-=======
-=======
-import { DistributorserviceService } from 'app/service/distributorservice.service';
-import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
->>>>>>> 112c5ce068c8cc9a73c49077e6e1deb4ca7a0210
->>>>>>> 94c66129f3ab29bdbf2ef5e8714ccbcbe2633c9f
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({

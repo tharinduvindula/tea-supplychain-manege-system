@@ -15,7 +15,6 @@ export class ProductupdateComponent implements OnInit {
   };
   error;
 
-<<<<<<< HEAD
   constructor() {}
 
   ngOnInit() {
@@ -23,18 +22,4 @@ export class ProductupdateComponent implements OnInit {
   onsubmit() {
   }
 
-=======
-  constructor(){}
-  public form = {
-    productName: null,
-    type: null,
-    flaver: null,
-    weight: null,
-    price: null
-  };
-
-  ngOnInit() {
-  }
- 
->>>>>>> 94c66129f3ab29bdbf2ef5e8714ccbcbe2633c9f
 }
