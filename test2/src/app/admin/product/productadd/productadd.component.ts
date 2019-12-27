@@ -10,7 +10,7 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 export class ProductaddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm') formValues;
+  @ViewChild('useraddForm', { static: true }) formValues;
   public form = {
     fullname: null,
     firstname: null,
