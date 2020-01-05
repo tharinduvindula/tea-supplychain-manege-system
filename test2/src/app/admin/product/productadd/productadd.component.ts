@@ -23,8 +23,8 @@ export class ProductaddComponent implements OnInit {
     enddate: '',
     usertype: null,
     password: 'uosj@123',
-    addingby: null,//this.Token.payload(this.Token.gettoken()).ud.fullname,
-    lasteditby: null, //this.Token.payload(this.Token.gettoken()).ud.fullname,
+    addingby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    lasteditby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
     photo: null,
     productname: null,
     price: null,
@@ -38,7 +38,7 @@ export class ProductaddComponent implements OnInit {
   error: null;
   imageSrc;
   photoFile: any;
-  //base64s
+  // base64s
   photoString: string;
 
 

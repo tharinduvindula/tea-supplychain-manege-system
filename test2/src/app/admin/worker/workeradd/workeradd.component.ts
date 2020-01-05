@@ -11,7 +11,7 @@ import { LoaderserviceService } from 'app/service/loaderservice.service';
 })
 export class WorkeraddComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm', { static: true }) formValues;
+  @ViewChild('workeraddForm') formValues;
   public form = {
     name: null,
     email: null,
@@ -19,7 +19,7 @@ export class WorkeraddComponent implements OnInit {
     telephone: null,
     usertype: null,
     cunum: 94,
-    photo: 'https://i.ibb.co/zZ7v6D1/user.png'
+    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
   };
   public form1 = {
     email: null
@@ -30,8 +30,6 @@ export class WorkeraddComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
   constructor(private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
-    // this.addingby = this.Token.payload(this.Token.gettoken()).ud.fullname;
-    // this.addmanager('tv@gmail.com', 'tv');
   }
 
   ngOnInit() {

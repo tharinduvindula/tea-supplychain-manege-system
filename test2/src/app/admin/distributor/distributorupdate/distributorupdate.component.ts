@@ -62,11 +62,11 @@ export class DistributorupdateComponent implements OnInit {
     const address = this.form.address + '#' + this.form.contry;
     const telephone = this.form.cunum + this.form.telephone;
     // tslint:disable-next-line: max-line-length
-    if (this.form.name == this.form.name && this.form1.address == this.form.address && this.form1.photo == this.form.photo && this.form1.contry == this.form.contry && this.form1.telephone == this.form.telephone ){
+    if (this.form.name === this.form.name && this.form1.address === this.form.address && this.form1.photo === this.form.photo && this.form1.contry === this.form.contry && this.form1.telephone === this.form.telephone ) {
       this.router.navigateByUrl('/admin/distributor/edit');
     }
     // tslint:disable-next-line: max-line-length
-    if ((this.form.name !== this.form.name || this.form1.photo !== this.form.photo)  && this.form1.address == this.form.address && this.form1.contry == this.form.contry && this.form1.telephone == this.form.telephone) {
+    if ((this.form.name !== this.form.name || this.form1.photo !== this.form.photo)  && this.form1.address === this.form.address && this.form1.contry === this.form.contry && this.form1.telephone === this.form.telephone) {
       await this.service.updateDistributorName(this.form1.email, name).then(
         data => {
           if (data != null) {
@@ -85,12 +85,11 @@ export class DistributorupdateComponent implements OnInit {
       this.router.navigateByUrl('/admin/distributor/edit');
     }
     // tslint:disable-next-line: max-line-length
-    if (this.form.name == this.form.name && this.form1.photo == this.form.photo && (this.form1.address !== this.form.address || this.form1.contry == this.form.contry) && this.form1.telephone == this.form.telephone) {
+    if (this.form.name === this.form.name && this.form1.photo === this.form.photo && (this.form1.address !== this.form.address || this.form1.contry === this.form.contry) && this.form1.telephone === this.form.telephone) {
       await this.service.updateDistributorAddress(this.form1.email, address).then(
         data => {
           if (data != null) {
             console.log(data)
-            
           }
 
         },
@@ -101,15 +100,15 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      
+
     }
     // tslint:disable-next-line: max-line-length
-    if (this.form.name == this.form.name && this.form1.photo == this.form.photo && this.form1.address == this.form.address && this.form1.contry == this.form.contry && this.form1.telephone !== this.form.telephone) {
+    if (this.form.name === this.form.name && this.form1.photo === this.form.photo && this.form1.address === this.form.address && this.form1.contry === this.form.contry && this.form1.telephone !== this.form.telephone) {
       await this.service.updateDistributorContactNumber(this.form1.email, telephone).then(
         data => {
           if (data != null) {
             console.log(data)
-           
+
           }
 
         },
@@ -120,9 +119,9 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigate(['/admin/distributor/edit']);
+      this.router.navigate(['/admin/distributor/view']);
     } else {
-      let arr: number[] = [];
+      const arr: number[] = [];
       if (this.form1.name !== this.form.name || this.form1.photo !== this.form.photo) {
         arr.push(1);
       } else {
@@ -153,7 +152,7 @@ export class DistributorupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigate(['/admin/distributor/edit']);
+      this.router.navigate(['/admin/distributor/view']);
     }
     this.form2.email = this.form.email;
   }
@@ -173,7 +172,7 @@ export class DistributorupdateComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-  async getdistubtor(email){
+  async getdistubtor(email) {
     await this.service.getDistributor(email).then(val => {
       if (val[5] !== 4) {
         this.form.email = val[1];

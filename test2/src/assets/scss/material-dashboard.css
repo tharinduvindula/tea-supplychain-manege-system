@@ -8,7 +8,8 @@
 /* Theme for the ripple elements.*/
 /* stylelint-disable material/no-prefixes */
 /* stylelint-enable */
-@import url(c:\project\tea supply chain mangement system\test2\node_modules\@angular\material\prebuilt-themes\indigo-pink.css);
+@import '~css-star-rating/scss/star-rating';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 .mat-badge-content {
   font-weight: 600;
   font-size: 12px;

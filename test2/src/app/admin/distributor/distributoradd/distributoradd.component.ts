@@ -44,11 +44,11 @@ export class DistributoraddComponent implements OnInit {
 
   async onsubmit() {
     const name = this.form.name + '#' + this.form.photo;
-    const address =this.form.address + '#' + this.form.contry;
+    const address = this.form.address + '#' + this.form.contry;
     const telephone = this.form.cunum + this.form.telephone;
-    await this.service.insertDistributor(this.form.email, name, address,telephone).then(
+    await this.service.insertDistributor(this.form.email, name, address, telephone).then(
       data => {
-        if ( data != null){
+        if ( data != null) {
         console.log(data);
         this.formValues.resetForm();
         }
