@@ -27,6 +27,7 @@ import { EstateComponent } from 'app/manager/estate/estate.component';
 import { OtheruserComponent } from 'app/manager/otheruser/otheruser.component';
 import { OrderComponent } from 'app/manager/order/order.component';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component';
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import { DistributorserviceService } from 'app/service/distributorservice.servic
         EstateComponent,
         OrderComponent,
         OtheruserComponent,
+        OneproductComponent,
     ],
     providers: [DistributorserviceService],
 
