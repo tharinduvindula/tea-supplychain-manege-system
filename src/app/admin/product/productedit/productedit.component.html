@@ -1,0 +1,39 @@
+<div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;">
+  <div class="row ml-0 mr-0">
+    <div class="col-lg-11">
+      <div class="card">
+        <div class="card-header card-header-warning">
+          <h4 class="card-title">users</h4>
+          <p>editing user details</p>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover">
+            <thead class="text-warning">
+              <th>photo</th>
+              <th>Name</th>
+              <th>Nic Number</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of isOtheruser()">
+                <td><img class="img"  [src]="'data:image/png;base64,'+ user.photo"  alt="Card image cap"
+                    style="width:80px;height: 80px;border-radius: 50%;"></td>
+                <td class="text-dark">{{user.fullname}}</td>
+                <td>{{user.nic}}</td>
+                <td><button mat-raised-button type="submit" (click)=onedit($event,user.email)
+                    style="background-color: blue;" class="btn">Edit
+                    Profile</button></td>
+                <td><button mat-raised-button type="submit" (click)=ondelete($event,user.email)
+                    class="btn btn-danger">Delete
+                    Profile</button></td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

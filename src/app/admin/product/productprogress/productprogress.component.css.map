@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "productprogress.component.scss"
+    ],
+    "names": [],
+    "file": "productprogress.component.css"
+}

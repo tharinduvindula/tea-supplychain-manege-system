@@ -1,0 +1,7 @@
+.example-container {
+    width: 400px;
+    height: 200px;
+    margin: 12px;
+    padding-left: 10%;
+    border: 1px solid #555;
+}
