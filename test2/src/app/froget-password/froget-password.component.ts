@@ -10,12 +10,17 @@ export class FrogetPasswordComponent implements OnInit {
   loggedin;
   login() {
 
+  error;
+  loggedin;
+  login() {
+
   }
   constructor() { }
 
   ngOnInit() {
   }
 
+  // tslint:disable-next-line: member-ordering
   form = {
     email: '',
     password: ''

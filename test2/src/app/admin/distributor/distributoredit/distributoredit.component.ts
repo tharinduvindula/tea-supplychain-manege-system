@@ -14,7 +14,7 @@ export class DistributoreditComponent implements OnInit {
     email: null
   }
   form = {
-    email: null,
+    email: null, 
     emailCode: null,
     name: null,
     photo: null,

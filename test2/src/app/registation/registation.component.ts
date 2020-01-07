@@ -11,8 +11,10 @@ export class RegistationComponent implements OnInit {
   login() {
 
   }
+
   constructor() { }
 
+  // tslint:disable-next-line: member-ordering
   form = {
     email: '',
     password: ''

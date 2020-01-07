@@ -9,14 +9,15 @@ export class PasswordResetComponent implements OnInit {
   error;
   loggedin;
   login() {
-
   }
-  constructor() { }
-
   form = {
     email: '',
     password: ''
   };
+
+  constructor() { }
+
+
 
   ngOnInit() {
   }
