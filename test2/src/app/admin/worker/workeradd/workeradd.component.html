@@ -8,7 +8,7 @@
           <p class="card-category">Complete profile</p>
         </div>
         <div class="card-body">
-        <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
+        <form #workeraddForm=ngForm (ngSubmit)="onsubmit()">
           <div class="form-group row">
             <div class="col-md-12">
               <mat-form-field class="example-full-width">
@@ -40,8 +40,8 @@
               <mat-form-field class="example-full-width">
                 <mat-label>User Type</mat-label>
                 <mat-select name="usertype" [(ngModel)]="form.usertype">
-                  <mat-option value="lectuer">Supervisor</mat-option>
-                  <mat-option value="admin">Loader</mat-option>
+                  <mat-option value="Supervisor">Supervisor</mat-option>
+                  <mat-option value="Loader">Loader</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -51,7 +51,7 @@
           <div class="form-group row">
             <div class="col-sm-10 offset-2">
         
-              <button type="submit" [disabled]="!useraddForm.valid" style="background-color: green;" class="btn pull-right">Add
+              <button type="submit" [disabled]="!workeraddForm.valid" style="background-color: green;" class="btn pull-right">Add
                 Profile</button>
               <div class="alert alert-danger" [hidden]="!error">
                 {{error}}

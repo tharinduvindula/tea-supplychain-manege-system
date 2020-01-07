@@ -50,6 +50,7 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -86,9 +87,6 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
     PasswordResetComponent,
     FrogetPasswordComponent,
     OneproductComponent,
-    
-    
-
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]

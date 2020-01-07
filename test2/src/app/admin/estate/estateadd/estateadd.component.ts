@@ -10,7 +10,7 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 export class EstateaddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm', { static: true }) formValues;
+  @ViewChild('useraddForm') formValues;
   public form = {
     fullname: null,
     firstname: null,
@@ -24,8 +24,8 @@ export class EstateaddComponent implements OnInit {
     enddate: '',
     usertype: null,
     password: 'uosj@123',
-    addingby: null,//this.Token.payload(this.Token.gettoken()).ud.fullname,
-    lasteditby: null, //this.Token.payload(this.Token.gettoken()).ud.fullname,
+    addingby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    lasteditby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
     photo: null
   };
   public form1 = {
@@ -34,7 +34,7 @@ export class EstateaddComponent implements OnInit {
   error: null;
   imageSrc;
   photoFile: any;
-  //base64s
+  // base64s
   photoString: string;
 
 

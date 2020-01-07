@@ -11,7 +11,7 @@ import { ManagerserviceService } from 'app/service/managerservice.service';
 export class UseraddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm', { static: true }) formValues;
+  @ViewChild('useraddForm') formValues;
   public form = {
     name: null,
     email: null,

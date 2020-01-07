@@ -58,6 +58,6 @@ import { DistributorserviceService } from 'app/service/distributorservice.servic
         OtheruserComponent,
     ],
     providers: [DistributorserviceService],
-    
+
 })
 export class AllShareModule { }

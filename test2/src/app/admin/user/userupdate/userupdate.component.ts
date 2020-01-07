@@ -7,15 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserupdateComponent implements OnInit {
 
-  constructor() { }
   public form = {
-    name: null, 
+    name: null,
     email: null,
     telephone: null,
-    
+    photo: null,
+    usertype: null
+
   };
+  error;
+  email;
+  constructor() { }
+
+  yourOnUploadHandler(x) {
+  }
 
   ngOnInit() {
+  }
+  onsubmit() {
   }
 
 }
