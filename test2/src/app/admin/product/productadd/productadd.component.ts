@@ -10,7 +10,6 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 export class ProductaddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm', { static: true }) formValues;
   public form = {
     fullname: null,
     firstname: null,
@@ -24,9 +23,14 @@ export class ProductaddComponent implements OnInit {
     enddate: '',
     usertype: null,
     password: 'uosj@123',
-    addingby: null,//this.Token.payload(this.Token.gettoken()).ud.fullname,
-    lasteditby: null, //this.Token.payload(this.Token.gettoken()).ud.fullname,
-    photo: null
+    addingby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    lasteditby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    photo: null,
+    productname: null,
+    price: null,
+    weight: null,
+    type: null,
+    flaver: null,
   };
   public form1 = {
     email: null
@@ -34,7 +38,7 @@ export class ProductaddComponent implements OnInit {
   error: null;
   imageSrc;
   photoFile: any;
-  //base64s
+  // base64s
   photoString: string;
 
 

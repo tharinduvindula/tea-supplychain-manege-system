@@ -10,7 +10,7 @@ import { DistributorserviceService } from 'app/service/distributorservice.servic
 export class DistributoraddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  @ViewChild('useraddForm', { static: true }) formValues;
+  @ViewChild('useraddForm') formValues;
   public form = {
     name: null,
     email: null,

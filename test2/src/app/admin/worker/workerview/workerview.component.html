@@ -1,75 +1,74 @@
 <div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
   <div class="col-lg-11">
     <div class="card">
-
+  
       <div class="card-header card-header-warning">
-        <h4 class="card-title">Distributors</h4>
+        <h4 class="card-title">Supervisor</h4>
+        <p class="card-category">all Supervisor</p>
       </div>
       <div class="card-body">
         <div class="row">
-
-          <div *ngFor="let item of items.value" class="col-3" style="padding-top: 10%;">
+  
+          <div *ngFor="let item of items2.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
             <div class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
                 </div>
-
+  
                 <div class="card1-image">
                   <img src={{item.photo}} height=102% width=102% alt="profile one">
                 </div>
-
-
-
+  
+  
+  
                 <div class="details">
                   <h2><b>{{item.name}}</b></h2>
-                  <h2 class="job-title">Manager</h2>
+                  <h2 class="job-title">Supervisor</h2>
                   <h2>{{item.email}}</h2>
                 </div>
-
+  
               </div>
             </div>
-
           </div>
-
-
-
+  
         </div>
       </div>
     </div>
   </div>
   <div class="col-lg-11">
     <div class="card">
-
-      <div class="card-header card-header-warning">
-        <h4 class="card-title">Distributors</h4>
+  
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">Loader</h4>
+        <p class="card-category">all loarders</p>
       </div>
       <div class="card-body">
         <div class="row">
-
-          <div *ngFor="let item of items1.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
+  
+          <div *ngFor="let item of items3.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
             <div class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
                 </div>
-
+  
                 <div class="card1-image">
                   <img src={{item.photo}} height=102% width=102% alt="profile one">
                 </div>
-
-
-
+  
+  
+  
                 <div class="details">
                   <h2><b>{{item.name}}</b></h2>
-                  <h2 class="job-title">Admin</h2>
+                  <h2 class="job-title">Loader</h2>
                   <h2>{{item.email}}</h2>
                 </div>
-
+  
               </div>
             </div>
           </div>
-
+  
         </div>
       </div>
     </div>
