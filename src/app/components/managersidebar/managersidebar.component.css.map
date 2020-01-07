@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "managersidebar.component.scss"
+    ],
+    "names": [],
+    "file": "managersidebar.component.css"
+}
