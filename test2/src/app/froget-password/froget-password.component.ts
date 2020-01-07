@@ -9,11 +9,6 @@ export class FrogetPasswordComponent implements OnInit {
   error;
   loggedin;
   login() {
-
-  error;
-  loggedin;
-  login() {
-
   }
   constructor() { }
 

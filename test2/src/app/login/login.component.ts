@@ -34,7 +34,7 @@ export class LoginComponent {
     balance: any
   };
   error = '';
-  loggedin;
+
   constructor(private ethcontractService: EthcontractService, private adminservice: AdminserviceService, private router: Router) {
     // this.initAndDisplayAccount();
   }
