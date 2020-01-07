@@ -14,7 +14,7 @@ export class DistributoreditComponent implements OnInit {
     email: null
   }
   form = {
-    email: null,
+    email: null, 
     emailCode: null,
     name: null,
     photo: null,
@@ -61,7 +61,7 @@ export class DistributoreditComponent implements OnInit {
     this.items = this.formBuilder.array([]);
     this.create();
   }
-
+ 
   async create() {
     let x;
     let i;

@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./froget-password.component.scss']
 })
 export class FrogetPasswordComponent implements OnInit {
-
   error;
   loggedin;
   login() {
-
   }
   constructor() { }
 
