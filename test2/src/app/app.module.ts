@@ -86,7 +86,6 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
-    OneproductComponent,
   ],
   providers: [EthcontractService],
   bootstrap: [AppComponent]
