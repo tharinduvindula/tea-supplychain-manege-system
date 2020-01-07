@@ -4,68 +4,67 @@
           <div class="col-md-8"> 
               <div class="card">
                   <div class="card-header card-header-danger">
-                      <h4 class="card-title">Product Add</h4>
-                      <p class="card-category">Add product details</p>
+                      <h4 class="card-title">Product Update</h4>
+                      <p class="card-category">Update product details</p>
                   </div>
                   <div class="card-body">
-                      <form>  
-                        <div class="col-md-5">
+                    <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
+                      <div class="form-group row">
+                        <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Company">
+                            <input matInput name="productname" id="productname" placeholder="Product Name" type="text"
+                              [(ngModel)]="form.productName" required>
                           </mat-form-field>
                         </div>
+                      </div>
+                      
+                      <div class="form-group row">
                         <div class="col-md-3">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Username">
+                            <input type="text" name="type"  matInput placeholder="Packet Type" [(ngModel)]="form.type"
+                              required>
                           </mat-form-field>
                         </div>
-                        <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Email address" type="email">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
+                      </div>
+                    
+                      <div class="form-group row">
+                        <div class="col-md-3">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Fist Name" type="text">
+                            <input matInput placeholder="Flaver" type="text" name="flaver" [(ngModel)]="form.flaver" required>
                           </mat-form-field>
                         </div>
-                        <div class="col-md-6">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Last Name" type="text">
+                            <input matInput placeholder="Weight" type="text" name="weight" [(ngModel)]="form.weight" required>
                           </mat-form-field>
                         </div>
-                        <div class="col-md-12">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
                           <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Adress" type="text">
+                            <input matInput placeholder="Price" type="number" name="price" [(ngModel)]="form.price" required>
                           </mat-form-field>
                         </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="City" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Country" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Postal Code" type="text">
-                          </mat-form-field>
-                        </div>
-                          
-                        <div class="row"></div>
-                          <div class="col-md-12">
-                            <label>About Me</label>
-                            <mat-form-field class="example-full-width">
-                                <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                              </mat-form-field>
+                      </div>
+          
+                      <div class="form-group row">
+                        <div class="col-sm-10 offset-2">
+          
+                          <button type="submit" [disabled]="!useraddForm.valid" style="background-color: rgba(195, 128, 4, 0.842);"
+                            class="btn pull-right">Update
+                            Profile</button>
+                          <div class="alert alert-danger" [hidden]="!error">
+                            {{error}}
                           </div>
-                        
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Add product</button>
-                          <div class="clearfix"></div>
-                      </form>
+          
+          
+          
+                        </div>
+                      </div>
+          
+                    </form>
                   </div>
               </div>
           </div>

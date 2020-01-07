@@ -7,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistationComponent implements OnInit {
 
+  error;
+  loggedin;
+  login() {
+
+  }
+
   constructor() { }
 
+  // tslint:disable-next-line: member-ordering
   form = {
     email: '',
     password: ''

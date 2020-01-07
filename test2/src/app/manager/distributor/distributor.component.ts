@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { DistributorserviceService } from 'app/service/Distributorservice.service';
+// import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
+=======
+import { DistributorserviceService } from 'app/service/distributorservice.service';
 import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
+>>>>>>> 112c5ce068c8cc9a73c49077e6e1deb4ca7a0210
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
@@ -9,8 +14,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
   styleUrls: ['./distributor.component.scss']
 })
 export class DistributorComponent implements OnInit {
-  
-  form ={
+  form = {
     contactNumber: null,
     email: null,
     emailCode: null,
@@ -33,7 +37,7 @@ export class DistributorComponent implements OnInit {
     let x;
     let i;
     await this.service.getDistributorCount().then(  val => x = val )
-  
+
     console.log(x);
     for (i = 0; i < x; i++) {
       console.log(i)
