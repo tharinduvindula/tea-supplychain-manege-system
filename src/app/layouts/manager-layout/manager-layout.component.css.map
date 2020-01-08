@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,kBAAkB,CAAC;EACjB,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,IAAI;EACZ,MAAM,EAAE,cAAc;CACvB;;AAED,AAAA,kBAAkB,CAAC;EACjB,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,UAAU;CACxB",
-    "sources": [
-        "manager-layout.component.scss"
-    ],
-    "names": [],
-    "file": "manager-layout.component.css"
-}
