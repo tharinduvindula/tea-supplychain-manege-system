@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-distributoredit',
   templateUrl: './distributoredit.component.html',
