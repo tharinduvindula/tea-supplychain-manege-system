@@ -34,6 +34,8 @@ export class EthcontractService {
 
 
 
+  
+
   constructor() {
     if (typeof window.web3 !== 'undefined') {
       this.web3Provider = window.web3.currentProvider;
