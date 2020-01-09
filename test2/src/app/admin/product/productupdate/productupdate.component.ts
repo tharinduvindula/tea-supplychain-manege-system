@@ -20,6 +20,7 @@ export class ProductupdateComponent implements OnInit {
   ngOnInit() {
   }
   onsubmit() {
+    console.log(this.form)
   }
-
+ 
 }

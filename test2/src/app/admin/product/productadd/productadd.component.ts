@@ -11,22 +11,22 @@ export class ProductaddComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   public form = {
-    fullname: null,
-    firstname: null,
-    lastname: null,
-    nic: null,
-    sex: null,
-    email: null,
-    address: null,
-    telephone: null,
-    startdate: null,
-    enddate: '',
-    usertype: null,
-    password: 'uosj@123',
-    addingby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
-    lasteditby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    //fullname: null,
+    //firstname: null,
+    //lastname: null,
+    //nic: null,
+    //sex: null,
+    //email: null,
+    //address: null,
+    //telephone: null,
+    //startdate: null,
+    //enddate: '',
+    // usertype: null,
+    // password: 'uosj@123',
+    // addingby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
+    // lasteditby: null, // this.Token.payload(this.Token.gettoken()).ud.fullname,
     photo: null,
-    productname: null,
+    productname: null, 
     price: null,
     weight: null,
     type: null,
@@ -59,6 +59,7 @@ export class ProductaddComponent implements OnInit {
   }
 
   onsubmit() {
+    console.log(this.form)
     // this.Users.adduser(this.form).subscribe(
     //   data => this.formValues.resetForm(),
     //   error => this.handleError(error),
@@ -87,7 +88,7 @@ export class ProductaddComponent implements OnInit {
 
   handleInputChange(files) {
     const file = files;
-    const pattern = /image-*/;
+    const pattern = /image-*/; 
     const reader = new FileReader();
     if (!file.type.match(pattern)) {
       alert('invalid format');

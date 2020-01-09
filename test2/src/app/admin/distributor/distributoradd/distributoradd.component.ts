@@ -17,7 +17,7 @@ export class DistributoraddComponent implements OnInit {
     address: 'a',
     telephone: null,
     contry: null,
-    cunum: 94,
+    cunum: 94, 
     photo: null
   };
   public form1 = {
