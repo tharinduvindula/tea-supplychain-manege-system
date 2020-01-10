@@ -15,7 +15,7 @@ export class ProducteditComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
   getAlluser() {
     // this.User.getalluser().subscribe((all) => {
     //   this.users = all

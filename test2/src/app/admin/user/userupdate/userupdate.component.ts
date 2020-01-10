@@ -13,7 +13,7 @@ export class UserupdateComponent implements OnInit {
     telephone: null,
     photo: null,
     usertype: null
-
+ 
   };
   error;
   email;
@@ -25,6 +25,7 @@ export class UserupdateComponent implements OnInit {
   ngOnInit() {
   }
   onsubmit() {
+    console.log(this.form)
   }
 
 }
