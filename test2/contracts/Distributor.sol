@@ -55,18 +55,18 @@ contract DistributorContract {
         
     mapping(bytes32 => Distributor) public distributorArray;
     DisplayDistributor[] private distributorIndex;
-    RegistationToken[] private distributorRegistationToken;
+    mapping(bytes32 => RegistationToken) private distributorRegistationToken;
     
     function isDistributor(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(distributorIndex.length == 0) return false;
         return (distributorIndex[distributorArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createDistributorToken(bytes32 _emailCode)private returns(bytes32){
+    function createDistributorToken(bytes32 _emailCode)public returns(bytes32){
         bytes32 token = randomtoken();
-        RegistationToken memory registationToken;
-        registationToken.emailCode = _emailCode;
-        registationToken.token = token;
-        distributorRegistationToken.push(registationToken);
+        if(distributorRegistationToken[_emailCode].emailCode != _emailCode){
+            distributorRegistationToken[_emailCode].emailCode = _emailCode;
+        }
+        distributorRegistationToken[_emailCode].token = token;
         return token;
     }
     function randomtoken() private view returns (bytes32) {
@@ -118,13 +118,7 @@ contract DistributorContract {
     function deleteDistributor (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
-        for( i = 0; i < distributorRegistationToken.length; i++) {
-            if(distributorRegistationToken[i].emailCode == email){
-                distributorRegistationToken[i].emailCode = distributorRegistationToken[distributorRegistationToken.length-1].emailCode;
-                distributorRegistationToken[i].token = distributorRegistationToken[distributorRegistationToken.length-1].token;
-                distributorRegistationToken.length--;
-            }
-        }
+        delete distributorRegistationToken[email];
         distributorArray[email].userAccess = 4;
         distributorIndex[distributorArray[email].index].userAccess = 4;
         name = distributorIndex[distributorArray[email].index].name;

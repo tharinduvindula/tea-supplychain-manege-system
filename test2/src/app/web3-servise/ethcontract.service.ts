@@ -62,6 +62,21 @@ export class EthcontractService {
     })});
   }
 
+  async frogetPassword({ _userName }: { _userName; }): Promise<any> {
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xe87A136d95C3c3Dc31Abb0096886B8aa49D402b9');
+    // tslint:disable-next-line: no-shadowed-variable
+    return await new Promise((data, error) => {
+      Sc.methods.login(_userName, 1).call((er: any, ev: any) => {
+        if (er != null) {
+          console.log(er)
+          error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
+        }
+        data(ev);
+      })
+    });
+  }
+
+
 
   // get() {
   //    const MyContract = contract(tokenAbi);

@@ -55,18 +55,18 @@ contract SupervisorContract {
         
     mapping(bytes32 => Supervisor) public supervisorArray;
     DisplaySupervisor[] private supervisorIndex;
-    RegistationToken[] private supervisorRegistationToken;
-    
+    mapping(bytes32 => RegistationToken) private supervisorRegistationToken;
+
     function isSupervisor(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(supervisorIndex.length == 0) return false;
         return (supervisorIndex[supervisorArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createSupervisorToken(bytes32 _emailCode)private returns(bytes32){
+    function createSupervisorToken(bytes32 _emailCode)public returns(bytes32){
         bytes32 token = randomtoken();
-        RegistationToken memory registationToken;
-        registationToken.emailCode = _emailCode;
-        registationToken.token = token;
-        supervisorRegistationToken.push(registationToken);
+        if(supervisorRegistationToken[_emailCode].emailCode != _emailCode){
+            supervisorRegistationToken[_emailCode].emailCode = _emailCode;
+        }
+        supervisorRegistationToken[_emailCode].token = token;
         return token;
     }
     function randomtoken() private view returns (bytes32) {
@@ -118,13 +118,7 @@ contract SupervisorContract {
     function deleteSupervisor (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
-        for( i = 0; i < supervisorRegistationToken.length; i++) {
-            if(supervisorRegistationToken[i].emailCode == email){
-                supervisorRegistationToken[i].emailCode = supervisorRegistationToken[supervisorRegistationToken.length-1].emailCode;
-                supervisorRegistationToken[i].token = supervisorRegistationToken[supervisorRegistationToken.length-1].token;
-                supervisorRegistationToken.length--;
-            }
-        }
+         delete supervisorRegistationToken[email];
         supervisorArray[email].userAccess = 4;
         supervisorIndex[supervisorArray[email].index].userAccess = 4;
         name = supervisorIndex[supervisorArray[email].index].name;

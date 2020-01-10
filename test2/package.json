@@ -74,6 +74,7 @@
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
     "truffle-contract": "^4.0.4",
+    "truffle-hdwallet-provider": "^1.0.17",
     "ts-type": "^1.2.9",
     "utf8": "^3.0.0",
     "web-animations-js": "2.3.1",
