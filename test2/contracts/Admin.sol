@@ -55,7 +55,7 @@ contract AdminContract {
         
     mapping(bytes32 => Admin) public adminArray;
     DisplayAdmin[] private adminIndex;
-    RegistationToken[] private adminRegistationToken;
+    mapping(bytes32 => RegistationToken) private adminRegistationToken;
     
     function isAdmin(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(adminIndex.length == 0) return false;
@@ -66,12 +66,12 @@ contract AdminContract {
         if(adminIndex.length == 0) return false;
         return (adminIndex[adminArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createAdminToken(bytes32 _emailCode)private returns(bytes32){
+    function createAdminToken(bytes32 _emailCode)public returns(bytes32){
         bytes32 token = randomtoken();
-        RegistationToken memory registationToken;
-        registationToken.emailCode = _emailCode;
-        registationToken.token = token;
-        adminRegistationToken.push(registationToken);
+        if(adminRegistationToken[_emailCode].emailCode != _emailCode){
+            adminRegistationToken[_emailCode].emailCode = _emailCode;
+        }
+        adminRegistationToken[_emailCode].token = token;
         return token;
     }
     function randomtoken() private view returns (bytes32) {
@@ -123,13 +123,7 @@ contract AdminContract {
     function deleteAdmin (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
-        for( i = 0; i < adminRegistationToken.length; i++) {
-            if(adminRegistationToken[i].emailCode == email){
-                adminRegistationToken[i].emailCode = adminRegistationToken[adminRegistationToken.length-1].emailCode;
-                adminRegistationToken[i].token = adminRegistationToken[adminRegistationToken.length-1].token;
-                adminRegistationToken.length--;
-            }
-        }
+        delete adminRegistationToken[email];
         adminArray[email].userAccess = 4;
         adminIndex[adminArray[email].index].userAccess = 4;
         name = adminIndex[adminArray[email].index].name;

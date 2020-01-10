@@ -55,18 +55,18 @@ contract ManagerContract {
 
     mapping(bytes32 => Manager) public managerArray;
     DisplayManager[] private managerIndex;
-    RegistationToken[] private managerRegistationToken;
+    mapping(bytes32 => RegistationToken) private managerRegistationToken;
 
     function isManager(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(managerIndex.length == 0) return false;
         return (managerIndex[managerArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createManagerToken(bytes32 _emailCode)private returns(bytes32){
+    function createManagerToken(bytes32 _emailCode)public returns(bytes32){
         bytes32 token = randomtoken();
-        RegistationToken memory registationToken;
-        registationToken.emailCode = _emailCode;
-        registationToken.token = token;
-        managerRegistationToken.push(registationToken);
+        if(managerRegistationToken[_emailCode].emailCode != _emailCode){
+            managerRegistationToken[_emailCode].emailCode = _emailCode;
+        }
+        managerRegistationToken[_emailCode].token = token;
         return token;
     }
     function randomtoken() private view returns (bytes32) {
@@ -118,13 +118,7 @@ contract ManagerContract {
     function deleteManager (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
-        for( i = 0; i < managerRegistationToken.length; i++) {
-            if(managerRegistationToken[i].emailCode == email){
-                managerRegistationToken[i].emailCode = managerRegistationToken[managerRegistationToken.length-1].emailCode;
-                managerRegistationToken[i].token = managerRegistationToken[managerRegistationToken.length-1].token;
-                managerRegistationToken.length--;
-            }
-        }
+        delete managerRegistationToken[email];
         managerArray[email].userAccess = 4;
         managerIndex[managerArray[email].index].userAccess = 4;
         name = managerIndex[managerArray[email].index].name;

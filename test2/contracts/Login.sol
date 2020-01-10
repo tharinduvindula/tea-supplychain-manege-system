@@ -140,13 +140,68 @@ contract Login {
             }
         }
         else if(_appId==2){
-            return true;
+            if(loaderc.isLoader(email)){
+                userAccess = loaderc.checkLoaderUserAccess(email);
+                require(!(userAccess == 1), "user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 passwordCode = loaderc.checkLoaderPasswordCode(email);
+                if(passwordCode == password ){
+                    if(userAccess == 5){
+                        return true;
+                    }else{
+                        require(!(userAccess == 3),"user tempory block in the system");
+                        require(!(userAccess == 4),"user deleted from system");
+                        return false;
+                    }
+                } else {
+                    require(false,"dosen't macth this password");
+                    return false;
+                }
+            } else if(supervisorc.isSupervisor(email)){
+                userAccess = supervisorc.checkSupervisorUserAccess(email);
+                require(!(userAccess == 1),"user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 passwordCode = supervisorc.checkSupervisorPasswordCode(email);
+                if(passwordCode == password ){
+                    if(userAccess == 5){
+                        return true;
+                    }else{
+                        require(!(userAccess == 3),"user tempory block in the system");
+                        require(!(userAccess == 4),"user deleted from system");
+                        return false;
+                    }
+                } else {
+                    require(false,"dosen't macth this password");
+                    return false;
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
         }
         else if(_appId == 3){
-            return true;
+            if(distributorc.isDistributor(email)){
+                userAccess = distributorc.checkDistributorUserAccess(email);
+                require(!(userAccess == 1), "user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 passwordCode = distributorc.checkDistributorPasswordCode(email);
+                if(passwordCode == password ){
+                    if(userAccess == 5){
+                        return true;
+                    }else{
+                        require(!(userAccess == 3),"user tempory block in the system");
+                        require(!(userAccess == 4),"user deleted from system");
+                        return false;
+                    }
+                } else {
+                    require(false,"dosen't macth this password");
+                    return false;
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
         }
         else{
-            return false;
+            require(false,"dosen't macth this password");
         }
     }
 
@@ -167,8 +222,61 @@ contract Login {
     function registation(bytes32 token) public returns(bool) {
        // return true;
     }
-    function frogetPassword(string memory _email) public returns(bool) {
+    function frogetPassword(string memory _email,uint _appId) public returns(bytes32) {
         // x
+        bytes32 email = keccak256(abi.encodePacked((_email)));
+        uint userAccess;
+        if(_appId==1){
+            if(adminc.isAdmin(email)){
+                userAccess = adminc.checkAdminUserAccess(email);
+                require(!(userAccess == 1), "user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 resetToken = adminc.createAdminToken(email);
+                return resetToken;
+                
+            } else if(managerc.isManager(email)){
+                userAccess = managerc.checkManagerUserAccess(email);
+                require(!(userAccess == 1),"user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 resetToken = managerc.createManagerToken(email);
+                return resetToken;
+                
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId==2){
+            if(loaderc.isLoader(email)){
+                userAccess = loaderc.checkLoaderUserAccess(email);
+                require(!(userAccess == 1), "user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 resetToken = loaderc.createLoaderToken(email);
+                return resetToken;
+            } else if(supervisorc.isSupervisor(email)){
+                userAccess = supervisorc.checkSupervisorUserAccess(email);
+                require(!(userAccess == 1),"user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 resetToken = supervisorc.createSupervisorToken(email);
+                return resetToken;
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId == 3){
+            if(distributorc.isDistributor(email)){
+                userAccess = distributorc.checkDistributorUserAccess(email);
+                require(!(userAccess == 1), "user not register in the system");
+                require(!(userAccess == 2),"user not confirm thier email");
+                bytes32 resetToken = distributorc.createDistributorToken(email);
+                return resetToken;
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else{
+            require(false,"dosen't macth this email");
+        }
+
     }
     function resetPassword(bytes32 token,string memory password)public returns(bool) {
 

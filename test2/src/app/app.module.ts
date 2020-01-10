@@ -47,6 +47,7 @@ import { CommonModule } from '@angular/common';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -61,7 +62,7 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
     RouterModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      apiKey: 'AIzaSyATmEtiTGleGKXpvoIjKOxv5yQ9i1mhsLM'
     })
     ,
     MatToolbarModule,
@@ -76,6 +77,7 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatDialogModule,
+    HttpClientModule,
     UcWidgetModule,
   ],
   declarations: [
@@ -88,7 +90,7 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
     FrogetPasswordComponent,
     OneproductComponent,
   ],
-  providers: [EthcontractService],
+  providers: [EthcontractService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

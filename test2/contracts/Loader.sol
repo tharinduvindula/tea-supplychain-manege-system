@@ -55,18 +55,18 @@ contract LoaderContract {
         
     mapping(bytes32 => Loader) public loaderArray;
     DisplayLoader[] private loaderIndex;
-    RegistationToken[] private loaderRegistationToken;
+    mapping(bytes32 => RegistationToken) private loaderRegistationToken;
     
     function isLoader(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(loaderIndex.length == 0) return false;
         return (loaderIndex[loaderArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createLoaderToken(bytes32 _emailCode)private returns(bytes32){
+    function createLoaderToken(bytes32 _emailCode)public returns(bytes32){
         bytes32 token = randomtoken();
-        RegistationToken memory registationToken;
-        registationToken.emailCode = _emailCode;
-        registationToken.token = token;
-        loaderRegistationToken.push(registationToken);
+        if(loaderRegistationToken[_emailCode].emailCode != _emailCode){
+            loaderRegistationToken[_emailCode].emailCode = _emailCode;
+        }
+        loaderRegistationToken[_emailCode].token = token;
         return token;
     }
     function randomtoken() private view returns (bytes32) {
@@ -118,13 +118,7 @@ contract LoaderContract {
     function deleteLoader (bytes32 email) public returns(string memory){
         uint i;
         string memory name;
-        for( i = 0; i < loaderRegistationToken.length; i++) {
-            if(loaderRegistationToken[i].emailCode == email){
-                loaderRegistationToken[i].emailCode = loaderRegistationToken[loaderRegistationToken.length-1].emailCode;
-                loaderRegistationToken[i].token = loaderRegistationToken[loaderRegistationToken.length-1].token;
-                loaderRegistationToken.length--;
-            }
-        }
+        delete loaderRegistationToken[email];
         loaderArray[email].userAccess = 4;
         loaderIndex[loaderArray[email].index].userAccess = 4;
         name = loaderIndex[loaderArray[email].index].name;
