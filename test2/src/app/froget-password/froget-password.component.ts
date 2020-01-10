@@ -7,11 +7,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./froget-password.component.scss']
 })
 export class FrogetPasswordComponent implements OnInit {
-
   error;
   loggedin;
   login() {
-
   }
   constructor(private http: HttpClient) { 
     

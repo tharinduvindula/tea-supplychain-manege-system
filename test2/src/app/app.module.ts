@@ -88,7 +88,6 @@ import { HttpClientModule } from '@angular/common/http';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
-    OneproductComponent,
   ],
   providers: [EthcontractService, HttpClientModule],
   bootstrap: [AppComponent]

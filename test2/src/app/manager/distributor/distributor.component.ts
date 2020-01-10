@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DistributorserviceService } from 'app/service/Distributorservice.service';
+import { DistributorserviceService } from './../../service/distributorservice.service';
 // import { DISTRIBUTOR } from 'app/models/DISTRIBUTOR';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 

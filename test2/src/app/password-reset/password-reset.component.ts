@@ -6,16 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent implements OnInit {
-
   error;
   loggedin;
+  login() {
+  }
   form = {
     email: '',
     password: ''
   };
-  login() {
 
-  }
   constructor() { }
 
 

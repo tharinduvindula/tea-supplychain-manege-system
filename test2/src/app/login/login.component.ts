@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  
+  loggedin;
+  
   heroForm: FormGroup;
 
   form = {
@@ -31,7 +34,7 @@ export class LoginComponent {
     balance: any
   };
   error = '';
-  loggedin;
+
   constructor(private ethcontractService: EthcontractService, private adminservice: AdminserviceService, private router: Router) {
     // this.initAndDisplayAccount();
   }
