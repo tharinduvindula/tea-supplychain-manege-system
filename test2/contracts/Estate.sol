@@ -277,6 +277,13 @@ contract EstateContract {
         }
         return true;
     }
+    function editUserAccess(string memory _estateName,uint estateAccess)public returns(bool){
+        bytes32 estateName = keccak256(abi.encodePacked((_estateName)));
+        EstateArray[estateName].estateAccess = estateAccess;
+        EstateIndex[EstateArray[estateName].index].estateAccess = estateAccess;
+        return true;
+
+    }
     ///////
     function updateEstateiestateName (string memory _estateName) public returns(bool success){
        // return true;

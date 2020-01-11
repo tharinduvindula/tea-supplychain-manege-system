@@ -24,7 +24,7 @@ export class EstateserviceService {
     return this.result;
   }
 
-  insertEstate(email, name, adress, telepone): Promise<any> {
+  insertEstate(estateName, estateAddress, ownerName, contactnumberAndEmail): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
@@ -34,13 +34,14 @@ export class EstateserviceService {
           { er: string; ev: string; }
       }) => {
         try {
-          this.result = await deployed.insertEstate(email, name, adress, telepone, { from: this.web3.curentaccount })
+          // tslint:disable-next-line: max-line-length
+          this.result = await deployed.insertEstate(estateAddress, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
         } catch (error) {
           console.log(error);
         }
         if (this.result != null) {
           console.log(this.result)
-          dt(this.result.logs[0].args.name);
+          dt(this.result.logs[0].args.estateAddress);
         } else {
           er('user alredy in system');
           console.log(this.result)
@@ -48,22 +49,23 @@ export class EstateserviceService {
       });
     });
   }
-  updateEstateName(email, name): Promise<any> {
+
+  updateEstateAddress(estateName, estateAddress): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
       this.web3.setEstatevalue()
         .then(async (deployed: {
-          updateEstateName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateEstateEstateAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstateName(email, name, { from: this.web3.curentaccount })
+            this.result = await deployed.updateEstateEstateAddress(estateName, estateAddress, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.name);
+            dt(this.result.logs[0].args.estateName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -71,22 +73,23 @@ export class EstateserviceService {
         });
     });
   }
-  updateEstateAddress(email, address): Promise<any> {
+
+  updateEstateOwnerName(estateName, ownerName): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
       this.web3.setEstatevalue()
         .then(async (deployed: {
-          updateEstateAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateEstateOwnerName: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstateAddress(email, address, { from: this.web3.curentaccount })
+            this.result = await deployed.updateEstateOwnerName(estateName, ownerName, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.name);
+            dt(this.result.logs[0].args.estateName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -94,22 +97,23 @@ export class EstateserviceService {
         });
     });
   }
-  updateEstateContactNumber(email, telephone): Promise<any> {
+
+  updateEstateContactnumberAndEmail(estateName, contactnumberAndEmail): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
       this.web3.setEstatevalue()
         .then(async (deployed: {
-          updateEstateContactNumber: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateContactnumberAndEmail: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstateContactNumber(email, telephone, { from: this.web3.curentaccount })
+            this.result = await deployed.updateContactnumberAndEmail(estateName, contactnumberAndEmail, { from: this.web3.curentaccount })
           } catch (error) {
             console.log(error);
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.name);
+            dt(this.result.logs[0].args.estateName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -117,7 +121,8 @@ export class EstateserviceService {
         });
     });
   }
-  updateEstate(email, index, name, adress, telepone): Promise<any> {
+
+  updateEstate(estateName, index, estateAddress, ownerName, contactnumberAndEmail): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
@@ -127,12 +132,13 @@ export class EstateserviceService {
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstate(email, index, name, adress, telepone, { from: this.web3.curentaccount })
+            // tslint:disable-next-line: max-line-length
+            this.result = await deployed.updateEstate(estateName, index, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.name);
+            dt(this.result.logs[0].args.estateName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -140,7 +146,8 @@ export class EstateserviceService {
         });
     });
   }
-  deleteEstate(email): Promise<any> {
+
+  deleteEstate(estateName): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
@@ -150,7 +157,7 @@ export class EstateserviceService {
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.deleteEstate(email, { from: this.web3.curentaccount })
+            this.result = await deployed.deleteEstate(estateName, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -163,6 +170,7 @@ export class EstateserviceService {
         });
     });
   }
+
   async getEstatei(index) {
     await this.web3.getEstatevalue().getEstatei(index).call((er: any, ev: any) => {
       if (er == null) {
@@ -173,8 +181,9 @@ export class EstateserviceService {
     });
     return this.result;
   }
-  async getEstate(email) {
-    await this.web3.getEstatevalue().getEstate(email).call((er: any, ev: any) => {
+
+  async getEstate(estateName) {
+    await this.web3.getEstatevalue().getEstate(estateName).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -183,7 +192,8 @@ export class EstateserviceService {
     });
     return this.result;
   }
-  editacc(email, acc): Promise<any> {
+
+  editacc(estateName, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
@@ -194,7 +204,7 @@ export class EstateserviceService {
         }) => {
           try {
             console.log(deployed.editUserAccess)
-            this.result = await deployed.editUserAccess(email, acc, { from: this.web3.curentaccount })
+            this.result = await deployed.editUserAccess(estateName, acc, { from: this.web3.curentaccount })
           } catch (error) {
             console.log(error);
           }
