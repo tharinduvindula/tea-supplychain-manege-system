@@ -17,5 +17,5 @@ module.exports = function (deployer) {
     deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
     deployer.deploy(EstateContract);
     deployer.deploy(OrderContract);
-    deployer.deploy(ProductContract);
+    deployer.deploy(ProdutContract);
 };

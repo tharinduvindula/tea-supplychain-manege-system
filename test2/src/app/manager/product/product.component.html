@@ -1,181 +1,37 @@
-
-  <div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
-    <div class="col-lg-11">
-      <div class="card">
-
+<div class="container-fluid" style="overflow-x: hidden; padding-left: 5%;padding-top: 7%;">
+  <div class="col-lg-11">
+    <div class="card">
       <div class="card-header card-header-danger">
-        <h4 class="card-title">Product</h4>
+        <h4 class="card-title">Products</h4>
         <p class="card-category">all product</p>
       </div>
-      
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-3" style="padding-top: 3%;" >
-              <div class="wrapper">
-                <div class="container">
-                  <div class="top">
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let product of items.value" class="col-md-3" style="padding-top: 3%;">
+            <div class="wrapper">
+              <div class="container">
+                <div class="top">
 
-                    <img src="https://imgbbb.com/images/2019/11/19/wijaya_product_1567047513.jpg" height=100% width=100%>
+                  <img [src]="product.photo" height=100% width=100%>
 
-                  </div>
-                  <div class="bottom">
-                    <div class="left">
-                      <div class="details">
-
-                        <h1>Tea</h1>
-
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="inside">
-                  <div class="icon"><i class="material-icons">info_outline</i></div>
-                  <div class="contents">
-                    <table>
-                      <h6><b>Ratings</b></h6> 
-                      
+                <div class="bottom">
+                  <div class="left">
+                    <div class="details">
 
-                      <h6><b>Countries</b></h6>
-                      <ol>
-                      <li>India</li>
-                      <li>Itali</li>
-                      <li>England</li>
-                      </ol> 
+                      <h1>{{product.productName}}</h1>
 
-                      <h6><b>Estates</b></h6>
-                      <ol>
-                      <li>Galle</li>
-                      <li>Matara</li>
-                      <li>Udugama</li>
-                      </ol> 
-                    </table>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-3" style="padding-top: 3%;">
-              <div class="wrapper">
-                <div class="container">
-                  <div class="top">
-                    <img src="https://imgbbb.com/images/2019/11/19/wijaya_product_1567047513.jpg" height=100%
-                      width=100%>
-                  </div>
-                  <div class="bottom">
-                    <div class="left">
-                      <div class="details">
-                        <h1>Tea</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="inside">
-                  <div class="icon"><i class="material-icons">info_outline</i></div>
-                  <div class="contents">
-                    <table>
-                      <h6><b>Ratings</b></h6>
-                      <head>
-                        <!-- Font Awesome Icon Library -->
-                        <link rel="stylesheet"
-                          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <style>
-                          .checked {
-                            color: orange;
-                          }
-                        </style>
-                      </head>
-            
-                      <body>
-            
-                        <h6><b>Star Rating</b></h6>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-            
-                      </body>
-            
-            
-            
-                      <h6><b>Countries</b></h6>
-                      <ol>
-                        <li>India</li>
-                        <li>Itali</li>
-                        <li>England</li>
-                      </ol>
-            
-                      <h6><b>Estates</b></h6>
-                      <ol>
-                        <li>Galle</li>
-                        <li>Matara</li>
-                        <li>Udugama</li>
-                      </ol>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3" style="padding-top: 3%;">
-              <div class="wrapper">
-                <div class="container">
-                  <div class="top">
-                    <img src="https://imgbbb.com/images/2019/11/19/wijaya_product_1567047513.jpg" height=100%
-                      width=100%>
-                  </div>
-                  <div class="bottom">
-                    <div class="left">
-                      <div class="details">
-                        <h1>Tea</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="inside">
-                  <div class="icon"><i class="material-icons">info_outline</i></div>
-                  <div class="contents">
-                    <table>
-                      <h6><b>Ratings</b></h6>
-            
-                      <head>
-                        <!-- Font Awesome Icon Library -->
-                        <link rel="stylesheet"
-                          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                        <style>
-                          .checked {
-                            color: orange;
-                          }
-                        </style>
-                      </head>
-            
-                      <body>
-            
-                        <h6><b>Star Rating</b></h6>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-            
-                      </body>
-            
-            
-            
-                      <h6><b>Countries</b></h6>
-                      <ol>
-                        <li>India</li>
-                        <li>Itali</li>
-                        <li>England</li>
-                      </ol>
-            
-                      <h6><b>Estates</b></h6>
-                      <ol>
-                        <li>Galle</li>
-                        <li>Matara</li>
-                        <li>Udugama</li>
-                      </ol>
-                    </table>
-                  </div>
+              <div class="inside">
+                <div class="icon"><i class="material-icons">info_outline</i></div>
+                <div class="contents">
+                  <h6><b>Ratings</b></h6>
+                  {{product.rate}}
+
+
                 </div>
               </div>
             </div>
@@ -184,4 +40,5 @@
       </div>
     </div>
   </div>
+</div>
   

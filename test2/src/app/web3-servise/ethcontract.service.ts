@@ -246,7 +246,7 @@ export class EthcontractService {
   getEstatevalue() {
     const MyContract = contract(estateAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    const Xc = new this.web3.eth.Contract(estateAbi.abi, '0x747F4dd9c0d54fFDd3bC9d0c2B2C4a5005eAC5Ae');
     return Xc.methods;
   }
 
@@ -259,7 +259,7 @@ export class EthcontractService {
   getProductvalue() {
     const MyContract = contract(productAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    const Xc = new this.web3.eth.Contract(productAbi.abi, '0x20Cd60900a0a5f6768438e3c7dfdfca44FB2C6c8');
     return Xc.methods;
   }
 
@@ -269,10 +269,10 @@ export class EthcontractService {
     return MyContract.deployed()
   }
 
-  getOdervalue() {
+  getOrdervalue() {
     const MyContract = contract(orderAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    const Xc = new this.web3.eth.Contract(orderAbi.abi, '0xce883daB393343E527773CD58e55f4570c9A86eF');
     return Xc.methods;
   }
 

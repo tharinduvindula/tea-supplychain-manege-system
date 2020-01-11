@@ -48,6 +48,7 @@ import { DistributorupdateComponent } from './admin/distributor/distributorupdat
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.component';
 
 
 
@@ -88,6 +89,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
+    EstateupdateComponent,
   ],
   providers: [EthcontractService, HttpClientModule],
   bootstrap: [AppComponent]

@@ -17,11 +17,8 @@ export class DistributoraddComponent implements OnInit {
     address: 'a',
     telephone: null,
     contry: null,
-    cunum: 94, 
+    cunum: 94,
     photo: null
-  };
-  public form1 = {
-    email: null
   };
   error: null;
 
@@ -62,7 +59,6 @@ export class DistributoraddComponent implements OnInit {
       }
 
     );
-    this.form1.email = this.form.email;
   }
 
   handleError(error) {

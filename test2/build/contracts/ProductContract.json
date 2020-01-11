@@ -29256,9 +29256,141 @@
     "name": "solc",
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewProduct",
+          "type": "event",
+          "signature": "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f"
+        },
+        "0xff757f62d040f7e3d832721808f2e12f3df36f41c1060c4c814352ed0466f150": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateProduct",
+          "type": "event",
+          "signature": "0xff757f62d040f7e3d832721808f2e12f3df36f41c1060c4c814352ed0466f150"
+        },
+        "0xe1ff156be6bced8bd204b6d37ac5ca0bd9cbbc129fc6647c272b8b87bfb34fd6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNamecode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteProduct",
+          "type": "event",
+          "signature": "0xe1ff156be6bced8bd204b6d37ac5ca0bd9cbbc129fc6647c272b8b87bfb34fd6"
+        }
+      },
+      "links": {},
+      "address": "0x20Cd60900a0a5f6768438e3c7dfdfca44FB2C6c8",
+      "transactionHash": "0x900aab0c6303f1314e2c078763e4b65169db8702c13e7ed60592f525ea1abcaf"
+    }
+  },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-10T17:21:55.359Z",
+  "updatedAt": "2020-01-11T17:15:52.487Z",
   "devdoc": {
     "methods": {}
   },

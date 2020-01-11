@@ -35,13 +35,13 @@ export class EstateserviceService {
       }) => {
         try {
           // tslint:disable-next-line: max-line-length
-          this.result = await deployed.insertEstate(estateAddress, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
+          this.result = await deployed.insertEstate(estateName, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
         } catch (error) {
           console.log(error);
         }
         if (this.result != null) {
           console.log(this.result)
-          dt(this.result.logs[0].args.estateAddress);
+          dt(this.result.logs[0].args.estateName);
         } else {
           er('user alredy in system');
           console.log(this.result)
