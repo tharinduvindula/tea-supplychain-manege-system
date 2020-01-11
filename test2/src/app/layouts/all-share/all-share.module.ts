@@ -34,6 +34,10 @@ import * as FusionCharts from 'fusioncharts';
 import * as charts from 'fusioncharts/fusioncharts.charts';
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import { ComponentsModule } from 'app/components/components.module';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
+import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -69,7 +73,13 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
         OtheruserComponent,
         OneproductComponent,
     ],
-    providers: [DistributorserviceService],
+    providers: [
+        DistributorserviceService,
+        AdminserviceService,
+        LoaderserviceService,
+        ManagerserviceService,
+        SupervisorserviceService
+    ],
 
 })
 export class AllShareModule { }

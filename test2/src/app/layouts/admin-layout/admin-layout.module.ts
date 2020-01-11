@@ -45,6 +45,11 @@ import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
 import { FusionChartsModule } from 'angular-fusioncharts';
 import { ComponentsModule } from 'app/components/components.module';
+import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
+import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 
 @NgModule({
   imports: [
@@ -94,7 +99,14 @@ import { ComponentsModule } from 'app/components/components.module';
     ProductupdateComponent,
     DistributorupdateComponent,
     UserupdateComponent,
-  ]
+  ],
+  providers: [
+    DistributorserviceService,
+    AdminserviceService,
+    LoaderserviceService,
+    ManagerserviceService,
+    SupervisorserviceService
+  ],
 })
 
 export class AdminLayoutModule {}

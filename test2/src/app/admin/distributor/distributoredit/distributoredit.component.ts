@@ -67,7 +67,7 @@ export class DistributoreditComponent implements OnInit {
     await this.service.getDistributorCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(val => {
-        if (val[5] !== 4) {
+        if (val[5] !== '4') {
         this.items.push(this.formBuilder.group({
           email: val[1],
           emailCode: val[0],
