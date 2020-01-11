@@ -43,6 +43,8 @@ import { ProductupdateComponent } from 'app/admin/product/productupdate/productu
 import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import { ComponentsModule } from 'app/components/components.module';
 
 @NgModule({
   imports: [
@@ -63,6 +65,8 @@ import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.compon
     MatRadioModule,
     AllShareModule,
     UcWidgetModule,
+    FusionChartsModule,
+    ComponentsModule,
   ],
   declarations: [
     NotificationsComponent,

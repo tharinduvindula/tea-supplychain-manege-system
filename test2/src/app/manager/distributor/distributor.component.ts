@@ -17,6 +17,7 @@ export class DistributorComponent implements OnInit {
     photo: null,
     userAccess: null,
     userAddress: null,
+    contryx: null
   };
   items: FormArray;
 
@@ -37,6 +38,41 @@ export class DistributorComponent implements OnInit {
     for (i = 0; i < x; i++) {
       console.log(i)
       await this.service.getDistributori(i).then(val => {
+        let contry;
+        let contryy;
+        if( val[4].split('#')[1] === 'US'){
+          contry = `flag-icon-us`;
+          contryy = 'Amarica';
+        }
+        else if (val[4].split('#')[1] === 'AI') {
+          contry = `flag-icon-ai`;
+          contryy = 'Australia';
+        }
+        else if (val[4].split('#')[1] === 'GB') {
+          contry = `flag-icon-gb`;
+          contryy ='England';
+        }
+        else if (val[4].split('#')[1] === 'CA') {
+          contry = `flag-icon-ca`;
+          contryy = 'Canada';
+        }
+        else if (val[4].split('#')[1] === 'NZ') {
+          contry = `flag-icon-nz`;
+          contryy = 'New Zeland';
+        }
+        else if (val[4].split('#')[1] === 'RU') {
+          contry = `flag-icon-ru`;
+          contryy = 'Rusia';
+        }
+        else if (val[4].split('#')[1] === 'SA') {
+          contry = `flag-icon-sa`;
+          contryy = 'Saudhi';
+        }
+        else if (val[4].split('#')[1] === 'LK') {
+          contry = `flag-icon-lk`;
+          contryy = 'Sri Lanka';
+        }
+
         this.items.push(this.formBuilder.group({
           contactNumber: val[3],
           email: val[1],
@@ -44,7 +80,9 @@ export class DistributorComponent implements OnInit {
           name: val[2].split('#')[0],
           photo: val[2].split('#')[1],
           userAccess: val[5],
-          userAddress: val[4]
+          userAddress: val[4],
+          contryx: contry,
+          contryxx: contryy
         }));
       });
     }

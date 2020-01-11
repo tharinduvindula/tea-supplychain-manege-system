@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagersidebarComponent } from './managersidebar/managersidebar.component';
+import { WorldmapComponent } from './worldmap/worldmap.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,12 +27,14 @@ import { ManagersidebarComponent } from './managersidebar/managersidebar.compone
     NavbarComponent,
     SidebarComponent,
     ManagersidebarComponent,
+    WorldmapComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     ManagersidebarComponent,
+    WorldmapComponent,
   ]
 })
 export class ComponentsModule { }

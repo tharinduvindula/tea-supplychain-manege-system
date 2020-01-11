@@ -30,6 +30,7 @@ import { WorkeraddComponent } from 'app/admin/worker/workeradd/workeradd.compone
 import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.component';
 import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
+import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
@@ -60,7 +61,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user/block', component: UserblockComponent },
     { path: 'worker/add', component: WorkeraddComponent },
     { path: 'worker/view', component: WorkerviewComponent },
-    { path: 'worker/edit', component: WorkerblockComponent },
+    { path: 'worker/edit', component: WorkereditComponent },
     { path: 'worker/block', component: WorkerblockComponent },
     { path: 'product/update', component: ProductupdateComponent },
 ];

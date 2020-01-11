@@ -29,6 +29,14 @@ import { OrderComponent } from 'app/manager/order/order.component';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
 import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component';
 
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { ComponentsModule } from 'app/components/components.module';
+
+
+FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
     imports: [
         CommonModule,
@@ -48,6 +56,8 @@ import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component
         ReactiveFormsModule,
         HttpClientModule,
         HttpModule,
+        FusionChartsModule,
+        ComponentsModule
     ],
     declarations: [
         DashboardComponent,

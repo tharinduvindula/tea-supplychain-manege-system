@@ -16,6 +16,7 @@ import {
 } from '@angular/material';
 import { AllShareModule } from '../all-share/all-share.module';
 import { DashboardComponent } from 'app/manager/dashboard/dashboard.component';
+import { ComponentsModule } from 'app/components/components.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,9 +31,10 @@ import { DashboardComponent } from 'app/manager/dashboard/dashboard.component';
     MatTooltipModule,
     MatIconModule,
     AllShareModule,
+    ComponentsModule
   ],
   declarations: [
-    // DashboardComponent
+     // DashboardComponent
   ]
 })
 

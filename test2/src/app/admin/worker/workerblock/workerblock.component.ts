@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-workerblock',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkerblockComponent implements OnInit {
 
-  constructor() { }
+  items: FormArray;
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.items = this.formBuilder.array([]);
+  }
+
+  setValue(x,y){
+
+  }
+  isMobileMenu() {
+    if (screen.width > 991) {
+      return false;
+    }
+    return true;
   }
 
 }

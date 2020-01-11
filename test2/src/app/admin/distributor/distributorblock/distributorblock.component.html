@@ -23,8 +23,8 @@
                   <td class="text-dark">{{user.name}}</td>
                   <td>{{user.email}}</td>
                   <td>
-                    <mat-slide-toggle color='warn' [(ngModel)]="!user.temporydisable"
-                      (change)="setValue( user.email , $event )">
+                    <mat-slide-toggle color='warn' [(ngModel)]="user.userAccess"
+                      (change)="setValue( user.email , $event,user.i)">
 
                     </mat-slide-toggle>
                   </td>
@@ -63,8 +63,8 @@
                   <td class="text-dark">{{user.name}}</td>
                   <td>{{user.email}}</td>
                   <td>
-                    <mat-slide-toggle color='warn' [checked]="!user.userAccess" 
-                      (change)="setValue( user.emailCode , $event ,user.i)">
+                    <mat-slide-toggle color='warn' [checked]="user.userAccess" 
+                      (change)="setValue( user.email , $event ,user.i)">
 
                     </mat-slide-toggle>
                   </td>
