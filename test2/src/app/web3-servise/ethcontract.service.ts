@@ -18,6 +18,9 @@ const distributorAbi = require('../../../build/contracts/DistributorContract.jso
 const loaderAbi = require('../../../build/contracts/LoaderContract.json');
 const managerAbi = require('../../../build/contracts/ManagerContract.json');
 const supervisorAbi = require('../../../build/contracts/SupervisorContract.json');
+const estateAbi = require('../../../build/contracts/EstateContract.json');
+const productAbi = require('../../../build/contracts/ProductContract.json');
+const orderAbi = require('../../../build/contracts/OrderContract.json');
 
 
 
@@ -229,6 +232,45 @@ export class EthcontractService {
 
   getLoadervalue() {
     const MyContract = contract(loaderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    return Xc.methods;
+  }
+
+  setEstatevalue() {
+    const MyContract = contract(estateAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getEstatevalue() {
+    const MyContract = contract(estateAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    return Xc.methods;
+  }
+
+  setProductvalue() {
+    const MyContract = contract(productAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getProductvalue() {
+    const MyContract = contract(productAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    return Xc.methods;
+  }
+
+  setOdervalue() {
+    const MyContract = contract(orderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getOdervalue() {
+    const MyContract = contract(orderAbi);
     MyContract.setProvider(this.web3.currentProvider);
     const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
     return Xc.methods;
