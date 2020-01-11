@@ -38,6 +38,7 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 import { LoaderserviceService } from 'app/service/loaderservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
 
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -61,7 +62,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
         HttpClientModule,
         HttpModule,
         FusionChartsModule,
-        ComponentsModule
+        ComponentsModule,
+        UcWidgetModule,
     ],
     declarations: [
         DashboardComponent,

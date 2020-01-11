@@ -205,4 +205,27 @@ export class LoaderserviceService {
     console.log(_data + '   ' +_email);
     return true;
   }
+  editacc(email, acc): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setLoadervalue()
+        .then(async (deployed: {
+          editUserAccess: (arg0: string, arg1: number, arg4: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            console.log(deployed.editUserAccess)
+            this.result = await deployed.editUserAccess(email, acc, { from: this.web3.curentaccount })
+          } catch (error) {
+            console.log(error);
+          }
+          if (this.result != null) {
+            console.log(this.result)
+          } else {
+            console.log(this.result)
+          }
+        });
+    });
+  }
 }
