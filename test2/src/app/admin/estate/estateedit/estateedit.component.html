@@ -20,10 +20,10 @@
                 <td><img class="img" src={{estate.photo}} style="width:80px;height: 80px;border-radius: 50%;"></td>
                 <td class="text-dark">{{estate.estateName}}</td>
                 <td>{{estate.estateId}}</td>
-                <td><button mat-raised-button type="submit" (click)=onedit($event,estate.EstateNamei)
+                <td><button mat-raised-button type="submit" (click)=onedit($event,estate.estateNamei)
                     style="background-color: blue;" class="btn">Edit
                     Estate</button></td>
-                <td><button mat-raised-button type="submit" (click)=ondelete($event,estate.EstateNamei)
+                <td><button mat-raised-button type="submit" (click)=ondelete($event,estate.estateNameCode)
                     class="btn btn-danger">Delete
                     Estate</button></td>
               </tr>

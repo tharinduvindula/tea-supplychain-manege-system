@@ -31,6 +31,7 @@ import { WorkerblockComponent } from 'app/admin/worker/workerblock/workerblock.c
 import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
+import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
@@ -47,6 +48,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'estate/view', component: EstateComponent },
     { path: 'estate/edit', component: EstateeditComponent },
     { path: 'estate/progress', component: EstateprogressComponent },
+    { path: 'estate/update', component: EstateupdateComponent },
     { path: 'order/view', component: OrderComponent },
     { path: 'order/edit', component: OrdereditComponent },
     { path: 'order/summary', component: OrdersummaryComponent },
@@ -54,6 +56,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'product/view', component: ProductComponent },
     { path: 'product/edit', component: ProducteditComponent },
     { path: 'product/progress', component: ProductprogressComponent },
+    { path: 'product/update', component: ProductupdateComponent },
     { path: 'user/add', component: UseraddComponent},
     { path: 'user/view', component: UserviewComponent },
     { path: 'user/edit', component: UsereditComponent },
@@ -63,5 +66,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'worker/view', component: WorkerviewComponent },
     { path: 'worker/edit', component: WorkereditComponent },
     { path: 'worker/block', component: WorkerblockComponent },
-    { path: 'product/update', component: ProductupdateComponent },
+    
 ];

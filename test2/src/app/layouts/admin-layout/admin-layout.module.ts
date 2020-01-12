@@ -50,6 +50,7 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 import { LoaderserviceService } from 'app/service/loaderservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
+import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 
 @NgModule({
   imports: [
@@ -83,6 +84,7 @@ import { SupervisorserviceService } from 'app/service/supervisorservice.service'
     EstateaddComponent,
     EstateeditComponent,
     EstateprogressComponent,
+    EstateupdateComponent,
     OrdereditComponent,
     OrdersummaryComponent,
     ProductaddComponent,

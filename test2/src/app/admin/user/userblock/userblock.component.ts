@@ -31,6 +31,7 @@ export class UserblockComponent implements OnInit {
     await this.service.getManagerCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getManageri(i).then(async val => {
+        console.log(val)
         if (val[5] === '5' || val[5] === '3') {
           this.items.push(this.formBuilder.group({
             email: val[1],

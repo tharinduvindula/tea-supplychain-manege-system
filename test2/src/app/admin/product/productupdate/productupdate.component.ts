@@ -76,7 +76,7 @@ export class ProductupdateComponent implements OnInit {
         }
 
       );
-      this.router.navigateByUrl('/admin/distributor/edit');
+      this.router.navigate(['/admin/product/view']);
     }
     // tslint:disable-next-line: max-line-length
     else if (this.form1.flaver === this.form.flaver && this.form1.photo === this.form.photo && (this.form1.packetType !== this.form.packetType || this.form1.weight === this.form.weight) && this.form1.price === this.form.price ) {
@@ -95,7 +95,7 @@ export class ProductupdateComponent implements OnInit {
           }
         }
       );
-
+      this.router.navigate(['/admin/product/view']);
     }
     // tslint:disable-next-line: max-line-length
     else if (this.form1.flaver === this.form.flaver && this.form1.photo === this.form.photo && this.form1.packetType === this.form.packetType && this.form1.weight === this.form.weight && this.form1.price !== this.form.price) {
@@ -114,7 +114,7 @@ export class ProductupdateComponent implements OnInit {
           }
         }
       );
-      this.router.navigate(['/admin/distributor/view']);
+      this.router.navigate(['/admin/product/view']);
     } else {
       const arr: number[] = [];
       if (this.form1.flaver !== this.form.flaver || this.form1.photo !== this.form.photo) {

@@ -5,10 +5,10 @@
         <div class="card-header card-header-pills"
           style="background-color: green;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
           <h4 class="card-title">Estates</h4>
-          <p class="card-category">add estate</p>
+          <p class="card-category">edit estate details</p>
         </div>
         <div class="card-body">
-          <form #estateaddForm=ngForm (ngSubmit)="onsubmit()">
+          <form #estateEditForm=ngForm (ngSubmit)="onsubmit()">
             <div class="form-group row">
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
@@ -63,9 +63,8 @@
             <div class="form-group row">
               <div class="col-sm-10 offset-2">
 
-                <button type="submit" [disabled]="!estateaddForm.valid" style="background-color: green;"
-                  class="btn pull-right">Add
-                  Profile</button>
+                <button type="submit" [disabled]="!estateEditForm.valid" style="background-color: green;"
+                  class="btn btn-danger pull-right">Edit Estate</button>
                 <div class="alert alert-danger" [hidden]="!error">
                   {{error}}
                 </div>

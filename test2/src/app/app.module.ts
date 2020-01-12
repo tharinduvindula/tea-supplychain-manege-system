@@ -89,7 +89,6 @@ import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
-    EstateupdateComponent,
   ],
   providers: [EthcontractService, HttpClientModule],
   bootstrap: [AppComponent]

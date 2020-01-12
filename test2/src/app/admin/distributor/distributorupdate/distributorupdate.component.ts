@@ -19,7 +19,7 @@ export class DistributorupdateComponent implements OnInit {
     address: null,
     telephone: null,
     contry: null,
-    cunum: 94,
+    cunum: null,
     photo: null,
   };
   public form1 = {
@@ -29,7 +29,7 @@ export class DistributorupdateComponent implements OnInit {
     address: null,
     telephone: null,
     contry: null,
-    cunum: 94,
+    cunum: null,
     photo: null,
   };
   public form2 = {
@@ -60,7 +60,7 @@ export class DistributorupdateComponent implements OnInit {
   async onsubmit() {
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address + '#' + this.form.contry;
-    const telephone = this.form.cunum + this.form.telephone;
+    const telephone = this.form.cunum +''+ this.form.telephone;
     // tslint:disable-next-line: max-line-length
     if (this.form1.name === this.form.name && this.form1.address === this.form.address && this.form1.photo === this.form.photo && this.form1.contry === this.form.contry && this.form1.telephone === this.form.telephone ) {
       this.router.navigateByUrl('/admin/distributor/edit');
@@ -134,7 +134,7 @@ export class DistributorupdateComponent implements OnInit {
       } else {
         arr.push(0);
       }
-      if (this.form1.telephone !== this.form.telephone ) {
+      if (this.form1.telephone !== this.form.telephone || this.form1.contry !== this.form.contry ) {
         arr.push(3);
       } else {
         arr.push(0);
@@ -186,14 +186,36 @@ export class DistributorupdateComponent implements OnInit {
         this.form1.name = val[2].split('#')[0];
         this.form.photo = val[2].split('#')[1],
         this.form1.photo = val[2].split('#')[1],
-        this.form.telephone = val[3],
-        this.form1.telephone = val[3],
+        this.form.cunum = val[3].substring(0, 2),
+        this.form.cunum = val[3].substring(0, 2),
+        this.form.telephone = val[3].split(val[3].substring(0, 2))[1],
+        this.form1.telephone = val[3].split(val[3].substring(0, 2))[1],
         this.form.address = val[4].split('#')[0],
         this.form1.address = val[4].split('#')[0],
         this.form.contry = val[4].split('#')[1]
         this.form1.contry = val[4].split('#')[1]
       }
     });
+  }
+
+  changcnum(x){
+    if (x === 'US'){
+      this.form.cunum =1;
+    } else if ( x === 'AI') {
+      this.form.cunum = 61;
+    } else if (x === 'GB') {
+      this.form.cunum =44;
+    } else if (x === 'CA') {
+      this.form.cunum = 1;
+    } else if (x === 'NZ') {
+      this.form.cunum = 64;
+    } else if (x === 'RU') {
+      this.form.cunum = 7;
+    } else if (x === 'SA') {
+      this.form.cunum = 966;
+    } else if (x === 'LK') {
+      this.form.cunum = 94;
+    }
   }
 }
 
