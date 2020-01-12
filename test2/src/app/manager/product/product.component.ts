@@ -9,6 +9,8 @@ import { ProductserviceService } from 'app/service/productservice.service';
 })
 export class ProductComponent implements OnInit {
 
+  pho = 'https://i.ibb.co/fNwMyzz/mmp6178-edited.jpg'
+
   items: FormArray;
 
   constructor(private service: ProductserviceService, private formBuilder: FormBuilder) {
@@ -25,9 +27,10 @@ export class ProductComponent implements OnInit {
     await this.service.getProductCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getProducti(i).then(val => {
+        console.log(val[2].split('#')[1])
         this.items.push(this.formBuilder.group({
-          productName: val[1],
-          Photo: val[2].split('#')[1],
+          productName: val[1].split('#')[1],
+          photo: val[2].split('#')[1],
           rate: val[6]
         }));
       });

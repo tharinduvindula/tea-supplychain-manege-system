@@ -160,7 +160,7 @@ export class ProductserviceService {
           try {
             this.result = await deployed.deleteProduct(productName, { from: this.web3.curentaccount })
           } catch (error) {
-            console.log('error');
+            console.log(error);
           }
           if (this.result != null) {
             dt(this.result.logs[0].args.name);

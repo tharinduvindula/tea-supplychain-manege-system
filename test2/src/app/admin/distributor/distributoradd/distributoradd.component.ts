@@ -18,7 +18,7 @@ export class DistributoraddComponent implements OnInit {
     telephone: null,
     contry: null,
     cunum: 94,
-    photo: null
+    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
   };
   error: null;
 

@@ -12,6 +12,7 @@ export class EstateaddComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   @ViewChild('estateaddForm') formValues;
   public form = {
+    estateId: null,
     estateName: null,
     photo: 'https://i.ibb.co/K6KH5V7/beb29b45d9e431b294dd2510c371f25c-XL.jpg',
     address: null,
@@ -46,9 +47,10 @@ export class EstateaddComponent implements OnInit {
   async onsubmit() {
 
     console.log(this.form)
+    const estateName = this.form.estateId + '#' + this.form.estateName
     const estateAddress = this.form.address + '#' + this.form.photo;
     const contactnumberAndEmail = this.form.contactNumber + '#' + this.form.email;
-    await this.service.insertEstate(this.form.estateName, estateAddress, this.form.ownerName, contactnumberAndEmail).then(
+    await this.service.insertEstate(estateName, estateAddress, this.form.ownerName, contactnumberAndEmail).then(
       data => {
         if (data != null) {
           console.log(data);

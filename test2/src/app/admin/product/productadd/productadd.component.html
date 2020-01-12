@@ -1,4 +1,4 @@
-<div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
+<div class="container-fluid" style="overflow-x: hidden; padding-left: 5%;padding-top: 7%;">
   <div class="row">
     <div class="col-md-8">
       <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -8,12 +8,20 @@
           <p class="card-category">add product</p>
         </div>
         <div class="card-body"> 
-          <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
+          <form #productaddForm=ngForm (ngSubmit)="onsubmit()">
+            <div class="form-group row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput name="productId" id="productId" placeholder="Product ID" type="text"
+                    [(ngModel)]="form.productId" required>
+                </mat-form-field>
+              </div>
+            </div>
             <div class="form-group row">
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <input matInput name="productname" id="productname" placeholder="Product Name" type="text"
-                    [(ngModel)]="form.productname" required>
+                    [(ngModel)]="form.productName" required>
                 </mat-form-field>
               </div>
             </div>
@@ -21,7 +29,7 @@
             <div class="form-group row">
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
-                  <input type="text" name="type"  matInput placeholder="Packet Type" [(ngModel)]="form.type"
+                  <input type="text" name="type"  matInput placeholder="Packet Type" [(ngModel)]="form.packetType"
                     required>
                 </mat-form-field>
               </div>
@@ -37,7 +45,7 @@
             <div class="form-group row">
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Weight" type="text" name="weight" [(ngModel)]="form.weight" required>
+                  <input matInput placeholder="Weight" type="number" name="weight" [(ngModel)]="form.weight" required>
                 </mat-form-field>
               </div>
             </div>
@@ -52,9 +60,9 @@
             <div class="form-group row">
               <div class="col-sm-10 offset-2">
 
-                <button type="submit" [disabled]="!useraddForm.valid" style="background-color: green;"
+                <button type="submit" [disabled]="!productaddForm.valid" style="background-color: green;"
                   class="btn pull-right">Add
-                  Profile</button>
+                  Product</button>
                 <div class="alert alert-danger" [hidden]="!error">
                   {{error}}
                 </div>

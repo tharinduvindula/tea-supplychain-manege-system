@@ -8,7 +8,6 @@ import { EstateserviceService } from 'app/service/estateservice.service';
   styleUrls: ['./estate.component.scss']
 })
 export class EstateComponent implements OnInit {
-  
   items: FormArray;
 
   constructor(private service: EstateserviceService,private formBuilder: FormBuilder) {
@@ -26,7 +25,7 @@ export class EstateComponent implements OnInit {
     for (i = 0; i < x; i++) {
       await this.service.getEstatei(i).then(val => {
         this.items.push(this.formBuilder.group({
-          estateName: val[1],
+          estateName: val[1].split('#')[1],
           Photo: val[2].split('#')[1],
           rate: val[6]
 

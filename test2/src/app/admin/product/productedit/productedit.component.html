@@ -1,6 +1,6 @@
 <div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
   <div class="row ml-0 mr-0">
-    <div class="col-lg-11">
+    <div class="col-lg-12">
       <div class="card">
         <div class="card-header card-header-warning">
           <h4 class="card-title">Products</h4>
@@ -11,20 +11,20 @@
             <thead class="text-warning">
               <th>Photo</th>
               <th>Name</th>
-              <th>Weight</th>
+              <th>Product Id</th>
               <th>Edit</th>
               <th>Delete</th>
             </thead> 
             <tbody>
-              <tr *ngFor="let user of isOtheruser()">
-                <td><img class="img"  [src]="'data:image/png;base64,'+ user.photo"  alt="Card image cap"
+              <tr *ngFor="let product of items.value">
+                <td><img class="img"  src={{product.photo}}
                     style="width:80px;height: 80px;border-radius: 50%;"></td>
-                <td class="text-dark">{{user.fullname}}</td>
-                <td>{{user.nic}}</td>
-                <td><button mat-raised-button type="submit" (click)=onedit($event,user.email)
+                <td class="text-dark">{{product.productName}}</td>
+                <td>{{product.productId}}</td>
+                <td><button mat-raised-button type="submit" (click)=onedit($event,product.productNamei)
                     style="background-color: blue;" class="btn">Edit
                     Product</button></td>
-                <td><button mat-raised-button type="submit" (click)=ondelete($event,user.email)
+                <td><button mat-raised-button type="submit" (click)=ondelete($event,product.productNameCode)
                     class="btn btn-danger">Delete
                     Product</button></td>
               </tr>

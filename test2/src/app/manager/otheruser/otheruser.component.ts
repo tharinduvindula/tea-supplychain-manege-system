@@ -12,15 +12,6 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 })
 export class OtheruserComponent implements OnInit {
 
-  form = {
-    contactNumber: null,
-    email: null,
-    emailCode: null,
-    name: null,
-    photo: null,
-    userAccess: null,
-    userAddress: null,
-  };
   items: FormArray;
   items1: FormArray;
   items2: FormArray;
