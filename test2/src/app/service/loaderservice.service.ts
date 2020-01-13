@@ -35,7 +35,6 @@ export class LoaderserviceService {
         console.log('error');
       }
         if (this.result != null){
-        this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
       } else {
         er('user alredy in system');
@@ -201,9 +200,15 @@ export class LoaderserviceService {
     });
     return this.result;
   }
-  sendPasswordResetLink( _email,_data) {
-    console.log(_data + '   ' +_email);
-    return true;
+  async getLoaderToken(email) {
+    await this.web3.getLoadervalue().getLoaderToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
   }
   editacc(email, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length

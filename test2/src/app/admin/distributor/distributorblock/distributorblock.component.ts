@@ -46,18 +46,7 @@ export class DistributorblockComponent implements OnInit {
     await this.service.getDistributorCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(async val => {
-        console.log(val)
         if ( val[5] === '5' || val[5] === '3') {
-          // { 
-          //   // tslint:disable-next-line: no-unused-expression
-          //   this.form.email = val[1];
-          //   this.form.emailCode = val[0];
-          //   this.form.name = val[2].split('#')[0];
-          //   this.form.photo = val[2].split('#')[1];
-          //   this.form.userAccess = val[5] === '5' ? 1 : 0;
-          //   this.users.push(this.form);
-
-          // }
           this.items.push(this.formBuilder.group({
             email: val[1],
             emailCode: val[0],

@@ -51,7 +51,7 @@ export class LoginComponent {
             if (data1 === true) {
               this.router.navigateByUrl('/admin');
             } else {
-              this.router.navigateByUrl('/admin');
+              this.router.navigateByUrl('/');
             }
           }, error => {
             console.log(true);

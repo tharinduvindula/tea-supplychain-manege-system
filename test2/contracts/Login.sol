@@ -7,17 +7,27 @@ import "./Loader.sol";
 import "./Supervisor.sol";
 
 contract Login {
-    AdminContract adminc;
-    ManagerContract managerc;
-    DistributorContract distributorc;
-    LoaderContract loaderc;
-    SupervisorContract supervisorc;
+    DistributorContract public distributorc;
+    ManagerContract public managerc;
+    AdminContract public adminc;
+    LoaderContract public loaderc;
+    SupervisorContract public supervisorc;
+    address ada;
+    address maa;
+    address disa;
+    address loa;
+    address sua;
     constructor(address ad,address ma,address dis,address lo,address su) public {
         adminc = AdminContract(ad);
         managerc = ManagerContract(ma);
         distributorc = DistributorContract(dis);
         loaderc = LoaderContract(lo);
         supervisorc = SupervisorContract(su);
+        ada = ad;
+        maa = ma;
+        disa = dis;
+        loa = lo;
+        sua = su;
     }
     // struct Packet{
     //     uint packetId;
@@ -219,11 +229,85 @@ contract Login {
 
 /////////////////////////
     ///
-    function registation(bytes32 token) public returns(bool) {
-       // return true;
+    function registation(string memory _email,bytes32 token,uint _appId) public view returns(bool,uint) {
+       bytes32 email = keccak256(abi.encodePacked((_email)));
+        uint userAccess;
+        if(_appId==1){
+            if(adminc.isAdmin(email)){
+                userAccess = adminc.checkAdminUserAccess(email);
+                if(userAccess == 1) {
+                    if(adminc.checkAdminToken(_email,token)){
+                       return (true,11);
+                    } else{
+                        require(false,"token is invalid");
+                    }
+                }else{
+                    require(false,"user Allredy signup");
+                }
+            } else if(managerc.isManager(email)){
+                userAccess = managerc.checkManagerUserAccess(email);
+                if(userAccess == 1) {
+                    if(managerc.checkManagerToken(_email,token)){
+                        return (true,12);
+                    } else{
+                        require(false,"token is invalid");
+                    }
+                }else{
+                    require(false,"user Allredy signup");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId==2){
+            if(loaderc.isLoader(email)){
+                userAccess = loaderc.checkLoaderUserAccess(email);
+                if(userAccess == 1) {
+                    if(loaderc.checkLoaderToken(_email,token)){
+                         return (true,21);
+                    } else{
+                        require(false,"token is invalid");
+                    }
+                }else{
+                    require(false,"user Allredy signup");
+                }
+            } else if(supervisorc.isSupervisor(email)){
+                userAccess = supervisorc.checkSupervisorUserAccess(email);
+                if(userAccess == 1) {
+                    if(supervisorc.checkSupervisorToken(_email,token)){
+                         return (true,22);
+                    } else{
+                        require(false,"token is invalid");
+                    }
+                }else{
+                    require(false,"user Allredy signup");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId == 3){
+            if(distributorc.isDistributor(email)){
+                userAccess = distributorc.checkDistributorUserAccess(email);
+                if(userAccess == 1) {
+                    if(distributorc.checkDistributorToken(_email,token)){
+                         return (true,31);
+                    } else{
+                        require(false,"token is invalid");
+                    }
+                }else{
+                    require(false,"user Allredy signup");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else{
+            require(false,"dosen't macth this email");
+        }
     }
-    function frogetPassword(string memory _email,uint _appId) public returns(bytes32) {
-        // x
+    function frogetPassword(string memory _email,uint _appId) public view returns(bool,uint) {
+        
         bytes32 email = keccak256(abi.encodePacked((_email)));
         uint userAccess;
         if(_appId==1){
@@ -231,16 +315,12 @@ contract Login {
                 userAccess = adminc.checkAdminUserAccess(email);
                 require(!(userAccess == 1), "user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
-                bytes32 resetToken = adminc.createAdminToken(email);
-                return resetToken;
-                
+                return (true,11);
             } else if(managerc.isManager(email)){
                 userAccess = managerc.checkManagerUserAccess(email);
                 require(!(userAccess == 1),"user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
-                bytes32 resetToken = managerc.createManagerToken(email);
-                return resetToken;
-                
+                return (true,12);
             } else {
                 require(false,"dosen't macth this email");
             }
@@ -250,14 +330,13 @@ contract Login {
                 userAccess = loaderc.checkLoaderUserAccess(email);
                 require(!(userAccess == 1), "user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
-                bytes32 resetToken = loaderc.createLoaderToken(email);
-                return resetToken;
+                return (true,21);
+
             } else if(supervisorc.isSupervisor(email)){
                 userAccess = supervisorc.checkSupervisorUserAccess(email);
                 require(!(userAccess == 1),"user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
-                bytes32 resetToken = supervisorc.createSupervisorToken(email);
-                return resetToken;
+                return (true,22);
             } else {
                 require(false,"dosen't macth this email");
             }
@@ -267,8 +346,7 @@ contract Login {
                 userAccess = distributorc.checkDistributorUserAccess(email);
                 require(!(userAccess == 1), "user not register in the system");
                 require(!(userAccess == 2),"user not confirm thier email");
-                bytes32 resetToken = distributorc.createDistributorToken(email);
-                return resetToken;
+                return (true,31);
             } else {
                 require(false,"dosen't macth this email");
             }
@@ -278,8 +356,73 @@ contract Login {
         }
 
     }
-    function resetPassword(bytes32 token,string memory password)public returns(bool) {
-
+    function resetPassword(string memory _email,bytes32 token,uint _appId)public view returns(bool,uint) {
+       bytes32 email = keccak256(abi.encodePacked((_email)));
+        uint userAccess;
+        if(_appId==1){
+            if(adminc.isAdmin(email)){
+                userAccess = adminc.checkAdminUserAccess(email);
+                require(!(userAccess == 4), "user remove from the system");
+                require(!(userAccess == 3),"user tempory block from the system");
+                if(adminc.checkAdminToken(_email,token)){
+                    return (true,11);
+                } else{
+                    require(false,"token is invalid");
+                }
+            } else if(managerc.isManager(email)){
+                userAccess = managerc.checkManagerUserAccess(email);
+                userAccess = managerc.checkManagerUserAccess(email);
+                require(!(userAccess == 4), "user remove from the system");
+                require(!(userAccess == 3),"user tempory block from the system");
+                if(managerc.checkManagerToken(_email,token)){
+                   return (true,12);
+                } else{
+                    require(false,"token is invalid");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId==2){
+            if(loaderc.isLoader(email)){
+                userAccess = loaderc.checkLoaderUserAccess(email);
+                require(!(userAccess == 4), "user remove from the system");
+                require(!(userAccess == 3),"user tempory block from the system");
+                if(loaderc.checkLoaderToken(_email,token)){
+                    return (true,21);
+                } else{
+                    require(false,"token is invalid");
+                }
+            } else if(supervisorc.isSupervisor(email)){
+                userAccess = supervisorc.checkSupervisorUserAccess(email);
+                require(!(userAccess == 4), "user remove from the system");
+                require(!(userAccess == 3),"user tempory block from the system");
+                if(supervisorc.checkSupervisorToken(_email,token)){
+                    return (true,22);
+                } else{
+                    require(false,"token is invalid");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else if(_appId == 3){
+            if(distributorc.isDistributor(email)){
+                userAccess = distributorc.checkDistributorUserAccess(email);
+                require(!(userAccess == 4), "user remove from the system");
+                require(!(userAccess == 3),"user tempory block from the system");
+                if(distributorc.checkDistributorToken(_email,token)){
+                    return (true,31);
+                } else{
+                    require(false,"token is invalid");
+                }
+            } else {
+                require(false,"dosen't macth this email");
+            }
+        }
+        else{
+            require(false,"dosen't macth this email");
+        }
     }
     // function createBox() public returns(bool){
 

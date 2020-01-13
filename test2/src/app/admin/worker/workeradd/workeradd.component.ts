@@ -50,6 +50,9 @@ export class WorkeraddComponent implements OnInit {
         data => {
           if (data != null) {
             console.log(data);
+            this.supervisorservice.getSupervisorToken(this.form.email).then(val => {
+              console.log(val)
+            });
             this.formValues.resetForm();
           }
 
@@ -67,6 +70,9 @@ export class WorkeraddComponent implements OnInit {
         data => {
           if (data != null) {
             console.log(data);
+            this.loaderservice.getLoaderToken(this.form.email).then(val => {
+              console.log(val)
+            });
             this.formValues.resetForm();
           }
 

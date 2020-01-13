@@ -10,9 +10,8 @@ export class AdminserviceService {
 
   constructor(private web3: EthcontractService) {
  // this.insertAdmin('a','t', 't#', 5555);
-   //  this.editacc('admin1@gmail.com',5)
+    //  this.editacc('admin1@gmail.com',5);
   }
-
   async getAdminCount() {
     await this.web3.getAdminvalue().getAdminCount().call((er: any, ev: number) => {
       if (er == null) {
@@ -41,7 +40,6 @@ export class AdminserviceService {
         }
         if (this.result != null) {
           console.log(this.result)
-          this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
         } else {
           er('user alredy in system');
@@ -200,6 +198,16 @@ export class AdminserviceService {
     });
     return this.result;
   }
+  async getAdminToken(email) {
+    await this.web3.getAdminvalue().getAdminToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
+  }
   async getAdmin(email) {
     await this.web3.getAdminvalue().getAdmin(email).call((er: any, ev: any) => {
       if (er == null) {
@@ -209,10 +217,6 @@ export class AdminserviceService {
       }
     });
     return this.result;
-  }
-  sendPasswordResetLink(_email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
   }
   async isUserAdmin(email) {
     // await this.web3.getAdminvalue().isAdminx(email).call((er: any, ev: any) => {

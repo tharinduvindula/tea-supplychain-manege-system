@@ -9,11 +9,21 @@ export class ManagerserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    // this.editacc('manager1@gmail.com',5)
+      //this.editacc('manager1@gmail.com',5)
   }
 
   async getManagerCount() {
     await this.web3.getManagervalue().getManagerCount().call((er: any, ev: number) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
+  }
+  async getManagerToken(email) {
+    await this.web3.getManagervalue().getManagerToken(email).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -38,7 +48,6 @@ export class ManagerserviceService {
           console.log(error);
         }
         if (this.result != null) {
-          this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
         } else {
           er('user alredy in system');
@@ -205,10 +214,6 @@ export class ManagerserviceService {
       }
     });
     return this.result;
-  }
-  sendPasswordResetLink(_email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
   }
   editacc(email, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length

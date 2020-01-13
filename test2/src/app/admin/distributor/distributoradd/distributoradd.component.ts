@@ -47,6 +47,9 @@ export class DistributoraddComponent implements OnInit {
       data => {
         if ( data != null) {
         console.log(data);
+          this.service.getDistributorToken(this.form.email).then(val => {
+              console.log(val)
+            });
         this.formValues.resetForm();
         }
 

@@ -21,7 +21,16 @@ export class SupervisorserviceService {
     });
     return this.result;
   }
-
+  async getSupervisorToken(email) {
+    await this.web3.getSupervisorvalue().getSupervisorToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
+  }
   insertSupervisor(email, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
@@ -37,7 +46,6 @@ export class SupervisorserviceService {
             console.log('error');
           }
           if (this.result != null) {
-            this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
             dt(this.result.logs[0].args.name);
           } else {
             er('user alredy in system');
@@ -204,10 +212,6 @@ export class SupervisorserviceService {
       }
     });
     return this.result;
-  }
-  sendPasswordResetLink(_email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
   }
   editacc(email, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length

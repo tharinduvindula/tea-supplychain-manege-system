@@ -38,7 +38,6 @@ export class DistributorserviceService {
       }
         if (this.result != null) {
           console.log(this.result)
-        this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
           dt(this.result.logs[0].args.name);
       } else {
         er('user alredy in system');
@@ -204,10 +203,17 @@ export class DistributorserviceService {
     });
     return this.result;
   }
-  sendPasswordResetLink( _email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
+  async getDistributorToken(email) {
+    await this.web3.getDistributorvalue().getDistributorToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
   }
+ 
 
   editacc(email, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length

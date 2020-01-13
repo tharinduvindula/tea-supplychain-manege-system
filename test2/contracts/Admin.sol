@@ -6,7 +6,6 @@ contract AdminContract {
         string email;
         bytes32 emailCode;
         bytes32 passwordCode;
-        bytes32 passwordRestToken;
         string name;
         uint contactNumber;
         string userAddress;
@@ -27,7 +26,6 @@ contract AdminContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -37,7 +35,6 @@ contract AdminContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -54,8 +51,8 @@ contract AdminContract {
     }
         
     mapping(bytes32 => Admin) public adminArray;
-    DisplayAdmin[] private adminIndex;
-    mapping(bytes32 => RegistationToken) private adminRegistationToken;
+    DisplayAdmin[] public adminIndex;
+    mapping(bytes32 => RegistationToken) public adminRegistationToken;
     
     function isAdmin(bytes32 _emailCode)public view returns(bool isIndeed) {
         if(adminIndex.length == 0) return false;
@@ -66,7 +63,8 @@ contract AdminContract {
         if(adminIndex.length == 0) return false;
         return (adminIndex[adminArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createAdminToken(bytes32 _emailCode)public returns(bytes32){
+    function createAdminToken(string memory _email)public returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 token = randomtoken();
         if(adminRegistationToken[_emailCode].emailCode != _emailCode){
             adminRegistationToken[_emailCode].emailCode = _emailCode;
@@ -74,8 +72,36 @@ contract AdminContract {
         adminRegistationToken[_emailCode].token = token;
         return token;
     }
+    function getAdminToken(string memory _email)public view returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  adminRegistationToken[_emailCode].token;
+    }
+    function checkAdminToken(string memory _email,bytes32 _token)public view returns(bool){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  (adminRegistationToken[_emailCode].token == _token);
+    }
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
+       return keccak256(abi.encodePacked(block.timestamp,block.difficulty,block.number));
+    }
+    function setPassword(string memory _email,string memory _password)public returns (bool) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked((_password)));
+        adminArray[_emailCode].passwordCode = _passwordCode;
+        delete adminRegistationToken[_emailCode];
+        adminArray[_emailCode].userAccess = 5;
+        adminIndex[adminArray[_emailCode].index].userAccess = 5;
+        emit LogUpdateAdmin(
+            _emailCode,
+            adminArray[_emailCode].index,
+            _email,
+            _passwordCode,
+            adminArray[_emailCode].name,
+            adminArray[_emailCode].contactNumber,
+            adminArray[_emailCode].userAddress,
+            5
+            );
+        return true;
+
     }
     function setDisplayAdmin(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
      private returns(bool){
@@ -99,20 +125,19 @@ contract AdminContract {
         adminArray[_emailCode].email = _email;
         adminArray[_emailCode].emailCode = _emailCode;
         adminArray[_emailCode].passwordCode = _passwordCode;
-        adminArray[_emailCode].passwordRestToken = createAdminToken(_emailCode);
         adminArray[_emailCode].name = _name;
         adminArray[_emailCode].contactNumber = _telephone;
         adminArray[_emailCode].userAddress = _address;
         adminArray[_emailCode].userAccess = 1;
         setDisplayAdmin(_emailCode,_email,_name,_telephone,_address);
         adminArray[_emailCode].index = adminIndex.length-1;
+        createAdminToken(_email);
 
         emit LogNewAdmin (
             _emailCode,
             adminArray[_emailCode].index,
             _email,
             adminArray[_emailCode].passwordCode,
-            adminArray[_emailCode].passwordRestToken,
             _name,
             _telephone,
             _address,
@@ -206,7 +231,6 @@ contract AdminContract {
             adminArray[_emailCode].index,
             _email,
             adminArray[_emailCode].passwordCode,
-            adminArray[_emailCode].passwordRestToken,
             _name,
             adminArray[_emailCode].contactNumber,
             adminArray[_emailCode].userAddress,
@@ -224,7 +248,6 @@ contract AdminContract {
             adminArray[_emailCode].index,
             _email,
             adminArray[_emailCode].passwordCode,
-            adminArray[_emailCode].passwordRestToken,
             adminArray[_emailCode].name,
             adminArray[_emailCode].contactNumber,
             _userAddress,
@@ -242,7 +265,6 @@ contract AdminContract {
             adminArray[_emailCode].index,
             _email,
             adminArray[_emailCode].passwordCode,
-            adminArray[_emailCode].passwordRestToken,
             adminArray[_emailCode].name,
             _contactNumber,
             adminArray[_emailCode].userAddress,
@@ -270,7 +292,6 @@ contract AdminContract {
                     _emailCode,
                     adminArray[_emailCode].index,
                     _email,adminArray[_emailCode].passwordCode,
-                    adminArray[_emailCode].passwordRestToken,
                     _name,
                     adminArray[_emailCode].contactNumber,
                     adminArray[_emailCode].userAddress,
@@ -288,7 +309,6 @@ contract AdminContract {
                     adminArray[_emailCode].index,
                     _email,
                     adminArray[_emailCode].passwordCode,
-                    adminArray[_emailCode].passwordRestToken,
                     adminArray[_emailCode].name,
                     adminArray[_emailCode].contactNumber,
                     _userAddress,
@@ -304,7 +324,6 @@ contract AdminContract {
                     adminArray[_emailCode].index,
                     _email,
                     adminArray[_emailCode].passwordCode,
-                    adminArray[_emailCode].passwordRestToken,
                     adminArray[_emailCode].name,
                     _contactNumber,
                     adminArray[_emailCode].userAddress,

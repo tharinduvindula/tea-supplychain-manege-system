@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { EthcontractService } from 'app/web3-servise/ethcontract.service';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
 
 @Component({
   selector: 'app-froget-password',
@@ -11,11 +14,51 @@ export class FrogetPasswordComponent implements OnInit {
   loggedin;
   login() {
   }
-  constructor(private http: HttpClient) { 
-    
+  constructor(private http: HttpClient, private service: EthcontractService, private adminservice: AdminserviceService,
+    private managerservice: ManagerserviceService
+    ) { 
   }
 
   ngOnInit() {
+  }
+
+  frogetpassword() {
+    this.service.frogetPassword({_userName: this.form.email}).then(
+      async data => {
+        await this.adminservice.isUserAdmin(this.form.email).then(
+          async data1 => {
+            console.log(data1);
+            if (data1 === true) {
+              console.log('admin email')
+              await this.adminservice.getAdminToken(this.form.email).then(
+                data2 => {
+                  console.log(data2)
+                },
+                error =>{
+                  console.log(error)
+                }
+              )
+
+            } else {
+              console.log('manager email');
+              await this.managerservice.getManagerToken(this.form.email).then(
+                data2 => {
+                  console.log(data2)
+                },
+                error => {
+                  console.log(error)
+                }
+              )
+            }
+          }, error => {
+            console.log(error);
+          });
+      },
+      error => {
+        console.log(error);
+        // this.handleError(error);
+      }
+    );
   }
 
   // tslint:disable-next-line: member-ordering
