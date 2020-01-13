@@ -14,6 +14,7 @@ export class DistributorblockComponent implements OnInit {
   public form1 = {
     email: null
   }
+  block =true;
   form = {
     email: null,
     emailCode: null,
@@ -37,48 +38,25 @@ export class DistributorblockComponent implements OnInit {
     }
     return true;
   }
-  onedit(event: { preventDefault: () => void; }, email: any) {
-    event.preventDefault();
-    this.form.email = email;
-    // this.UserHandle.multiuserhandleforuser(this.form).subscribe(
-    //   data => {
-    //     this.router.navigate(['/admin/User-Profile-edit'], { queryParams: { Email: email }, skipLocationChange: true });
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // );
-  }
-  ondelete(event: { preventDefault: () => void; }, email: any) {
-    event.preventDefault();
-    this.form.email = email;
-    this.router.navigate(['/admin/d'], { queryParams: { Email: email }, skipLocationChange: true });
-
-  }
 
   async create() {
     let x: number;
     let i: number;
+    let y =0;
     await this.service.getDistributorCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(async val => {
-         {
-          // tslint:disable-next-line: no-unused-expression
-          this.form.email = val[1];
-          this.form.emailCode = val[0];
-          this.form.name = val[2].split('#')[0];
-          this.form.photo = val[2].split('#')[1];
-          this.form.userAccess = val[5] == 1 ? 1 : 0;
-          this.users.push(this.form);
-
+        if ( val[5] === '5' || val[5] === '3') {
+          this.items.push(this.formBuilder.group({
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5] === '5' ? true : false,
+            i: y++
+          }));
+          console.log(this.items)
         }
-        this.items.push(this.formBuilder.group({
-          email: val[1],
-          emailCode: val[0],
-          name: val[2].split('#')[0],
-          photo: val[2].split('#')[1],
-          userAccess: val[5] == 1 ? 1 : 0
-        }));
       });
     }
   }
@@ -88,17 +66,18 @@ export class DistributorblockComponent implements OnInit {
   }
 
   async setValue(email: any, e: any,i) {
-    console.log(e+'   '+e.checked)
+    console.log(email+'   '+e.checked+' '+i)
     let usreAccess; 
      if (e.checked) {
-      usreAccess = 3;
-      this.users[i].userAccess = 3;
-    } else {
+       console.log(e.checked)
       usreAccess = 5;
-      this.users[i].userAccess = 5;
+      // this.users[i].userAccess = 3;
+    } else {
+      usreAccess = 3;
+      // this.users[i].userAccess = 5;
     }
     console.log(email+ '    ' + usreAccess);
-    await this.service.blockDistributor(email).then(
+    await this.service.editacc(email,usreAccess).then(
       data => {
         if (data != null) {
           console.log(data);

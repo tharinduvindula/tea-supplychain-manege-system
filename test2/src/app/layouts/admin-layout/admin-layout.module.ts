@@ -43,6 +43,14 @@ import { ProductupdateComponent } from 'app/admin/product/productupdate/productu
 import { DistributorupdateComponent } from 'app/admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import { ComponentsModule } from 'app/components/components.module';
+import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
+import { SupervisorserviceService } from 'app/service/supervisorservice.service';
+import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 
 @NgModule({
   imports: [
@@ -63,6 +71,8 @@ import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.compon
     MatRadioModule,
     AllShareModule,
     UcWidgetModule,
+    FusionChartsModule,
+    ComponentsModule,
   ],
   declarations: [
     NotificationsComponent,
@@ -74,6 +84,7 @@ import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.compon
     EstateaddComponent,
     EstateeditComponent,
     EstateprogressComponent,
+    EstateupdateComponent,
     OrdereditComponent,
     OrdersummaryComponent,
     ProductaddComponent,
@@ -90,7 +101,14 @@ import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.compon
     ProductupdateComponent,
     DistributorupdateComponent,
     UserupdateComponent,
-  ]
+  ],
+  providers: [
+    DistributorserviceService,
+    AdminserviceService,
+    LoaderserviceService,
+    ManagerserviceService,
+    SupervisorserviceService
+  ],
 })
 
 export class AdminLayoutModule {}

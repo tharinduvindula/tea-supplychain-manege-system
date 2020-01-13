@@ -21,7 +21,16 @@ export class SupervisorserviceService {
     });
     return this.result;
   }
-
+  async getSupervisorToken(email) {
+    await this.web3.getSupervisorvalue().getSupervisorToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
+  }
   insertSupervisor(email, name, adress, telepone): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
@@ -37,7 +46,6 @@ export class SupervisorserviceService {
             console.log('error');
           }
           if (this.result != null) {
-            this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
             dt(this.result.logs[0].args.name);
           } else {
             er('user alredy in system');
@@ -205,8 +213,27 @@ export class SupervisorserviceService {
     });
     return this.result;
   }
-  sendPasswordResetLink(_email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
+  editacc(email, acc): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setSupervisorvalue()
+        .then(async (deployed: {
+          editUserAccess: (arg0: string, arg1: number, arg4: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            console.log(deployed.editUserAccess)
+            this.result = await deployed.editUserAccess(email, acc, { from: this.web3.curentaccount })
+          } catch (error) {
+            console.log(error);
+          }
+          if (this.result != null) {
+            console.log(this.result)
+          } else {
+            console.log(this.result)
+          }
+        });
+    });
   }
 }

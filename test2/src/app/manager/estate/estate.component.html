@@ -1,3 +1,45 @@
-<p>
-  estate works!
-</p>
+<div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Estates</h4>
+          <p class="card-category">all estate</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let estate of items.value" class="col-md-3" style="padding-top: 3%;" >
+              <div class="wrapper">
+                <div class="container containerx">
+                  <div class="top">
+
+                  <img src={{estate.Photo}} height=100% width=100% alt="estate">
+                    
+                  </div>
+                  <div class="bottom">
+                    <div class="left">
+                      <div class="details">
+
+                        <h1>{{estate.estateName}}</h1>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="inside">
+                  <div class="icon"><i class="material-icons">info_outline</i></div>
+                  <div class="contents">
+                    <h6><b>Ratings</b></h6> 
+                    {{estate.rate}}
+
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  

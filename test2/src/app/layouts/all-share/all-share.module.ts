@@ -29,6 +29,19 @@ import { OrderComponent } from 'app/manager/order/order.component';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
 import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component';
 
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as charts from 'fusioncharts/fusioncharts.charts';
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { ComponentsModule } from 'app/components/components.module';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
+import { SupervisorserviceService } from 'app/service/supervisorservice.service';
+import { UcWidgetModule } from 'ngx-uploadcare-widget';
+
+
+FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
     imports: [
         CommonModule,
@@ -48,6 +61,9 @@ import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component
         ReactiveFormsModule,
         HttpClientModule,
         HttpModule,
+        FusionChartsModule,
+        ComponentsModule,
+        UcWidgetModule,
     ],
     declarations: [
         DashboardComponent,
@@ -59,7 +75,13 @@ import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component
         OtheruserComponent,
         OneproductComponent,
     ],
-    providers: [DistributorserviceService],
+    providers: [
+        DistributorserviceService,
+        AdminserviceService,
+        LoaderserviceService,
+        ManagerserviceService,
+        SupervisorserviceService
+    ],
 
 })
 export class AllShareModule { }

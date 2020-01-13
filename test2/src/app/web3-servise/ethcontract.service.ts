@@ -18,6 +18,9 @@ const distributorAbi = require('../../../build/contracts/DistributorContract.jso
 const loaderAbi = require('../../../build/contracts/LoaderContract.json');
 const managerAbi = require('../../../build/contracts/ManagerContract.json');
 const supervisorAbi = require('../../../build/contracts/SupervisorContract.json');
+const estateAbi = require('../../../build/contracts/EstateContract.json');
+const productAbi = require('../../../build/contracts/ProductContract.json');
+const orderAbi = require('../../../build/contracts/OrderContract.json');
 
 
 
@@ -30,7 +33,8 @@ export class EthcontractService {
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
-  public curentaccount = '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6'
+  public curentaccount = '0x8B17D2D7F1ac19A2B27Ac45cF09A2b1b022D6dD6';
+  result;
 
 
 
@@ -66,12 +70,132 @@ export class EthcontractService {
     const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xe87A136d95C3c3Dc31Abb0096886B8aa49D402b9');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
-      Sc.methods.login(_userName, 1).call((er: any, ev: any) => {
+      Sc.methods.frogetPassword(_userName, 1).call((er: any, ev: any) => {
         if (er != null) {
           console.log(er)
           error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
+        } else {
+          if (ev[1] === '11') {
+            this.setAdminvalue().then(async (deployed: {
+              createAdminToken: (arg0: string, arg1: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.createAdminToken(_userName,{ from: this.curentaccount });
+                console.log(this.result)
+                this.getAdminvalue().getAdminToken(_userName).call((re: any, ve: any) => {
+                  if (er == null) {
+                    this.result = ve;
+                    data(this.result);
+                  } else {
+                    this.result = re;
+                    console.log(er);
+                  }
+                });
+              } catch (error) {
+                console.log(error);
+              }
+            });
+          } else if (ev[1] === '12') {
+            this.setManagervalue().then(async (deployed: {
+              createManagerToken: (arg0: string, arg2: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.createManagerToken(_userName, { from: this.curentaccount })
+                this.getManagervalue().getMangerToken(_userName).call((re: any, ve: any) => {
+                  if (er == null) {
+                    this.result = ve;
+                    data(this.result);
+                  } else {
+                    this.result = re;
+                    console.log(er);
+                  }
+                });
+              } catch (error) {
+                console.log(error);
+              }
+              data(this.result);
+            });
+          }
         }
-        data(ev);
+      })
+    });
+  }
+  async passwordReset({ _userName,_password,_token }: { _userName;_password;_token }): Promise<any> {
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xe87A136d95C3c3Dc31Abb0096886B8aa49D402b9');
+    // tslint:disable-next-line: no-shadowed-variable
+    return await new Promise((data, error) => {
+      Sc.methods.resetPassword(_userName, _token, 1).call((er: any, ev: any) => {
+        if (er != null) {
+          console.log(er)
+          error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
+        } else {
+          if (ev[1] === '11') {
+            this.setAdminvalue().then(async (deployed: {
+              setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.setPassword(_userName, _password, { from: this.curentaccount })
+                data(this.result);
+              } catch (error) {
+                console.log('error');
+              }
+            });
+
+          } else if (ev[1] === '12') {
+            this.setManagervalue().then(async (deployed: {
+              setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.setPassword(_userName, _password, { from: this.curentaccount })
+              } catch (error) {
+                console.log('error');
+              }
+            });
+          }
+          
+        }
+      })
+    });
+  }
+  async registation({ _userName, _password, _token }: { _userName; _password; _token }): Promise<any> {
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xe87A136d95C3c3Dc31Abb0096886B8aa49D402b9');
+    // tslint:disable-next-line: no-shadowed-variable
+    return await new Promise((data, error) => {
+      Sc.methods.registation(_userName, _token, 1).call((er: any, ev: any) => {
+        if (er != null) {
+          console.log(er)
+          error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
+        } else {
+          if (ev[1] === 11) {
+            this.setAdminvalue().then(async (deployed: {
+              setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.setPassword( _userName, _password, { from: this.web3.curentaccount })
+              } catch (error) {
+                console.log(error);
+              }
+            });
+
+          } else if (ev[1] === 12) {
+            this.setManagervalue().then(async (deployed: {
+              setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
+                { er: string; ev: string; }
+            }) => {
+              try {
+                this.result = await deployed.setPassword(_userName, _password, { from: this.web3.curentaccount })
+              } catch (error) {
+                console.log(error);
+              }
+            });
+          }
+          data(ev);
+        }
       })
     });
   }
@@ -231,6 +355,45 @@ export class EthcontractService {
     const MyContract = contract(loaderAbi);
     MyContract.setProvider(this.web3.currentProvider);
     const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x2Fe9d9eAA82a3644E8854e7992B9AE6249e9BA14');
+    return Xc.methods;
+  }
+
+  setEstatevalue() {
+    const MyContract = contract(estateAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getEstatevalue() {
+    const MyContract = contract(estateAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(estateAbi.abi, '0x747F4dd9c0d54fFDd3bC9d0c2B2C4a5005eAC5Ae');
+    return Xc.methods;
+  }
+
+  setProductvalue() {
+    const MyContract = contract(productAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getProductvalue() {
+    const MyContract = contract(productAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(productAbi.abi, '0x20Cd60900a0a5f6768438e3c7dfdfca44FB2C6c8');
+    return Xc.methods;
+  }
+
+  setOdervalue() {
+    const MyContract = contract(orderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    return MyContract.deployed()
+  }
+
+  getOrdervalue() {
+    const MyContract = contract(orderAbi);
+    MyContract.setProvider(this.web3.currentProvider);
+    const Xc = new this.web3.eth.Contract(orderAbi.abi, '0xce883daB393343E527773CD58e55f4570c9A86eF');
     return Xc.methods;
   }
 

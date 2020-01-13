@@ -6,7 +6,6 @@ contract DistributorContract {
         string email;
         bytes32 emailCode;
         bytes32 passwordCode;
-        bytes32 passwordRestToken;
         string name;
         uint contactNumber;
         string userAddress;
@@ -27,7 +26,6 @@ contract DistributorContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -37,7 +35,6 @@ contract DistributorContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -61,7 +58,8 @@ contract DistributorContract {
         if(distributorIndex.length == 0) return false;
         return (distributorIndex[distributorArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createDistributorToken(bytes32 _emailCode)public returns(bytes32){
+    function createDistributorToken(string memory _email)public returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 token = randomtoken();
         if(distributorRegistationToken[_emailCode].emailCode != _emailCode){
             distributorRegistationToken[_emailCode].emailCode = _emailCode;
@@ -69,8 +67,37 @@ contract DistributorContract {
         distributorRegistationToken[_emailCode].token = token;
         return token;
     }
+    function getDistributorToken(string memory _email)public view returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  distributorRegistationToken[_emailCode].token;
+    }
+    function checkDistributorToken(string memory _email,bytes32 _token)public view returns(bool){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  (distributorRegistationToken[_emailCode].token == _token);
+    }
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
+       return keccak256(abi.encodePacked(block.timestamp,block.difficulty,block.number));
+    }
+    function setPassword(string memory _email,string memory _password)public returns (bool) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked((_password)));
+
+        distributorArray[_emailCode].passwordCode = _passwordCode;
+        delete distributorRegistationToken[_emailCode];
+        distributorArray[_emailCode].userAccess = 5;
+        distributorIndex[distributorArray[_emailCode].index].userAccess = 5;
+        emit LogUpdateDistributor(
+            _emailCode,
+            distributorArray[_emailCode].index,
+            _email,
+            _passwordCode,
+            distributorArray[_emailCode].name,
+            distributorArray[_emailCode].contactNumber,
+            distributorArray[_emailCode].userAddress,
+            5
+            );
+        return true;
+
     }
     function setDisplayDistributor(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
      private returns(bool){
@@ -94,20 +121,19 @@ contract DistributorContract {
         distributorArray[_emailCode].email = _email;
         distributorArray[_emailCode].emailCode = _emailCode;
         distributorArray[_emailCode].passwordCode = _passwordCode;
-        distributorArray[_emailCode].passwordRestToken = createDistributorToken(_emailCode);
         distributorArray[_emailCode].name = _name;
         distributorArray[_emailCode].contactNumber = _telephone;
         distributorArray[_emailCode].userAddress = _address;
         distributorArray[_emailCode].userAccess = 1;
         setDisplayDistributor(_emailCode,_email,_name,_telephone,_address);
         distributorArray[_emailCode].index = distributorIndex.length-1;
+        createDistributorToken(_email);
 
         emit LogNewDistributor (
             _emailCode,
             distributorArray[_emailCode].index,
             _email,
             distributorArray[_emailCode].passwordCode,
-            distributorArray[_emailCode].passwordRestToken,
             _name,
             _telephone,
             _address,
@@ -201,7 +227,6 @@ contract DistributorContract {
             distributorArray[_emailCode].index,
             _email,
             distributorArray[_emailCode].passwordCode,
-            distributorArray[_emailCode].passwordRestToken,
             _name,
             distributorArray[_emailCode].contactNumber,
             distributorArray[_emailCode].userAddress,
@@ -219,7 +244,6 @@ contract DistributorContract {
             distributorArray[_emailCode].index,
             _email,
             distributorArray[_emailCode].passwordCode,
-            distributorArray[_emailCode].passwordRestToken,
             distributorArray[_emailCode].name,
             distributorArray[_emailCode].contactNumber,
             _userAddress,
@@ -237,7 +261,6 @@ contract DistributorContract {
             distributorArray[_emailCode].index,
             _email,
             distributorArray[_emailCode].passwordCode,
-            distributorArray[_emailCode].passwordRestToken,
             distributorArray[_emailCode].name,
             _contactNumber,
             distributorArray[_emailCode].userAddress,
@@ -265,7 +288,6 @@ contract DistributorContract {
                     _emailCode,
                     distributorArray[_emailCode].index,
                     _email,distributorArray[_emailCode].passwordCode,
-                    distributorArray[_emailCode].passwordRestToken,
                     _name,
                     distributorArray[_emailCode].contactNumber,
                     distributorArray[_emailCode].userAddress,
@@ -283,7 +305,6 @@ contract DistributorContract {
                     distributorArray[_emailCode].index,
                     _email,
                     distributorArray[_emailCode].passwordCode,
-                    distributorArray[_emailCode].passwordRestToken,
                     distributorArray[_emailCode].name,
                     distributorArray[_emailCode].contactNumber,
                     _userAddress,
@@ -299,7 +320,6 @@ contract DistributorContract {
                     distributorArray[_emailCode].index,
                     _email,
                     distributorArray[_emailCode].passwordCode,
-                    distributorArray[_emailCode].passwordRestToken,
                     distributorArray[_emailCode].name,
                     _contactNumber,
                     distributorArray[_emailCode].userAddress,

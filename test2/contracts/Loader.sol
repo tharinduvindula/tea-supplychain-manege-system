@@ -6,7 +6,6 @@ contract LoaderContract {
         string email;
         bytes32 emailCode;
         bytes32 passwordCode;
-        bytes32 passwordRestToken;
         string name;
         uint contactNumber;
         string userAddress;
@@ -27,7 +26,6 @@ contract LoaderContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -37,7 +35,6 @@ contract LoaderContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -61,7 +58,8 @@ contract LoaderContract {
         if(loaderIndex.length == 0) return false;
         return (loaderIndex[loaderArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createLoaderToken(bytes32 _emailCode)public returns(bytes32){
+    function createLoaderToken(string memory _email)public returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 token = randomtoken();
         if(loaderRegistationToken[_emailCode].emailCode != _emailCode){
             loaderRegistationToken[_emailCode].emailCode = _emailCode;
@@ -69,8 +67,37 @@ contract LoaderContract {
         loaderRegistationToken[_emailCode].token = token;
         return token;
     }
+    function getLoaderToken(string memory _email)public view returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  loaderRegistationToken[_emailCode].token;
+    }
+    function checkLoaderToken(string memory _email,bytes32 _token)public view returns(bool){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  (loaderRegistationToken[_emailCode].token == _token);
+    }
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
+       return keccak256(abi.encodePacked(block.timestamp,block.difficulty,block.number));
+    }
+    function setPassword(string memory _email,string memory _password)public returns (bool) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked((_password)));
+
+        loaderArray[_emailCode].passwordCode = _passwordCode;
+        delete loaderRegistationToken[_emailCode];
+        loaderArray[_emailCode].userAccess = 5;
+        loaderIndex[loaderArray[_emailCode].index].userAccess = 5;
+        emit LogUpdateLoader(
+            _emailCode,
+            loaderArray[_emailCode].index,
+            _email,
+            _passwordCode,
+            loaderArray[_emailCode].name,
+            loaderArray[_emailCode].contactNumber,
+            loaderArray[_emailCode].userAddress,
+            5
+            );
+        return true;
+
     }
     function setDisplayLoader(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
      private returns(bool){
@@ -94,20 +121,19 @@ contract LoaderContract {
         loaderArray[_emailCode].email = _email;
         loaderArray[_emailCode].emailCode = _emailCode;
         loaderArray[_emailCode].passwordCode = _passwordCode;
-        loaderArray[_emailCode].passwordRestToken = createLoaderToken(_emailCode);
         loaderArray[_emailCode].name = _name;
         loaderArray[_emailCode].contactNumber = _telephone;
         loaderArray[_emailCode].userAddress = _address;
         loaderArray[_emailCode].userAccess = 1;
         setDisplayLoader(_emailCode,_email,_name,_telephone,_address);
         loaderArray[_emailCode].index = loaderIndex.length-1;
+        createLoaderToken(_email);
 
         emit LogNewLoader (
             _emailCode,
             loaderArray[_emailCode].index,
             _email,
             loaderArray[_emailCode].passwordCode,
-            loaderArray[_emailCode].passwordRestToken,
             _name,
             _telephone,
             _address,
@@ -201,7 +227,6 @@ contract LoaderContract {
             loaderArray[_emailCode].index,
             _email,
             loaderArray[_emailCode].passwordCode,
-            loaderArray[_emailCode].passwordRestToken,
             _name,
             loaderArray[_emailCode].contactNumber,
             loaderArray[_emailCode].userAddress,
@@ -219,7 +244,6 @@ contract LoaderContract {
             loaderArray[_emailCode].index,
             _email,
             loaderArray[_emailCode].passwordCode,
-            loaderArray[_emailCode].passwordRestToken,
             loaderArray[_emailCode].name,
             loaderArray[_emailCode].contactNumber,
             _userAddress,
@@ -237,7 +261,6 @@ contract LoaderContract {
             loaderArray[_emailCode].index,
             _email,
             loaderArray[_emailCode].passwordCode,
-            loaderArray[_emailCode].passwordRestToken,
             loaderArray[_emailCode].name,
             _contactNumber,
             loaderArray[_emailCode].userAddress,
@@ -265,7 +288,6 @@ contract LoaderContract {
                     _emailCode,
                     loaderArray[_emailCode].index,
                     _email,loaderArray[_emailCode].passwordCode,
-                    loaderArray[_emailCode].passwordRestToken,
                     _name,
                     loaderArray[_emailCode].contactNumber,
                     loaderArray[_emailCode].userAddress,
@@ -283,7 +305,6 @@ contract LoaderContract {
                     loaderArray[_emailCode].index,
                     _email,
                     loaderArray[_emailCode].passwordCode,
-                    loaderArray[_emailCode].passwordRestToken,
                     loaderArray[_emailCode].name,
                     loaderArray[_emailCode].contactNumber,
                     _userAddress,
@@ -299,7 +320,6 @@ contract LoaderContract {
                     loaderArray[_emailCode].index,
                     _email,
                     loaderArray[_emailCode].passwordCode,
-                    loaderArray[_emailCode].passwordRestToken,
                     loaderArray[_emailCode].name,
                     _contactNumber,
                     loaderArray[_emailCode].userAddress,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { USER } from 'app/admin/distributor/distributorblock/USER';
 import { FormArray, FormBuilder } from '@angular/forms';
-import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
 
 @Component({
   selector: 'app-userblock',
@@ -9,22 +8,9 @@ import { DistributorserviceService } from 'app/service/distributorservice.servic
   styleUrls: ['./userblock.component.scss']
 })
 export class UserblockComponent implements OnInit {
-
-  users: USER[] = [];
-  public form1 = {
-    email: null
-  }
-  form = {
-    email: null,
-    emailCode: null,
-    name: null,
-    photo: null,
-    userAccess: null,
-    i: null
-  };
   items: FormArray;
   router: any;
-  constructor(private service: DistributorserviceService, private formBuilder: FormBuilder) {
+  constructor(private service: ManagerserviceService, private formBuilder: FormBuilder) {
     this.create();
   }
 
@@ -37,48 +23,25 @@ export class UserblockComponent implements OnInit {
     }
     return true;
   }
-  onedit(event: { preventDefault: () => void; }, email: any) {
-    event.preventDefault();
-    this.form.email = email;
-    // this.UserHandle.multiuserhandleforuser(this.form).subscribe(
-    //   data => {
-    //     this.router.navigate(['/admin/User-Profile-edit'], { queryParams: { Email: email }, skipLocationChange: true });
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // );
-  }
-  ondelete(event: { preventDefault: () => void; }, email: any) {
-    event.preventDefault();
-    this.form.email = email;
-    this.router.navigate(['/admin/d'], { queryParams: { Email: email }, skipLocationChange: true });
-
-  }
 
   async create() {
     let x: number;
     let i: number;
-    await this.service.getDistributorCount().then(val => x = val)
+    let y = 0;
+    await this.service.getManagerCount().then(val => x = val)
     for (i = 0; i < x; i++) {
-      await this.service.getDistributori(i).then(async val => {
-         {
-          // tslint:disable-next-line: no-unused-expression
-          this.form.email = val[1];
-          this.form.emailCode = val[0];
-          this.form.name = val[2].split('#')[0];
-          this.form.photo = val[2].split('#')[1];
-          this.form.userAccess = val[5] == 1 ? 1 : 0;
-          this.users.push(this.form);
-
+      await this.service.getManageri(i).then(async val => {
+        console.log(val)
+        if (val[5] === '5' || val[5] === '3') {
+          this.items.push(this.formBuilder.group({
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5] === '5' ? true : false,
+            i: y++
+          }));
         }
-        this.items.push(this.formBuilder.group({
-          email: val[1],
-          emailCode: val[0],
-          name: val[2].split('#')[0],
-          photo: val[2].split('#')[1],
-          userAccess: val[5] == 1 ? 1 : 0
-        }));
       });
     }
   }
@@ -87,23 +50,18 @@ export class UserblockComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async setValue(email: any, e: any,i) {
-    console.log(e+'   '+e.checked)
-    let usreAccess; 
-     if (e.checked) {
-      usreAccess = 3;
-      this.users[i].userAccess = 3;
-    } else {
+  async setValue(email: any, e: any, i) {
+    let usreAccess;
+    if (e.checked) {
       usreAccess = 5;
-      this.users[i].userAccess = 5;
+    } else {
+      usreAccess = 3;
     }
-    console.log(email+ '    ' + usreAccess);
-    await this.service.blockDistributor(email).then(
+    await this.service.editacc(email, usreAccess).then(
       data => {
         if (data != null) {
           console.log(data);
         }
-
       },
       error => {
         if (error != null) {

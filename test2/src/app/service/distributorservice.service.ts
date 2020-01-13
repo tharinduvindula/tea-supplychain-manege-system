@@ -9,6 +9,8 @@ export class DistributorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
+    // this.editacc('distributor2@gmail.com', 3);
+    // console.log('sexy')
   }
 
   async getDistributorCount() {
@@ -32,10 +34,10 @@ export class DistributorserviceService {
       try {
         this.result = await deployed.insertDistributor(email, name, adress, telepone, { from: this.web3.curentaccount })
       } catch (error) {
-        console.log('error');
+        console.log(error);
       }
         if (this.result != null) {
-        this.sendPasswordResetLink(this.result.logs[0].args.email, this.result.logs[0].args.passwordRestToken);
+          console.log(this.result)
           dt(this.result.logs[0].args.name);
       } else {
         er('user alredy in system');
@@ -101,7 +103,7 @@ export class DistributorserviceService {
           try {
             this.result = await deployed.updateDistributorContactNumber(email, telephone, { from: this.web3.curentaccount })
           } catch (error) {
-            console.log('error');
+            console.log(error);
           }
           if (this.result != null) {
             dt(this.result.logs[0].args.name);
@@ -168,12 +170,13 @@ export class DistributorserviceService {
         try {
           this.result = await deployed.blockDistributor(email, { from: this.web3.curentaccount })
         } catch (error) {
-          console.log('error');
+          console.log(error);
         }
         if (this.result != null) {
           dt(this.result.logs);
+          console.log(this.result);
         } else {
-          er('user alredy in system');
+          // er('user alredy in system');
           console.log(this.result)
         }
       });
@@ -200,8 +203,39 @@ export class DistributorserviceService {
     });
     return this.result;
   }
-  sendPasswordResetLink( _email, _data) {
-    console.log(_data + '   ' + _email);
-    return true;
+  async getDistributorToken(email) {
+    await this.web3.getDistributorvalue().getDistributorToken(email).call((er: any, ev: any) => {
+      if (er == null) {
+        this.result = ev;
+      } else {
+        this.result = er;
+      }
+    });
+    return this.result;
+  }
+ 
+
+  editacc(email, acc): Promise<any> {
+    // tslint:disable-next-line: max-line-length
+    // tslint:disable-next-line: no-unused-expression
+    return new Promise((dt, er) => {
+      this.web3.setDistributorvalue()
+        .then(async (deployed: {
+          editUserAccess: (arg0: string, arg1: number, arg4: { from: string; }) =>
+            { er: string; ev: string; }
+        }) => {
+          try {
+            console.log(deployed.editUserAccess)
+            this.result = await deployed.editUserAccess(email, acc, { from: this.web3.curentaccount })
+          } catch (error) {
+            console.log(error);
+          }
+          if (this.result != null) {
+            console.log(this.result)
+          } else {
+            console.log(this.result)
+          }
+        });
+    });
   }
 }

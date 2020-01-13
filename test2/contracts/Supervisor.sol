@@ -6,7 +6,6 @@ contract SupervisorContract {
         string email;
         bytes32 emailCode;
         bytes32 passwordCode;
-        bytes32 passwordRestToken;
         string name;
         uint contactNumber;
         string userAddress;
@@ -27,7 +26,6 @@ contract SupervisorContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -37,7 +35,6 @@ contract SupervisorContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -61,7 +58,8 @@ contract SupervisorContract {
         if(supervisorIndex.length == 0) return false;
         return (supervisorIndex[supervisorArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createSupervisorToken(bytes32 _emailCode)public returns(bytes32){
+    function createSupervisorToken(string memory _email)public returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 token = randomtoken();
         if(supervisorRegistationToken[_emailCode].emailCode != _emailCode){
             supervisorRegistationToken[_emailCode].emailCode = _emailCode;
@@ -69,8 +67,37 @@ contract SupervisorContract {
         supervisorRegistationToken[_emailCode].token = token;
         return token;
     }
+    function getSupervisorToken(string memory _email)public view returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  supervisorRegistationToken[_emailCode].token;
+    }
+    function checkSupervisorToken(string memory _email,bytes32 _token)public view returns(bool){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  (supervisorRegistationToken[_emailCode].token == _token);
+    }
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
+       return keccak256(abi.encodePacked(block.timestamp,block.difficulty,block.number));
+    }
+    function setPassword(string memory _email,string memory _password)public returns (bool) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked((_password)));
+
+        supervisorArray[_emailCode].passwordCode = _passwordCode;
+        delete supervisorRegistationToken[_emailCode];
+        supervisorArray[_emailCode].userAccess = 5;
+        supervisorIndex[supervisorArray[_emailCode].index].userAccess = 5;
+        emit LogUpdateSupervisor(
+            _emailCode,
+            supervisorArray[_emailCode].index,
+            _email,
+            _passwordCode,
+            supervisorArray[_emailCode].name,
+            supervisorArray[_emailCode].contactNumber,
+            supervisorArray[_emailCode].userAddress,
+            5
+            );
+        return true;
+
     }
     function setDisplaySupervisor(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
      private returns(bool){
@@ -94,20 +121,19 @@ contract SupervisorContract {
         supervisorArray[_emailCode].email = _email;
         supervisorArray[_emailCode].emailCode = _emailCode;
         supervisorArray[_emailCode].passwordCode = _passwordCode;
-        supervisorArray[_emailCode].passwordRestToken = createSupervisorToken(_emailCode);
         supervisorArray[_emailCode].name = _name;
         supervisorArray[_emailCode].contactNumber = _telephone;
         supervisorArray[_emailCode].userAddress = _address;
         supervisorArray[_emailCode].userAccess = 1;
         setDisplaySupervisor(_emailCode,_email,_name,_telephone,_address);
         supervisorArray[_emailCode].index = supervisorIndex.length-1;
+        createSupervisorToken(_email);
 
         emit LogNewSupervisor (
             _emailCode,
             supervisorArray[_emailCode].index,
             _email,
             supervisorArray[_emailCode].passwordCode,
-            supervisorArray[_emailCode].passwordRestToken,
             _name,
             _telephone,
             _address,
@@ -201,7 +227,6 @@ contract SupervisorContract {
             supervisorArray[_emailCode].index,
             _email,
             supervisorArray[_emailCode].passwordCode,
-            supervisorArray[_emailCode].passwordRestToken,
             _name,
             supervisorArray[_emailCode].contactNumber,
             supervisorArray[_emailCode].userAddress,
@@ -219,7 +244,6 @@ contract SupervisorContract {
             supervisorArray[_emailCode].index,
             _email,
             supervisorArray[_emailCode].passwordCode,
-            supervisorArray[_emailCode].passwordRestToken,
             supervisorArray[_emailCode].name,
             supervisorArray[_emailCode].contactNumber,
             _userAddress,
@@ -237,7 +261,6 @@ contract SupervisorContract {
             supervisorArray[_emailCode].index,
             _email,
             supervisorArray[_emailCode].passwordCode,
-            supervisorArray[_emailCode].passwordRestToken,
             supervisorArray[_emailCode].name,
             _contactNumber,
             supervisorArray[_emailCode].userAddress,
@@ -265,7 +288,6 @@ contract SupervisorContract {
                     _emailCode,
                     supervisorArray[_emailCode].index,
                     _email,supervisorArray[_emailCode].passwordCode,
-                    supervisorArray[_emailCode].passwordRestToken,
                     _name,
                     supervisorArray[_emailCode].contactNumber,
                     supervisorArray[_emailCode].userAddress,
@@ -283,7 +305,6 @@ contract SupervisorContract {
                     supervisorArray[_emailCode].index,
                     _email,
                     supervisorArray[_emailCode].passwordCode,
-                    supervisorArray[_emailCode].passwordRestToken,
                     supervisorArray[_emailCode].name,
                     supervisorArray[_emailCode].contactNumber,
                     _userAddress,
@@ -299,7 +320,6 @@ contract SupervisorContract {
                     supervisorArray[_emailCode].index,
                     _email,
                     supervisorArray[_emailCode].passwordCode,
-                    supervisorArray[_emailCode].passwordRestToken,
                     supervisorArray[_emailCode].name,
                     _contactNumber,
                     supervisorArray[_emailCode].userAddress,

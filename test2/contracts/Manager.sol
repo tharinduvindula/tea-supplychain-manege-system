@@ -6,7 +6,6 @@ contract ManagerContract {
         string email;
         bytes32 emailCode;
         bytes32 passwordCode;
-        bytes32 passwordRestToken;
         string name;
         uint contactNumber;
         string userAddress;
@@ -27,7 +26,6 @@ contract ManagerContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -37,7 +35,6 @@ contract ManagerContract {
         bytes32 indexed emailCode,
         uint index,string email,
         bytes32 passwordCode,
-        bytes32 passwordRestToken,
         string name,
         uint contactNumber,
         string userAddress,
@@ -61,7 +58,8 @@ contract ManagerContract {
         if(managerIndex.length == 0) return false;
         return (managerIndex[managerArray[_emailCode].index].emailCode == _emailCode);
     }
-    function createManagerToken(bytes32 _emailCode)public returns(bytes32){
+    function createManagerToken(string memory _email)public returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
         bytes32 token = randomtoken();
         if(managerRegistationToken[_emailCode].emailCode != _emailCode){
             managerRegistationToken[_emailCode].emailCode = _emailCode;
@@ -69,8 +67,37 @@ contract ManagerContract {
         managerRegistationToken[_emailCode].token = token;
         return token;
     }
+    function getManagerToken(string memory _email)public view returns(bytes32){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  managerRegistationToken[_emailCode].token;
+    }
+    function checkManagerToken(string memory _email,bytes32 _token)public view returns(bool){
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        return  (managerRegistationToken[_emailCode].token == _token);
+    }
     function randomtoken() private view returns (bytes32) {
-       return keccak256(abi.encodePacked( block.timestamp, block.difficulty));
+       return keccak256(abi.encodePacked(block.timestamp,block.difficulty,block.number));
+    }
+    function setPassword(string memory _email,string memory _password)public returns (bool) {
+        bytes32 _emailCode = keccak256(abi.encodePacked((_email)));
+        bytes32 _passwordCode = keccak256(abi.encodePacked((_password)));
+
+        managerArray[_emailCode].passwordCode = _passwordCode;
+        delete managerRegistationToken[_emailCode];
+        managerArray[_emailCode].userAccess = 5;
+        managerIndex[managerArray[_emailCode].index].userAccess = 5;
+        emit LogUpdateManager(
+            _emailCode,
+            managerArray[_emailCode].index,
+            _email,
+            _passwordCode,
+            managerArray[_emailCode].name,
+            managerArray[_emailCode].contactNumber,
+            managerArray[_emailCode].userAddress,
+            5
+            );
+        return true;
+
     }
     function setDisplayManager(bytes32 _emailCode,string memory _email,string memory _name,uint _telephone,string memory _address)
      private returns(bool){
@@ -94,20 +121,19 @@ contract ManagerContract {
         managerArray[_emailCode].email = _email;
         managerArray[_emailCode].emailCode = _emailCode;
         managerArray[_emailCode].passwordCode = _passwordCode;
-        managerArray[_emailCode].passwordRestToken = createManagerToken(_emailCode);
         managerArray[_emailCode].name = _name;
         managerArray[_emailCode].contactNumber = _telephone;
         managerArray[_emailCode].userAddress = _address;
         managerArray[_emailCode].userAccess = 1;
         setDisplayManager(_emailCode,_email,_name,_telephone,_address);
         managerArray[_emailCode].index = managerIndex.length-1;
+        createManagerToken(_email);
 
         emit LogNewManager (
             _emailCode,
             managerArray[_emailCode].index,
             _email,
             managerArray[_emailCode].passwordCode,
-            managerArray[_emailCode].passwordRestToken,
             _name,
             _telephone,
             _address,
@@ -201,7 +227,6 @@ contract ManagerContract {
             managerArray[_emailCode].index,
             _email,
             managerArray[_emailCode].passwordCode,
-            managerArray[_emailCode].passwordRestToken,
             _name,
             managerArray[_emailCode].contactNumber,
             managerArray[_emailCode].userAddress,
@@ -219,7 +244,6 @@ contract ManagerContract {
             managerArray[_emailCode].index,
             _email,
             managerArray[_emailCode].passwordCode,
-            managerArray[_emailCode].passwordRestToken,
             managerArray[_emailCode].name,
             managerArray[_emailCode].contactNumber,
             _userAddress,
@@ -237,7 +261,6 @@ contract ManagerContract {
             managerArray[_emailCode].index,
             _email,
             managerArray[_emailCode].passwordCode,
-            managerArray[_emailCode].passwordRestToken,
             managerArray[_emailCode].name,
             _contactNumber,
             managerArray[_emailCode].userAddress,
@@ -265,7 +288,6 @@ contract ManagerContract {
                     _emailCode,
                     managerArray[_emailCode].index,
                     _email,managerArray[_emailCode].passwordCode,
-                    managerArray[_emailCode].passwordRestToken,
                     _name,
                     managerArray[_emailCode].contactNumber,
                     managerArray[_emailCode].userAddress,
@@ -283,7 +305,6 @@ contract ManagerContract {
                     managerArray[_emailCode].index,
                     _email,
                     managerArray[_emailCode].passwordCode,
-                    managerArray[_emailCode].passwordRestToken,
                     managerArray[_emailCode].name,
                     managerArray[_emailCode].contactNumber,
                     _userAddress,
@@ -299,7 +320,6 @@ contract ManagerContract {
                     managerArray[_emailCode].index,
                     _email,
                     managerArray[_emailCode].passwordCode,
-                    managerArray[_emailCode].passwordRestToken,
                     managerArray[_emailCode].name,
                     _contactNumber,
                     managerArray[_emailCode].userAddress,

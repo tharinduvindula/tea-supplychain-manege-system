@@ -1,11 +1,11 @@
-<div class="container-fluid" style="overflow-x: hidden; padding-right: 1%;padding-top: 7%;">
+<div class="container-fluid" style="overflow-x: hidden; padding-left: 5%;padding-top: 7%;">
   <div class="row">
     <div class="col-md-8">
       <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <div class="card-header card-header-pills"
           style="background-color: green;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-          <h4 class="card-title">Edit Profile</h4>
-          <p class="card-category">Complete profile</p>
+          <h4 class="card-title">Distributors</h4>
+          <p class="card-category">edit distributor details</p>
         </div>
         <div class="card-body">
           <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
@@ -20,7 +20,7 @@
             <div class="form-group row">
               <div class="col-md-8">
                 <mat-form-field>
-                  <input matInput name="email" placeholder="Enter email" [(ngModel)]="form.email" required>
+                  <input matInput name="email" disabled placeholder="Enter email" [(ngModel)]="form.email" required>
                   <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
               </div>
@@ -30,13 +30,14 @@
                 <mat-form-field class="example-full-width">
                   <mat-label>Country</mat-label>
                   <mat-select name="usertype" [(ngModel)]="form.contry">
-                    <mat-option value="">Amarica</mat-option>
-                    <mat-option value="">Australia</mat-option>
-                    <mat-option value="">England</mat-option>
-                    <mat-option value="">Kanada</mat-option>
-                    <mat-option value="">New Zeland</mat-option>
-                    <mat-option value="">rusia</mat-option>
-                    <mat-option value="">Saudhi</mat-option>
+                    <mat-option (click)="changcnum('US')" value="US">Amarica</mat-option>
+                    <mat-option (click)="changcnum('AI')" value="AI">Australia</mat-option>
+                    <mat-option (click)="changcnum('GB')" value="GB">England</mat-option>
+                    <mat-option (click)="changcnum('CA')" value="CA">canada</mat-option>
+                    <mat-option (click)="changcnum('NZ')" value="NZ">New Zeland</mat-option>
+                    <mat-option (click)="changcnum('RU')" value="RU">Rusia</mat-option>
+                    <mat-option (click)="changcnum('SA')" value="SA">Saudhi</mat-option>
+                    <mat-option (click)="changcnum('LK')" value="LK">Sri Lanka</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -44,7 +45,7 @@
             <div class="form-group row">
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
-                  <span matPrefix>+94 &nbsp;</span>
+                  <span matPrefix>+{{form.cunum}} &nbsp;</span>
                   <input type="tel" matInput placeholder="Telephone" name="telephone" [(ngModel)]="form.telephone">
                   <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
@@ -57,8 +58,8 @@
               <div class="col-sm-10 offset-2">
 
                 <button type="submit" [disabled]="!useraddForm.valid" 
-                  class="btn pull-right">Edit
-                  Profile</button>
+                  class="btn pull-right btn-danger">Edit
+                  Distributor</button>
                 <div class="alert alert-danger" [hidden]="!error">
                   {{error}}
                 </div>

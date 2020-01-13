@@ -16,6 +16,12 @@ import {
 } from '@angular/material';
 import { AllShareModule } from '../all-share/all-share.module';
 import { DashboardComponent } from 'app/manager/dashboard/dashboard.component';
+import { ComponentsModule } from 'app/components/components.module';
+import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { AdminserviceService } from 'app/service/adminservice.service';
+import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { ManagerserviceService } from 'app/service/managerservice.service';
+import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -30,10 +36,18 @@ import { DashboardComponent } from 'app/manager/dashboard/dashboard.component';
     MatTooltipModule,
     MatIconModule,
     AllShareModule,
+    ComponentsModule
   ],
   declarations: [
-    // DashboardComponent
-  ]
+     // DashboardComponent
+  ],
+  providers: [
+    DistributorserviceService,
+    AdminserviceService,
+    LoaderserviceService,
+    ManagerserviceService,
+    SupervisorserviceService
+  ],
 })
 
 export class ManagerLayoutModule {}

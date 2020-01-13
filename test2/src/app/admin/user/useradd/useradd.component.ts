@@ -53,6 +53,9 @@ export class UseraddComponent implements OnInit {
         data => {
           if (data != null) {
             console.log(data);
+            this.managerservice.getManagerToken(this.form.email).then(val => {
+              console.log(val)
+            });
             this.formValues.resetForm();
           }
 
@@ -71,6 +74,9 @@ export class UseraddComponent implements OnInit {
         data => {
           if (data != null) {
             console.log(data);
+            this.adminservice.getAdminToken(this.form.email).then(val => {
+              console.log(val)
+            });
             this.formValues.resetForm();
           }
 

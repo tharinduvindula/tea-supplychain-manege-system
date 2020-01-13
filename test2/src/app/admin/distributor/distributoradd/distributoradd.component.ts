@@ -14,14 +14,11 @@ export class DistributoraddComponent implements OnInit {
   public form = {
     name: null,
     email: null,
-    address: 'a',
+    address: null,
     telephone: null,
     contry: null,
-    cunum: 94, 
-    photo: null
-  };
-  public form1 = {
-    email: null
+    cunum: null,
+    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
   };
   error: null;
 
@@ -45,11 +42,14 @@ export class DistributoraddComponent implements OnInit {
   async onsubmit() {
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address + '#' + this.form.contry;
-    const telephone = this.form.cunum + this.form.telephone;
+    const telephone = this.form.cunum +''+ this.form.telephone;
     await this.service.insertDistributor(this.form.email, name, address, telephone).then(
       data => {
         if ( data != null) {
         console.log(data);
+          this.service.getDistributorToken(this.form.email).then(val => {
+              console.log(val)
+            });
         this.formValues.resetForm();
         }
 
@@ -62,7 +62,6 @@ export class DistributoraddComponent implements OnInit {
       }
 
     );
-    this.form1.email = this.form.email;
   }
 
   handleError(error) {
@@ -78,6 +77,25 @@ export class DistributoraddComponent implements OnInit {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
+  }
+  changcnum(x) {
+    if (x === 'US') {
+      this.form.cunum = 1;
+    } else if (x === 'AI') {
+      this.form.cunum = 61;
+    } else if (x === 'GB') {
+      this.form.cunum = 44;
+    } else if (x === 'CA') {
+      this.form.cunum = 1;
+    } else if (x === 'NZ') {
+      this.form.cunum = 64;
+    } else if (x === 'RU') {
+      this.form.cunum = 7;
+    } else if (x === 'SA') {
+      this.form.cunum = 966;
+    } else if (x === 'LK') {
+      this.form.cunum = 94;
+    }
   }
 }
 
