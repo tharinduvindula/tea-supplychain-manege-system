@@ -12,9 +12,9 @@ export class OrderserviceService {
     // console.log('sexy')
   }
 
-  async getEstateCount() {
-    console.log(this.web3.getEstatevalue)
-    await this.web3.getEstatevalue().getEstateCount().call((er: any, ev: number) => {
+  async getOrderCount() {
+    console.log(this.web3.getOrdervalue)
+    await this.web3.getOrdervalue().getOrderCount().call((er: any, ev: number) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -24,24 +24,24 @@ export class OrderserviceService {
     return this.result;
   }
 
-  insertEstate(estateName, estateAddress, ownerName, contactnumberAndEmail): Promise<any> {
+  insertOrder(orderName, progress, _quntity, productName): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
-          insertEstate: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
+          insertOrder: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
             // tslint:disable-next-line: max-line-length
-            this.result = await deployed.insertEstate(estateName, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
+            this.result = await deployed.insertOrder(orderName, progress, _quntity, productName, { from: this.web3.curentaccount })
           } catch (error) {
             console.log(error);
           }
           if (this.result != null) {
             console.log(this.result)
-            dt(this.result.logs[0].args.estateName);
+            dt(this.result.logs[0].args.orderName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -50,22 +50,22 @@ export class OrderserviceService {
     });
   }
 
-  updateEstateAddress(estateName, estateAddress): Promise<any> {
+  updateOrderAddress(orderName, orderAddress): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
-          updateEstateEstateAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateOrderOrderAddress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstateEstateAddress(estateName, estateAddress, { from: this.web3.curentaccount })
+            this.result = await deployed.updateOrderOrderAddress(orderName, orderAddress, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.estateName);
+            dt(this.result.logs[0].args.orderName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -74,22 +74,22 @@ export class OrderserviceService {
     });
   }
 
-  updateEstateOwnerName(estateName, ownerName): Promise<any> {
+  updateOrderOwnerName(orderName, ownerName): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
-          updateEstateOwnerName: (arg0: string, arg1: string, arg2: { from: string; }) =>
+          updateOrderOwnerName: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateEstateOwnerName(estateName, ownerName, { from: this.web3.curentaccount })
+            this.result = await deployed.updateOrderOwnerName(orderName, ownerName, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.estateName);
+            dt(this.result.logs[0].args.orderName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -98,22 +98,22 @@ export class OrderserviceService {
     });
   }
 
-  updateEstateContactnumberAndEmail(estateName, contactnumberAndEmail): Promise<any> {
+  updateOrderContactnumberAndEmail(orderName, contactnumberAndEmail): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
           updateContactnumberAndEmail: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.updateContactnumberAndEmail(estateName, contactnumberAndEmail, { from: this.web3.curentaccount })
+            this.result = await deployed.updateContactnumberAndEmail(orderName, contactnumberAndEmail, { from: this.web3.curentaccount })
           } catch (error) {
             console.log(error);
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.estateName);
+            dt(this.result.logs[0].args.orderName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -122,23 +122,23 @@ export class OrderserviceService {
     });
   }
 
-  updateEstate(estateName, index, estateAddress, ownerName, contactnumberAndEmail): Promise<any> {
+  updateOrder(orderName, index, orderAddress, ownerName, contactnumberAndEmail): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
-          updateEstate: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
+          updateOrder: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
             // tslint:disable-next-line: max-line-length
-            this.result = await deployed.updateEstate(estateName, index, estateAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
+            this.result = await deployed.updateOrder(orderName, index, orderAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
           if (this.result != null) {
-            dt(this.result.logs[0].args.estateName);
+            dt(this.result.logs[0].args.orderName);
           } else {
             er('user alredy in system');
             console.log(this.result)
@@ -147,17 +147,17 @@ export class OrderserviceService {
     });
   }
 
-  deleteEstate(estateName): Promise<any> {
+  deleteOrder(orderName): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
-          deleteEstate: (arg0: string, arg2: { from: string; }) =>
+          deleteOrder: (arg0: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
-            this.result = await deployed.deleteEstate(estateName, { from: this.web3.curentaccount })
+            this.result = await deployed.deleteOrder(orderName, { from: this.web3.curentaccount })
           } catch (error) {
             console.log('error');
           }
@@ -171,8 +171,8 @@ export class OrderserviceService {
     });
   }
 
-  async getEstatei(index) {
-    await this.web3.getEstatevalue().getEstatei(index).call((er: any, ev: any) => {
+  async getOrderi(index) {
+    await this.web3.getOrdervalue().getOrderi(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -182,8 +182,8 @@ export class OrderserviceService {
     return this.result;
   }
 
-  async getEstate(estateName) {
-    await this.web3.getEstatevalue().getEstate(estateName).call((er: any, ev: any) => {
+  async getOrder(orderName) {
+    await this.web3.getOrdervalue().getOrder(orderName).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {
@@ -193,18 +193,18 @@ export class OrderserviceService {
     return this.result;
   }
 
-  editacc(estateName, acc): Promise<any> {
+  editacc(orderName, acc): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
-      this.web3.setEstatevalue()
+      this.web3.setOrdervalue()
         .then(async (deployed: {
           editUserAccess: (arg0: string, arg1: number, arg4: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
             console.log(deployed.editUserAccess)
-            this.result = await deployed.editUserAccess(estateName, acc, { from: this.web3.curentaccount })
+            this.result = await deployed.editUserAccess(orderName, acc, { from: this.web3.curentaccount })
           } catch (error) {
             console.log(error);
           }

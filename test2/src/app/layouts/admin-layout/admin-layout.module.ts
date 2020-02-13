@@ -29,7 +29,6 @@ import { DistributorblockComponent } from 'app/admin/distributor/distributorbloc
 import { EstateaddComponent } from 'app/admin/estate/estateadd/estateadd.component';
 import { EstateeditComponent } from 'app/admin/estate/estateedit/estateedit.component';
 import { EstateprogressComponent } from 'app/admin/estate/estateprogress/estateprogress.component';
-import { OrdereditComponent } from 'app/admin/order/orderadd/orderedit.component';
 import { OrdersummaryComponent } from 'app/admin/order/ordersummary/ordersummary.component';
 import { ProducteditComponent } from 'app/admin/product/productedit/productedit.component';
 import { ProductprogressComponent } from 'app/admin/product/productprogress/productprogress.component';
@@ -51,6 +50,8 @@ import { LoaderserviceService } from 'app/service/loaderservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
+import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
+import { OrdereditComponent } from 'app/admin/order/orderedit/orderedit.component';
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdat
     EstateeditComponent,
     EstateprogressComponent,
     EstateupdateComponent,
+    OrderaddComponent,
     OrdereditComponent,
     OrdersummaryComponent,
     ProductaddComponent,

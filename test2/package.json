@@ -66,6 +66,8 @@
     "jquery": "^3.4.1",
     "jquery-mapael": "^2.2.0",
     "moment": "2.22.1",
+    "ngx-print": "^1.2.0-beta.3",
+    "ngx-qrcode2": "0.0.9",
     "ngx-uploadcare-widget": "^1.2.5",
     "node-pre-gyp": "^0.13.0",
     "npm-packlist": "^1.4.6",
@@ -82,7 +84,7 @@
     "utf8": "^3.0.0",
     "web-animations-js": "2.3.1",
     "web3": "^1.2.4",
-    "zone.js": "0.8.26"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^7.5.2",

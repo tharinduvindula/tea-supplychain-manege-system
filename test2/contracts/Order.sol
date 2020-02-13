@@ -5,6 +5,7 @@ contract OrderContract {
     struct Order{
         string orderName;
         bytes32 orderNameCode;
+        string productName;
         string progress;
         uint quntity;
         uint orderAccess;
@@ -16,6 +17,7 @@ contract OrderContract {
     struct DisplayOrder{
         bytes32 orderNameCode;
         string orderName;
+        string productName;
         string progress;
         uint quntity;
         uint orderAccess;
@@ -26,6 +28,7 @@ contract OrderContract {
     event LogNewOrder(
         bytes32 indexed orderNameCode,
         uint index,string orderName,
+        string productName,
         string progress,
         uint quntity,
         uint orderAccess,
@@ -55,12 +58,13 @@ contract OrderContract {
     }
 
     function setDisplayOrder
-    (bytes32 _orderNameCode,string memory _orderName,string memory _progress,uint _quntity)
+    (bytes32 _orderNameCode,string memory _orderName,string memory _progress,string memory productName,uint _quntity)
      private returns(bool){
 
         DisplayOrder memory displayOrder;
         displayOrder.orderNameCode = _orderNameCode;
         displayOrder.orderName = _orderName;
+        displayOrder.productName = productName;
         displayOrder.progress = _progress;
         displayOrder.quntity = _quntity;
         displayOrder.orderAccess = 1;
@@ -71,7 +75,7 @@ contract OrderContract {
 
     }
     function insertOrder
-    (string memory _orderName,string memory _progress,uint _quntity) public returns(bool){
+    (string memory _orderName,string memory _progress,uint _quntity,string memory productName) public returns(bool){
         bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
         require(isOrder(_orderNameCode) != true,'order allredy in system');
 
@@ -82,13 +86,14 @@ contract OrderContract {
         OrderArray[_orderNameCode].quntity = _quntity;
         OrderArray[_orderNameCode].rate = 0;
         OrderArray[_orderNameCode].unit = 0;
-        setDisplayOrder(_orderNameCode,_orderName,_progress,_quntity);
+        setDisplayOrder(_orderNameCode,_orderName,_progress,productName,_quntity);
         OrderArray[_orderNameCode].index = OrderIndex.length-1;
 
         emit LogNewOrder (
             _orderNameCode,
             OrderArray[_orderNameCode].index,
             _orderName,
+            productName,
             _progress,
             _quntity,
             OrderArray[_orderNameCode].orderAccess,
@@ -125,6 +130,7 @@ contract OrderContract {
         bytes32,
         string memory,
         string memory,
+        string memory,
         uint,
         uint,
         uint
@@ -132,6 +138,7 @@ contract OrderContract {
             return (
                 OrderIndex[i].orderNameCode,
                 OrderIndex[i].orderName,
+                OrderIndex[i].productName,
                 OrderIndex[i].progress,
                 OrderIndex[i].quntity,
                 OrderIndex[i].orderAccess,
@@ -143,13 +150,7 @@ contract OrderContract {
         return OrderIndex.length;
     }
 
-    // function updateUserorderName(address weight, bytes32 orderorderName) public returns(bool success)
-    // {
-    //     orderStructs[weight].orderorderName = orderorderName;
-    //     emit LogUpdateUser(weight,  orderStructs[weight].index, orderorderName, orderStructs[weight].orderAge);
-    //     return true;
-    // }
-    function updateOrderOrderAddress (string memory _orderName,string memory _progress) public returns(bool success){
+    function updateOrderOrderProgress (string memory _orderName,string memory _progress) public returns(bool success){
         bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
         require(isOrder(_orderNameCode) == true,'order not in system');
         OrderArray[_orderNameCode].progress = _progress;
@@ -166,74 +167,7 @@ contract OrderContract {
             );
         return true;
     }
-    function updateOrderOwnerName (string memory _orderName,uint _quntity) public returns(bool success){
-        bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
-        require(isOrder(_orderNameCode) == true,'order not in system');
-        OrderArray[_orderNameCode].quntity = _quntity;
-        OrderIndex[OrderArray[_orderNameCode].index].quntity = _quntity;
-        emit LogUpdateOrder(
-            _orderNameCode,
-            OrderArray[_orderNameCode].index,
-            _orderName,
-            OrderArray[_orderNameCode].progress,
-            _quntity,
-            OrderArray[_orderNameCode].orderAccess,
-            OrderArray[_orderNameCode].rate,
-            OrderArray[_orderNameCode].unit
-            );
-        return true;
-    }
-    
-    function updateOrder(
-        string memory _orderName,
-        uint[] memory index,
-        string memory _progress,
-        uint _quntity
-        ) public returns(bool success){
-        bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
-        require(isOrder(_orderNameCode) == true,'order not in system');
-        uint i;
-        uint num = OrderArray[_orderNameCode].index;
 
-        for (i = 0;i<index.length;i++){
-            if(index[i]==1){
-                OrderArray[_orderNameCode].progress = _progress;
-                OrderIndex[num].progress = _progress;
-                emit LogUpdateOrder(
-                    _orderNameCode,
-                    OrderArray[_orderNameCode].index,
-                    _orderName,
-                    _progress,
-                    OrderArray[_orderNameCode].quntity,
-                    OrderArray[_orderNameCode].orderAccess,
-                    OrderArray[_orderNameCode].rate,
-                    OrderArray[_orderNameCode].unit
-                    );
-
-            }
-            else if(index[i]==2){
-                OrderArray[_orderNameCode].quntity = _quntity;
-                OrderIndex[num].quntity = _quntity;
-                emit LogUpdateOrder(
-                    _orderNameCode,
-                    OrderArray[_orderNameCode].index,
-                    _orderName,
-                    OrderArray[_orderNameCode].progress,
-                    _quntity,
-                    OrderArray[_orderNameCode].orderAccess,
-                    OrderArray[_orderNameCode].rate,
-                    OrderArray[_orderNameCode].unit
-                    );
-
-            }
-            
-        }
-        return true;
-    }
-    ///////
-    function updateOrderiorderName (string memory _orderName) public returns(bool success){
-       // return true;
-    }
     function rateOrder (string memory _orderName,uint _rate) public returns(bool success){
         bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
         require(isOrder(_orderNameCode) == true,'order not in system');
@@ -253,29 +187,5 @@ contract OrderContract {
             );
         return true;
     }
-
-    function editProgress (string memory _orderName,uint _qty,uint _step) public returns (bool successs){
-        
-        return true;
-    }
     
-    // function createOrderPacket (string memory _orderName,uint _unit) public returns(bool success){
-    //     bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
-    //     require(isOrder(_orderNameCode) == true,'order not in system');
-    //     OrderArray[_orderNameCode].rate = _rate;
-    //     OrderIndex[OrderArray[_orderNameCode].index].rate = _rate;
-    //     emit LogUpdateOrder(
-    //         _orderNameCode,
-    //         OrderArray[_orderNameCode].index,
-    //         _orderName,
-    //         OrderArray[_orderNameCode].progress,
-    //         OrderArray[_orderNameCode].quntity,
-    //         OrderArray[_orderNameCode].weight,
-    //         OrderArray[_orderNameCode].orderAccess,
-    //         _rate,
-    //         OrderArray[_orderNameCode].contactnumberAndEmail,
-    //         OrderArray[_orderNameCode].unit
-    //         );
-    //     return true;
-    // }
 }

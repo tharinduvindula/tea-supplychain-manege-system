@@ -18,7 +18,7 @@ import { EstateaddComponent } from 'app/admin/estate/estateadd/estateadd.compone
 import { EstateComponent } from 'app/manager/estate/estate.component';
 import { EstateeditComponent } from 'app/admin/estate/estateedit/estateedit.component';
 import { EstateprogressComponent } from 'app/admin/estate/estateprogress/estateprogress.component';
-import { OrdereditComponent } from 'app/admin/order/orderadd/orderedit.component';
+import { OrdereditComponent } from 'app/admin/order/orderedit/orderedit.component';
 import { OrderComponent } from 'app/manager/order/order.component';
 import { OrdersummaryComponent } from 'app/admin/order/ordersummary/ordersummary.component';
 import { ProducteditComponent } from 'app/admin/product/productedit/productedit.component';
@@ -32,6 +32,7 @@ import { DistributorupdateComponent } from 'app/admin/distributor/distributorupd
 import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.component';
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
+import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
@@ -50,7 +51,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'estate/progress', component: EstateprogressComponent },
     { path: 'estate/update', component: EstateupdateComponent },
     { path: 'order/view', component: OrderComponent },
-    { path: 'order/edit', component: OrdereditComponent },
+    { path: 'order/add', component: OrderaddComponent },
     { path: 'order/summary', component: OrdersummaryComponent },
     { path: 'product/add', component: ProductaddComponent },
     { path: 'product/view', component: ProductComponent },

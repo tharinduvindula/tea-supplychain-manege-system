@@ -7,8 +7,21 @@ var LoaderContract = artifacts.require("LoaderContract");
 var EstateContract = artifacts.require("EstateContract");
 var OrderContract = artifacts.require("OrderContract");
 var ProdutContract = artifacts.require("ProductContract");
+var BoxContract = artifacts.require("boxContract");
+var PacketContract = artifacts.require("PacketContract");
 
 module.exports = function (deployer) {
+    // deployer.deploy(ManagerContract).then(function () {
+    //     return deployer.deploy(AdminContract).then(function () {
+    //         return deployer.deploy(DistributorContract).then(function () {
+    //             return deployer.deploy(SupervisorContract).then(function () {
+    //                 return deployer.deploy(LoaderContract).then(function () {
+    //                     return deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
+    //                 });
+    //             });
+    //         });
+    //     });
+    // });
     deployer.deploy(ManagerContract);
     deployer.deploy(AdminContract);
     deployer.deploy(DistributorContract);
@@ -18,4 +31,6 @@ module.exports = function (deployer) {
     deployer.deploy(EstateContract);
     deployer.deploy(OrderContract);
     deployer.deploy(ProdutContract);
+    deployer.deploy(PacketContract);
+    deployer.deploy(BoxContract);
 };

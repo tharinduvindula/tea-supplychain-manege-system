@@ -7,6 +7,7 @@ import { EstateserviceService } from 'app/service/estateservice.service';
   templateUrl: './estate.component.html',
   styleUrls: ['./estate.component.scss']
 })
+
 export class EstateComponent implements OnInit {
   items: FormArray;
 
@@ -14,6 +15,7 @@ export class EstateComponent implements OnInit {
     this.create();
   }
 
+  
   ngOnInit() {
     this.items = this.formBuilder.array([]);
   }

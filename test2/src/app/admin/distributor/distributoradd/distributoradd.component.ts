@@ -18,7 +18,8 @@ export class DistributoraddComponent implements OnInit {
     telephone: null,
     contry: null,
     cunum: null,
-    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
+    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg',
+    type: null,
   };
   error: null;
 
@@ -40,9 +41,9 @@ export class DistributoraddComponent implements OnInit {
   }
 
   async onsubmit() {
-    const name = this.form.name + '#' + this.form.photo;
+    const name = this.form.name + '#' + this.form.photo + '#' + this.form.type;
     const address = this.form.address + '#' + this.form.contry;
-    const telephone = this.form.cunum +''+ this.form.telephone;
+    const telephone = this.form.cunum + '' + this.form.telephone;
     await this.service.insertDistributor(this.form.email, name, address, telephone).then(
       data => {
         if ( data != null) {
