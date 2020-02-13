@@ -19,13 +19,15 @@ export class DistributoreditComponent implements OnInit {
     photo: null,
     userAccess: null,
   };
-  items: FormArray;
+  Distributors: FormArray;
+  Sellers: FormArray;
   constructor(private service: DistributorserviceService, private formBuilder: FormBuilder, private router: Router) {
    
   }
 
   ngOnInit() {
-    this.items = this.formBuilder.array([]);
+    this.Distributors = this.formBuilder.array([]);
+    this.Sellers = this.formBuilder.array([]);
     this.create();
   }
   isMobileMenu() {
@@ -56,8 +58,8 @@ export class DistributoreditComponent implements OnInit {
       }
 
     );
-    this.items=null;
-    this.items = this.formBuilder.array([]);
+    this.Distributors=null;
+    this.Distributors = this.formBuilder.array([]);
     this.create();
   }
  
@@ -68,13 +70,25 @@ export class DistributoreditComponent implements OnInit {
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(val => {
         if (val[5] !== '4') {
-        this.items.push(this.formBuilder.group({
-          email: val[1],
-          emailCode: val[0],
-          name: val[2].split('#')[0],
-          photo: val[2].split('#')[1],
-          userAccess: val[5]
-        }));
+          console.log(val[2].split('#')[2])
+          if (val[2].split('#')[2] === '1'){
+          this.Distributors.push(this.formBuilder.group({
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5]
+          }));
+
+        } else {
+          this.Sellers.push(this.formBuilder.group({
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5]
+          }));
+        }
       }
       });
     }

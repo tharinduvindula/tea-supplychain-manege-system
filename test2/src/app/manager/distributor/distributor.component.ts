@@ -19,14 +19,16 @@ export class DistributorComponent implements OnInit {
     userAddress: null,
     contryx: null
   };
-  items: FormArray;
+  Distributors: FormArray;
+  Sellers: FormArray;
 
   constructor(private service: DistributorserviceService, private formBuilder: FormBuilder) {
     this.create();
    }
 
   ngOnInit() {
-    this.items = this.formBuilder.array([]);
+    this.Distributors = this.formBuilder.array([]);
+    this.Sellers = this.formBuilder.array([]);
   }
 
   async create() {
@@ -34,9 +36,8 @@ export class DistributorComponent implements OnInit {
     let i;
     await this.service.getDistributorCount().then(  val => x = val )
 
-    console.log(x);
+    
     for (i = 0; i < x; i++) {
-      console.log(i)
       await this.service.getDistributori(i).then(val => {
         let contry;
         let contryy;
@@ -73,20 +74,33 @@ export class DistributorComponent implements OnInit {
           contryy = 'Sri Lanka';
         }
 
-        this.items.push(this.formBuilder.group({
-          contactNumber: val[3],
-          email: val[1],
-          emailCode: val[0],
-          name: val[2].split('#')[0],
-          photo: val[2].split('#')[1],
-          userAccess: val[5],
-          userAddress: val[4],
-          contryx: contry,
-          contryxx: contryy
-        }));
+        if (val[2].split('#')[2] === '1'){
+          this.Distributors.push(this.formBuilder.group({
+            contactNumber: val[3],
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5],
+            userAddress: val[4],
+            contryx: contry,
+            contryxx: contryy
+          }));
+        } else {
+          this.Sellers.push(this.formBuilder.group({
+            contactNumber: val[3],
+            email: val[1],
+            emailCode: val[0],
+            name: val[2].split('#')[0],
+            photo: val[2].split('#')[1],
+            userAccess: val[5],
+            userAddress: val[4],
+            contryx: contry,
+            contryxx: contryy
+          }));
+        }
       });
     }
-    console.log(this.items.value);
   }
 
   delay(ms: number) {

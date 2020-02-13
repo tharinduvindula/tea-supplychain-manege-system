@@ -9,6 +9,7 @@ export class LoaderserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
+    //this.editacc('Loader1@gmail.com', 5);
   }
 
   async getLoaderCount() {

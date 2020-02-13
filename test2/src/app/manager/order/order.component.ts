@@ -8,7 +8,10 @@ import * as $ from 'jquery';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  href;
+
+  constructor() {
+   }
 
   ngOnInit() {
   }
@@ -19,5 +22,12 @@ export class OrderComponent implements OnInit {
     }
     return true;
   };
+
+  down(){
+    this.href = document.getElementsByTagName('ngx-qrcode')[0].innerHTML;
+    console.log(this.href)
+    window.print();
+  }
+
 
 }

@@ -29257,6 +29257,137 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewProduct",
+          "type": "event",
+          "signature": "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f"
+        },
+        "0xff757f62d040f7e3d832721808f2e12f3df36f41c1060c4c814352ed0466f150": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateProduct",
+          "type": "event",
+          "signature": "0xff757f62d040f7e3d832721808f2e12f3df36f41c1060c4c814352ed0466f150"
+        },
+        "0xe1ff156be6bced8bd204b6d37ac5ca0bd9cbbc129fc6647c272b8b87bfb34fd6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "productNamecode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteProduct",
+          "type": "event",
+          "signature": "0xe1ff156be6bced8bd204b6d37ac5ca0bd9cbbc129fc6647c272b8b87bfb34fd6"
+        }
+      },
+      "links": {},
+      "address": "0x9F2d51b27e89bC60530ffa8426A6226af944f152",
+      "transactionHash": "0x83b3269d6bcd893766c98ca7f91bb40a0edc2bfaab713c4101d9c15825bba778"
+    },
     "5777": {
       "events": {
         "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f": {
@@ -29389,8 +29520,9 @@
       "transactionHash": "0x900aab0c6303f1314e2c078763e4b65169db8702c13e7ed60592f525ea1abcaf"
     }
   },
-  "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-13T03:30:36.652Z",
+  "schemaVersion": "3.0.20",
+  "updatedAt": "2020-02-13T05:40:10.236Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

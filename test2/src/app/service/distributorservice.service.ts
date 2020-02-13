@@ -9,11 +9,12 @@ export class DistributorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    // this.editacc('distributor2@gmail.com', 3);
+     // this.editacc('distributor1@gmail.com', 5);
     // console.log('sexy')
   }
 
   async getDistributorCount() {
+    
     console.log(this.web3.getDistributorvalue)
     await this.web3.getDistributorvalue().getDistributorCount().call((er: any, ev: number) => {
       if (er == null) {
@@ -22,6 +23,7 @@ export class DistributorserviceService {
         this.result = er;
       }
     });
+    console.log('hi2')
     return this.result;
   }
 

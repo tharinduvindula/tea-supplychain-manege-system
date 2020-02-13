@@ -41,7 +41,7 @@ export class WorldmapComponent implements OnInit {
       },
       legend: {
         area: {
-          title: 'Deths of colombo district by municipal-council',
+          title: 'Selling of tea',
           slices: [
             {
               max: 25,

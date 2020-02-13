@@ -21,6 +21,7 @@ export class DistributorupdateComponent implements OnInit {
     contry: null,
     cunum: null,
     photo: null,
+    type: null,
   };
   public form1 = {
     name: null,
@@ -31,6 +32,7 @@ export class DistributorupdateComponent implements OnInit {
     contry: null,
     cunum: null,
     photo: null,
+    type: null,
   };
   public form2 = {
     email: null
@@ -58,7 +60,7 @@ export class DistributorupdateComponent implements OnInit {
   }
 
   async onsubmit() {
-    const name = this.form.name + '#' + this.form.photo;
+    const name = this.form.name + '#' + this.form.photo + '#' + this.form.type;
     const address = this.form.address + '#' + this.form.contry;
     const telephone = this.form.cunum +''+ this.form.telephone;
     // tslint:disable-next-line: max-line-length
@@ -192,13 +194,15 @@ export class DistributorupdateComponent implements OnInit {
         this.form1.telephone = val[3].split(val[3].substring(0, 2))[1],
         this.form.address = val[4].split('#')[0],
         this.form1.address = val[4].split('#')[0],
-        this.form.contry = val[4].split('#')[1]
-        this.form1.contry = val[4].split('#')[1]
+        this.form.contry = val[4].split('#')[1],
+        this.form1.contry = val[4].split('#')[1],
+        this.form.type = val[2].split('#')[2],
+        this.form1.type = val[2].split('#')[2]
       }
     });
   }
 
-  changcnum(x){
+  changcnum(x) {
     if (x === 'US'){
       this.form.cunum =1;
     } else if ( x === 'AI') {
