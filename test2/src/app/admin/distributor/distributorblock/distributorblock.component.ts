@@ -49,7 +49,9 @@ export class DistributorblockComponent implements OnInit {
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(async val => {
         if ( val[5] === '5' || val[5] === '3') {
-          if (val[2].split('#')[1] === '1'){
+          console.log(val)
+          if (val[2].split('#')[2] === '1'){
+            console.log(val)
             this.Distributors.push(this.formBuilder.group({
               email: val[1],
               emailCode: val[0],

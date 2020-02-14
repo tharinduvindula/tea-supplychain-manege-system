@@ -188,7 +188,7 @@ export class AdminserviceService {
   }
 
   async getAdmini(index) {
-    console.log(index)
+    console.log('hi')
     await this.web3.getAdminvalue().getAdmini(index).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;

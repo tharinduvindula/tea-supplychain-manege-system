@@ -52,6 +52,7 @@ import { SupervisorserviceService } from 'app/service/supervisorservice.service'
 import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
 import { OrdereditComponent } from 'app/admin/order/orderedit/orderedit.component';
+import { WorkerupdateComponent } from 'app/admin/worker/workerupdate/workerupdate.component';
 
 @NgModule({
   imports: [
@@ -99,6 +100,7 @@ import { OrdereditComponent } from 'app/admin/order/orderedit/orderedit.componen
     WorkeraddComponent,
     WorkerviewComponent,
     WorkereditComponent,
+    WorkerupdateComponent,
     WorkerblockComponent,
     ProductupdateComponent,
     DistributorupdateComponent,

@@ -306,7 +306,6 @@ contract Login {
         }
     }
     function frogetPassword(string memory _email,uint _appId) public view returns(bool,uint) {
-        
         bytes32 email = keccak256(abi.encodePacked((_email)));
         uint userAccess;
         if(_appId==1){
