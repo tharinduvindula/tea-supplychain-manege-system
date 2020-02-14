@@ -8,6 +8,7 @@ export class SupervisorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
+    //this.editacc('supervisor1@gmail.com', 3);
   }
 
   async getSupervisorCount() {

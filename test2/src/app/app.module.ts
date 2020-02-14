@@ -92,7 +92,6 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
-    WorkerupdateComponent,
   ],
   providers: [EthcontractService, HttpClientModule, DatePipe],
   bootstrap: [AppComponent]
