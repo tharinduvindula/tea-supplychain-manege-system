@@ -11,23 +11,23 @@ var BoxContract = artifacts.require("BoxContract");
 var PacketContract = artifacts.require("PacketContract");
 
 module.exports = function (deployer) {
-    // deployer.deploy(ManagerContract).then(function () {
-    //     return deployer.deploy(AdminContract).then(function () {
-    //         return deployer.deploy(DistributorContract).then(function () {
-    //             return deployer.deploy(SupervisorContract).then(function () {
-    //                 return deployer.deploy(LoaderContract).then(function () {
-    //                     return deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
-    //                 });
-    //             });
-    //         });
-    //     });
-    // });
-    deployer.deploy(ManagerContract);
-    deployer.deploy(AdminContract);
-    deployer.deploy(DistributorContract);
-    deployer.deploy(SupervisorContract);
-    deployer.deploy(LoaderContract);
-    deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
+     deployer.deploy(ManagerContract).then(function () {
+        return deployer.deploy(AdminContract).then(function () {
+             return deployer.deploy(DistributorContract).then(function () {
+                 return deployer.deploy(SupervisorContract).then(function () {
+                     return deployer.deploy(LoaderContract).then(function () {
+                         return deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
+                     });
+                 });
+            });
+        });
+     });
+    //deployer.deploy(ManagerContract);
+    //deployer.deploy(AdminContract);
+    //deployer.deploy(DistributorContract);
+    //deployer.deploy(SupervisorContract);
+    //deployer.deploy(LoaderContract);
+    //deployer.deploy(Login, AdminContract.address, ManagerContract.address, DistributorContract.address, SupervisorContract.address, LoaderContract.address);
     deployer.deploy(EstateContract);
     deployer.deploy(OrderContract);
     deployer.deploy(ProdutContract);
