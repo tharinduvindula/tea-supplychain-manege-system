@@ -30954,10 +30954,158 @@
       "links": {},
       "address": "0xaA388Ab41529B5b34F788f2Ca159B05fcA7981C4",
       "transactionHash": "0x2f15ed3b0e66acfa531375050213f5387cf64ab9e68d76ca720b0faf8e7dcf26"
+    },
+    "1581723422660": {
+      "events": {
+        "0xa6192d29121ec9abfc29b3ec78642ace4231657726c3de13315db4a4257eea7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "estateNamecode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteEstate",
+          "type": "event"
+        },
+        "0x246a4042974c4275523f2c4caeb7d6b6958677a3b6ce82df8ff1fdcbf73069ff": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "estateNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "estateName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "estateAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "ownerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "contactnumberAndEmail",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "estateAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewEstate",
+          "type": "event"
+        },
+        "0x58cebce272a835015f35982cbf4118b7786b73ba7d86fa0a0032928e2ea15ef2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "estateNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "estateName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "estateAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "ownerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "contactnumberAndEmail",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "estateAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateEstate",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xcd96853b795a58759a31E7e8b95842ee12c1990C",
+      "transactionHash": "0x842a8b43e2e242bb1c727a514a77cfec63be46b805f6c20bd81f662886820c64"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-14T13:53:54.578Z",
+  "updatedAt": "2020-02-14T23:38:48.344Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
