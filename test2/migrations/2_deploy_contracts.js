@@ -7,7 +7,7 @@ var LoaderContract = artifacts.require("LoaderContract");
 var EstateContract = artifacts.require("EstateContract");
 var OrderContract = artifacts.require("OrderContract");
 var ProdutContract = artifacts.require("ProductContract");
-var BoxContract = artifacts.require("boxContract");
+var BoxContract = artifacts.require("BoxContract");
 var PacketContract = artifacts.require("PacketContract");
 
 module.exports = function (deployer) {
