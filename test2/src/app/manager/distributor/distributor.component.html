@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             
-            <div *ngFor="let item of items.value" class="col-3" style="padding-top: 10%;" >
+            <div *ngFor="let item of Distributors.value" class="col-3" style="padding-top: 10%;" >
               <div class="card card-profile"
                 style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                 <div class="card1 card-avatar" style="max-height: unset;max-width: unset;">
@@ -64,4 +64,70 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid" style="overflow-x: hidden;padding-right: 1%; padding-left: 1%;padding-top: 3%;">
+    <div class="col-lg-12">
+      <div class="card">
   
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Seller</h4>
+          <p class="card-category">all Sellers</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+  
+            <div *ngFor="let item of Sellers.value" class="col-3" style="padding-top: 10%;">
+              <div class="card card-profile"
+                style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="card1 card-avatar" style="max-height: unset;max-width: unset;">
+  
+                  <div class="card1-image">
+                    <img src={{item.photo}} alt="profile one">
+                  </div>
+  
+                  <div class="details">
+                    <h5 style="margin-bottom: 0px;">selling increase rate</h5>
+                    <p style="font-size: 24px;color: green"><i class="material-icons"
+                        style="font-size: 30px;font-weight: bold;">trending_up</i> +5%</p>
+                  </div>
+  
+                </div>
+                <div class="card-body" style="margin-top: 100px;">
+                  <h5 class="card-title">{{item.name}}</h5>
+                  <p class="card-text">Colombo,
+                    <i class="flag-icon {{item.contryx}}"> </i> {{item.contryxx}}<br>
+                    {{item.contactNumber}}<br>
+                    {{item.email}}</p>
+                </div>
+              </div>
+            </div>
+  
+  
+            <div class="col-3" style="padding-top: 10%;">
+              <div class="card card-profile"
+                style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div class="card1 card-avatar" style="max-height: unset;max-width: unset;">
+  
+                  <div class="card1-image">
+                    <img src="https://i.ibb.co/S59cRvf/20863.png" alt="profile one">
+                  </div>
+  
+                  <div class="details">
+                    <h5 style="margin-bottom: 0px;">selling increase rate</h5>
+                    <p style="font-size: 24px;color: red"><i class="material-icons"
+                        style="font-size: 30px;font-weight: bold;">trending_down</i> -5%</p>
+                  </div>
+  
+                </div>
+                <div class="card-body" style="margin-top: 100px;">
+                  <h5 class="card-title">tharindu vindula</h5>
+                  <p class="card-text">Colombo, <i class="flag-icon flag-icon-lk"></i> Sri Lanka<br>
+                    telephone<br>
+                    email</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

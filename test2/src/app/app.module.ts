@@ -43,13 +43,19 @@ import { EthcontractService } from './web3-servise/ethcontract.service';
 import { RegistationComponent } from './registation/registation.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.component';
+<<<<<<< HEAD
 import { OneEstateComponent } from './manager/one-estate/one-estate.component';
+=======
+import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
+import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+>>>>>>> e8cb5a47757d20f30f46274b7b3a7ec145a696e5
 
 
 
@@ -65,8 +71,7 @@ import { OneEstateComponent } from './manager/one-estate/one-estate.component';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyATmEtiTGleGKXpvoIjKOxv5yQ9i1mhsLM'
-    })
-    ,
+    }),
     MatToolbarModule,
     MatButtonModule,
     MatRippleModule,
@@ -81,6 +86,7 @@ import { OneEstateComponent } from './manager/one-estate/one-estate.component';
     MatDialogModule,
     HttpClientModule,
     UcWidgetModule,
+    NgxQRCodeModule,
   ],
   declarations: [
     AppComponent,
@@ -90,9 +96,13 @@ import { OneEstateComponent } from './manager/one-estate/one-estate.component';
     RegistationComponent,
     PasswordResetComponent,
     FrogetPasswordComponent,
+<<<<<<< HEAD
     OneEstateComponent,
+=======
+    WorkerupdateComponent,
+>>>>>>> e8cb5a47757d20f30f46274b7b3a7ec145a696e5
   ],
-  providers: [EthcontractService, HttpClientModule],
+  providers: [EthcontractService, HttpClientModule, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

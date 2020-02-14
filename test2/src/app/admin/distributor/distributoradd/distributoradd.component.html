@@ -51,6 +51,17 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Type</mat-label>
+                  <mat-select name="usertype" [(ngModel)]="form.type">
+                    <mat-option (click)="changcnum('US')" value="1">Distributor</mat-option>
+                    <mat-option (click)="changcnum('AI')" value="0">Seller</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
             
 
 

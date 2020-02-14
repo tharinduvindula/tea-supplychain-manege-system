@@ -22,6 +22,7 @@ import { AdminserviceService } from 'app/service/adminservice.service';
 import { LoaderserviceService } from 'app/service/loaderservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 @NgModule({
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { SupervisorserviceService } from 'app/service/supervisorservice.service'
     MatTooltipModule,
     MatIconModule,
     AllShareModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxQRCodeModule,
   ],
   declarations: [
      // DashboardComponent

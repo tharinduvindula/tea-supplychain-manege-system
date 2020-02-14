@@ -9,7 +9,7 @@ export class ManagerserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-      //this.editacc('manager1@gmail.com',5)
+     // this.editacc('manager1@gmail.com',5)
   }
 
   async getManagerCount() {

@@ -30304,6 +30304,137 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {
+        "0x246a4042974c4275523f2c4caeb7d6b6958677a3b6ce82df8ff1fdcbf73069ff": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "estateNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "estateName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "estateAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "ownerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "contactnumberAndEmail",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "estateAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewEstate",
+          "type": "event",
+          "signature": "0x246a4042974c4275523f2c4caeb7d6b6958677a3b6ce82df8ff1fdcbf73069ff"
+        },
+        "0x58cebce272a835015f35982cbf4118b7786b73ba7d86fa0a0032928e2ea15ef2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "estateNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "estateName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "estateAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "ownerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "contactnumberAndEmail",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "estateAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateEstate",
+          "type": "event",
+          "signature": "0x58cebce272a835015f35982cbf4118b7786b73ba7d86fa0a0032928e2ea15ef2"
+        },
+        "0xa6192d29121ec9abfc29b3ec78642ace4231657726c3de13315db4a4257eea7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "estateNamecode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteEstate",
+          "type": "event",
+          "signature": "0xa6192d29121ec9abfc29b3ec78642ace4231657726c3de13315db4a4257eea7a"
+        }
+      },
+      "links": {},
+      "address": "0x244fAe5BFa94e24E775D548A421e13BbCD386C8d",
+      "transactionHash": "0xaf8f51e69daec1ada199d6965405bbbdf9de871cde00f79a7fda9725db6f2618"
+    },
     "5777": {
       "events": {
         "0x246a4042974c4275523f2c4caeb7d6b6958677a3b6ce82df8ff1fdcbf73069ff": {
@@ -30436,8 +30567,9 @@
       "transactionHash": "0x8d9a6ef2b49c3ac124cbc49cce9441faff09eae559098641684f7f5779af7421"
     }
   },
-  "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-13T03:30:36.593Z",
+  "schemaVersion": "3.0.20",
+  "updatedAt": "2020-02-13T05:40:10.195Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

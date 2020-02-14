@@ -23,14 +23,16 @@ export class DistributorblockComponent implements OnInit {
     userAccess: null,
     i: null
   };
-  items: FormArray;
+  Distributors: FormArray;
+  Seller: FormArray;
   router: any;
   constructor(private service: DistributorserviceService, private formBuilder: FormBuilder) {
     this.create();
   }
 
   ngOnInit() {
-    this.items = this.formBuilder.array([]);
+    this.Distributors = this.formBuilder.array([]);
+    this.Seller = this.formBuilder.array([]);
   }
   isMobileMenu() {
     if (screen.width > 991) {
@@ -47,15 +49,26 @@ export class DistributorblockComponent implements OnInit {
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(async val => {
         if ( val[5] === '5' || val[5] === '3') {
-          this.items.push(this.formBuilder.group({
-            email: val[1],
-            emailCode: val[0],
-            name: val[2].split('#')[0],
-            photo: val[2].split('#')[1],
-            userAccess: val[5] === '5' ? true : false,
-            i: y++
-          }));
-          console.log(this.items)
+          if (val[2].split('#')[1] === '1'){
+            this.Distributors.push(this.formBuilder.group({
+              email: val[1],
+              emailCode: val[0],
+              name: val[2].split('#')[0],
+              photo: val[2].split('#')[1],
+              userAccess: val[5] === '5' ? true : false,
+              i: y++
+            }));
+          } else {
+            this.Seller.push(this.formBuilder.group({
+              email: val[1],
+              emailCode: val[0],
+              name: val[2].split('#')[0],
+              photo: val[2].split('#')[1],
+              userAccess: val[5] === '5' ? true : false,
+              i: y++
+            }));
+          }
+          console.log(this.Distributors)
         }
       });
     }

@@ -58,7 +58,9 @@ export const estate: RouteInfo[] = [
 // admin mini sidebar  order sub menu content
 export const order: RouteInfo[] = [
   { path: '/admin/order/view', title: 'orders view', icon: 'public', class: '' },
-  { path: '/admin/order/edit', title: 'orders edit', icon: 'edit', class: '' },
+  { path: '/admin/order/add', title: 'orders add', icon: 'edit', class: '' },
+  { path: '/admin/order/add', title: 'orders delete', icon: 'edit', class: '' },
+  { path: '/admin/order/add', title: 'blendSheets delete', icon: 'edit', class: '' },
   { path: '/admin/order/summary', title: 'summary of orders', icon: 'assignment', class: '' },
 ];
 
