@@ -50,12 +50,18 @@ import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { OneEstateComponent } from './manager/one-estate/one-estate.component';
 =======
 import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
 import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 >>>>>>> e8cb5a47757d20f30f46274b7b3a7ec145a696e5
+=======
+import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
+import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+>>>>>>> 9ad1e19547be521f9064d7d864d7015d32aff71d
 
 
 
@@ -97,10 +103,14 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     PasswordResetComponent,
     FrogetPasswordComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     OneEstateComponent,
 =======
     WorkerupdateComponent,
 >>>>>>> e8cb5a47757d20f30f46274b7b3a7ec145a696e5
+=======
+    WorkerupdateComponent,
+>>>>>>> 9ad1e19547be521f9064d7d864d7015d32aff71d
   ],
   providers: [EthcontractService, HttpClientModule, DatePipe],
   bootstrap: [AppComponent]

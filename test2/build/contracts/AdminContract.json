@@ -36072,8 +36072,12 @@
     }
   },
   "schemaVersion": "3.0.20",
+<<<<<<< HEAD
   "updatedAt": "2020-02-13T05:40:10.053Z",
   "networkType": "ethereum",
+=======
+  "updatedAt": "2020-02-14T04:52:11.391Z",
+>>>>>>> 9ad1e19547be521f9064d7d864d7015d32aff71d
   "devdoc": {
     "methods": {}
   },
