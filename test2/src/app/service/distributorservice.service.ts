@@ -9,7 +9,7 @@ export class DistributorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-     // this.editacc('distributor1@gmail.com', 5);
+    // this.editacc('seller1@gmail.com', 5);
     // console.log('sexy')
   }
 
@@ -156,7 +156,7 @@ export class DistributorserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.name);
           } else {
-            er('user alredy in system');
+            er('error');
             console.log(this.result)
           }
         });

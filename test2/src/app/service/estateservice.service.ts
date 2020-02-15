@@ -8,7 +8,7 @@ export class EstateserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    // this.editacc('distributor2@gmail.com', 3);
+    // this.editacc('estate1', 5);
     // console.log('sexy')
   }
 

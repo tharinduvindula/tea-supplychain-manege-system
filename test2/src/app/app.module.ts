@@ -104,6 +104,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     FrogetPasswordComponent,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     OneEstateComponent,
 =======
     WorkerupdateComponent,
@@ -111,6 +112,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 =======
     WorkerupdateComponent,
 >>>>>>> 9ad1e19547be521f9064d7d864d7015d32aff71d
+=======
+>>>>>>> a6ced6f1bc7e803b1f2a6d2bb983f4f95e062cd7
   ],
   providers: [EthcontractService, HttpClientModule, DatePipe],
   bootstrap: [AppComponent]

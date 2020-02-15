@@ -60,6 +60,8 @@ export class DistributoreditComponent implements OnInit {
     );
     this.Distributors=null;
     this.Distributors = this.formBuilder.array([]);
+    this.Sellers=null;
+    this.Sellers = this.formBuilder.array([]);
     this.create();
   }
  
@@ -70,7 +72,6 @@ export class DistributoreditComponent implements OnInit {
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(val => {
         if (val[5] !== '4') {
-          console.log(val[2].split('#')[2])
           if (val[2].split('#')[2] === '1'){
           this.Distributors.push(this.formBuilder.group({
             email: val[1],
