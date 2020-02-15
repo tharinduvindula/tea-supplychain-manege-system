@@ -78,7 +78,7 @@ export class EstateupdateComponent implements OnInit {
       this.router.navigateByUrl('/admin/estate/view');
     }
     // tslint:disable-next-line: max-line-length
-    else if (this.form1.address === this.form.address && this.form1.photo === this.form.photo && (this.form1.contactNumber !== this.form.contactNumber || this.form1.email === this.form.email) && this.form1.ownerName === this.form.ownerName) {
+    else if (this.form1.address === this.form.address && this.form1.photo === this.form.photo && (this.form1.contactNumber !== this.form.contactNumber || this.form1.email !== this.form.email) && this.form1.ownerName === this.form.ownerName) {
 
       await this.service.updateEstateContactnumberAndEmail(estateName, contactNumberAndEmail).then(
         data => {

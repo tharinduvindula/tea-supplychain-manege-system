@@ -33,6 +33,7 @@ import { UserupdateComponent } from 'app/admin/user/userupdate/userupdate.compon
 import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.component';
 import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
+import { WorkerupdateComponent } from 'app/admin/worker/workerupdate/workerupdate.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
@@ -66,6 +67,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'worker/add', component: WorkeraddComponent },
     { path: 'worker/view', component: WorkerviewComponent },
     { path: 'worker/edit', component: WorkereditComponent },
+    { path: 'worker/update', component: WorkerupdateComponent },
     { path: 'worker/block', component: WorkerblockComponent },
     
 ];
