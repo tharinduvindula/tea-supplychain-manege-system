@@ -40,6 +40,7 @@ import { ManagerserviceService } from 'app/service/managerservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { OneorderComponent } from 'app/manager/oneorder/oneorder.component';
 
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -76,6 +77,7 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
         OrderComponent,
         OtheruserComponent,
         OneproductComponent,
+        OneorderComponent,
     ],
     providers: [
         DistributorserviceService,

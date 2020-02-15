@@ -56,12 +56,16 @@ import { OneEstateComponent } from './manager/one-estate/one-estate.component';
 import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
 import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+<<<<<<< HEAD
 >>>>>>> e8cb5a47757d20f30f46274b7b3a7ec145a696e5
 =======
 import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
 import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 >>>>>>> 9ad1e19547be521f9064d7d864d7015d32aff71d
+=======
+import { OneorderComponent } from './manager/oneorder/oneorder.component';
+>>>>>>> 6cae3f461445598f3f605b3c048405f867bf0aef
 
 
 

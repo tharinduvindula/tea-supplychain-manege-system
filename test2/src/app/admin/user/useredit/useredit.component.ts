@@ -116,9 +116,9 @@ export class UsereditComponent implements OnInit {
     let i;
     await this.service2.getAdminCount().then(val => x = val)
     for (i = 0; i < x; i++) {
-      console.log(this.service2.getAdmin(i))
-      await this.service2.getAdmin(i).then(val => {
-        console.log('gg')
+      console.log(x)
+      this.service2.getAdmini(i).then(val => {
+        console.log(val)
         if (val[5] !== '4') {
           this.items2.push(this.formBuilder.group({
             email: val[1],
