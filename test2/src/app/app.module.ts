@@ -46,8 +46,6 @@ import { FrogetPasswordComponent } from './froget-password/froget-password.compo
 import { CommonModule, DatePipe } from '@angular/common';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
-import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
-import { OneuserComponent } from './manager/oneuser/oneuser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.component';
 import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
