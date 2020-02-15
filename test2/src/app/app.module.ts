@@ -46,7 +46,6 @@ import { FrogetPasswordComponent } from './froget-password/froget-password.compo
 import { CommonModule, DatePipe } from '@angular/common';
 import { DistributorupdateComponent } from './admin/distributor/distributorupdate/distributorupdate.component';
 import { UcWidgetModule } from 'ngx-uploadcare-widget';
-import { OneproductComponent } from './manager/oneproduct/oneproduct.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.component';
 <<<<<<< HEAD
@@ -66,6 +65,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 =======
 import { OneorderComponent } from './manager/oneorder/oneorder.component';
 >>>>>>> 6cae3f461445598f3f605b3c048405f867bf0aef
+
 
 
 

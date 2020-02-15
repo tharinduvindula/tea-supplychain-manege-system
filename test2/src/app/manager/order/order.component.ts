@@ -77,19 +77,7 @@ export class OrderComponent implements OnInit {
             contryx: contry,
             contryxx: contryy
           }));
-        } else {
-          this.Sellers.push(this.formBuilder.group({
-            contactNumber: val[3],
-            email: val[1],
-            emailCode: val[0],
-            name: val[2].split('#')[0],
-            photo: val[2].split('#')[1],
-            userAccess: val[5],
-            userAddress: val[4],
-            contryx: contry,
-            contryxx: contryy
-          }));
-        }
+        } 
       });
     }
   }

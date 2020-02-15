@@ -9,6 +9,7 @@ import { OtheruserComponent } from 'app/manager/otheruser/otheruser.component';
 import { EstateComponent } from 'app/manager/estate/estate.component';
 import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component';
 import { OneorderComponent } from 'app/manager/oneorder/oneorder.component';
+import { OneuserComponent } from 'app/manager/oneuser/oneuser.component';
 
 export const ManagerLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -19,5 +20,6 @@ export const ManagerLayoutRoutes: Routes = [
     { path: 'estate',  component: EstateComponent },
     { path: 'order',  component: OrderComponent },
     { path: 'oneproduct',     component: OneproductComponent },
+    { path: 'oneuser',     component: OneuserComponent },
     { path: 'oneorder', component: OneorderComponent },
 ];
