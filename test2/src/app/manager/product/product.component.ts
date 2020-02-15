@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { ProductserviceService } from 'app/service/productservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +14,7 @@ export class ProductComponent implements OnInit {
 
   items: FormArray;
 
-  constructor(private service: ProductserviceService, private formBuilder: FormBuilder) {
+  constructor(private service: ProductserviceService, private router:Router, private formBuilder: FormBuilder) {
     this.create();
   }
 
@@ -30,10 +31,15 @@ export class ProductComponent implements OnInit {
         console.log(val[2].split('#')[1])
         this.items.push(this.formBuilder.group({
           productName: val[1].split('#')[1],
+          productNamei: val[1],
           photo: val[2].split('#')[1],
           rate: val[6]
         }));
       });
     }
+  }
+
+  oneproduct(productName){
+    this.router.navigate(['/oneproduct'], { queryParams: { productName: productName } });
   }
 }

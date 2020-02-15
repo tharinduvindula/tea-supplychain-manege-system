@@ -10,7 +10,7 @@ export class AdminserviceService {
 
   constructor(private web3: EthcontractService) {
  // this.insertAdmin('a','t', 't#', 5555);
-    //  this.editacc('admin1@gmail.com',5);
+    // this.editacc('admin1@gmail.com',5);
   }
   async getAdminCount() {
     await this.web3.getAdminvalue().getAdminCount().call((er: any, ev: number) => {

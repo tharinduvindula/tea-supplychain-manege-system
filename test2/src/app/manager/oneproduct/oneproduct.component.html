@@ -9,13 +9,27 @@
         </div>
         <div class="card-body">
           <div class="container">
-            <div class="row">
+            <div class="row" style="margin-bottom: -15%;">
               <div class="col-3"></div>
-              <div class="col-6"><h2>Black Tea 50g Packet </h2></div>
+              <div class="col-6"><h2><B>Black Tea 50g Packet</B></h2></div>
               <div class="col-3"></div>
               <div class="col-3"></div>
-              <div class="col-6"><img src="../../../assets/img/product/dilmah.jpg" alt=""style="width:75%;height:60%"></div>
+              <div class="col-6"><img src="{{form.photo}}" alt=""style="width:75%;height:60%"></div>
               <div class="col-3"></div>
+            </div>
+            <div class="row" >
+                <div class="col-6">
+                  <div>
+                    <h4><B>Product ID : {{form.productId}}</B></h4>
+                    <h4><B>Product Name :{{form.productName}}</B></h4>
+                    <h4><B>Product Type :{{form.packetType}}</B></h4>
+                    <h4><B>Product flaver :{{form.flaver}}</B></h4>
+                    <h4><B>Product weight :{{form.weight}}</B></h4>
+                    <h4><B>Product price :{{form.price}}</B></h4>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-3"></div>
             </div>
           </div>
         </div>
