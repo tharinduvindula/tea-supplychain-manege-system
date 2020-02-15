@@ -34,7 +34,7 @@ export class EthcontractService {
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
-  public curentaccount = '0x96FD4A07Ecc41419012A8Cd67061380B3D4bB7cc';
+  public curentaccount = '0x05346F5978995345Ab999311eE6A9eD614Bc4F95';
   result;
 
 
@@ -56,7 +56,7 @@ export class EthcontractService {
   }
 
   async login({ _userName, _password }: { _userName; _password; }): Promise<any> {
-    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xEe8742450c6d507E9B87e930aFACb8072ae9A0B9');
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x528B3a6A11A49da4b398795C0352d66F77756A01');
     // tslint:disable-next-line: no-shadowed-variable
     return  await new Promise((data, error) => { Sc.methods.login(_userName, _password, 1).call((er: any, ev: any) => {
       if (er != null) {
@@ -69,7 +69,7 @@ export class EthcontractService {
   }
 
   async frogetPassword({ _userName }: { _userName; }): Promise<any> {
-    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xEe8742450c6d507E9B87e930aFACb8072ae9A0B9');
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x528B3a6A11A49da4b398795C0352d66F77756A01');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
       Sc.methods.frogetPassword(_userName, 1).call((er: any, ev: any) => {
@@ -125,7 +125,7 @@ export class EthcontractService {
     });
   }
   async passwordReset({ _userName, _password, _token }: { _userName; _password; _token }): Promise<any> {
-    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xEe8742450c6d507E9B87e930aFACb8072ae9A0B9');
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x528B3a6A11A49da4b398795C0352d66F77756A01');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
       Sc.methods.resetPassword(_userName, _token, 1).call((er: any, ev: any) => {
@@ -164,7 +164,7 @@ export class EthcontractService {
     });
   }
   async registation({ _userName, _password, _token }: { _userName; _password; _token }): Promise<any> {
-    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0xEe8742450c6d507E9B87e930aFACb8072ae9A0B9');
+    const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x528B3a6A11A49da4b398795C0352d66F77756A01');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
       Sc.methods.registation(_userName, _token, 1).call((er: any, ev: any) => {
@@ -268,7 +268,7 @@ export class EthcontractService {
   getManagervalue() {
     const MyContract = contract(managerAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(managerAbi.abi, '0x11Abb0368226E81B1aa05E700423BD84F230520D');
+    const Xc = new this.web3.eth.Contract(managerAbi.abi, '0x5A2ffe8CC394cD7916E3d81780A9616D6987fE53');
     return Xc.methods;
   }
 
@@ -281,7 +281,7 @@ export class EthcontractService {
   getAdminvalue() {
     const MyContract = contract(adminAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(adminAbi.abi, '0xf6Bc785bFD9ed7E44d430F0f186264a95c27002a');
+    const Xc = new this.web3.eth.Contract(adminAbi.abi, '0x493286A4BDb29CB00ECb67a6B4f5e45dD1d1CCf1');
     return Xc.methods;
   }
 
@@ -294,7 +294,7 @@ export class EthcontractService {
   getDistributorvalue() {
     const MyContract = contract(distributorAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(distributorAbi.abi, '0xaA784716cFA0B51FA1B9D3cbE5abb8D1a16195E7');
+    const Xc = new this.web3.eth.Contract(distributorAbi.abi, '0x936C105E309D150BBd1FF09FdF0B0Cfd377638a8');
     return Xc.methods;
   }
 
@@ -307,7 +307,7 @@ export class EthcontractService {
   getSupervisorvalue() {
     const MyContract = contract(supervisorAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(supervisorAbi.abi, '0x2e240c52ee17eC3BcD2eA1F16BEaC5D793f3ccdD');
+    const Xc = new this.web3.eth.Contract(supervisorAbi.abi, '0x24F885eD8E0479C01a7d62442F4F826223D0784f');
     return Xc.methods;
   }
 
@@ -320,7 +320,7 @@ export class EthcontractService {
   getLoadervalue() {
     const MyContract = contract(loaderAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x0deeFbCee2F180775e09Ae37a850F851D080b421');
+    const Xc = new this.web3.eth.Contract(loaderAbi.abi, '0x482b08F7c75a2d23984028eD1d0A8226A9C94a12');
     return Xc.methods;
   }
 
@@ -333,7 +333,7 @@ export class EthcontractService {
   getEstatevalue() {
     const MyContract = contract(estateAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(estateAbi.abi, '0xaA388Ab41529B5b34F788f2Ca159B05fcA7981C4');
+    const Xc = new this.web3.eth.Contract(estateAbi.abi, '0xcd96853b795a58759a31E7e8b95842ee12c1990C');
     return Xc.methods;
   }
 
@@ -346,7 +346,7 @@ export class EthcontractService {
   getProductvalue() {
     const MyContract = contract(productAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(productAbi.abi, '0x8F6487B3d4BF8c46282bb2E8A76db79376d28F4c');
+    const Xc = new this.web3.eth.Contract(productAbi.abi, '0x1838Ece63A4750D5bC47303D1C0331b3EC663dC3');
     return Xc.methods;
   }
 
@@ -359,7 +359,7 @@ export class EthcontractService {
   getOrdervalue() {
     const MyContract = contract(orderAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(orderAbi.abi, '0x957a8Ec2a0a82677f0A1307E2D6e3f2b19102D81');
+    const Xc = new this.web3.eth.Contract(orderAbi.abi, '0x67f52e1509752351491d7BB81b708f9B44AB52d7');
     return Xc.methods;
   }
 
@@ -372,7 +372,7 @@ export class EthcontractService {
   getBoxvalue() {
     const MyContract = contract(boxAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(boxAbi.abi, '0x90446a396FEda3A8c4273f992D27B39F8Bf28A4a');
+    const Xc = new this.web3.eth.Contract(boxAbi.abi, '0x7419d6fA8b3Ce22E0A4958fdD86dedBcbe06d74A');
     return Xc.methods;
   }
 
@@ -385,7 +385,7 @@ export class EthcontractService {
   getPacketvalue() {
     const MyContract = contract(packetAbi);
     MyContract.setProvider(this.web3.currentProvider);
-    const Xc = new this.web3.eth.Contract(packetAbi.abi, '0xfbA719D44e495c5d85B018B8fa0407D188cdbe9e');
+    const Xc = new this.web3.eth.Contract(packetAbi.abi, '0xFe3561f2a78f819e2e06f7766085f0D84ff0304f');
     return Xc.methods;
   }
 }
