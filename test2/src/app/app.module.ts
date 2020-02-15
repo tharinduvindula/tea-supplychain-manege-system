@@ -52,6 +52,7 @@ import { EstateupdateComponent } from './admin/estate/estateupdate/estateupdate.
 import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.component';
 import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { OneorderComponent } from './manager/oneorder/oneorder.component';
 
 
 

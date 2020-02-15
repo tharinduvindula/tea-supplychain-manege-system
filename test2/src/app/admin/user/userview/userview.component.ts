@@ -35,9 +35,10 @@ export class UserviewComponent implements OnInit {
     let x;
     let i;
     await this.managerservice.getManagerCount().then(val => x = val)
-    console.log(x)
+    
     for (i = 0; i < x; i++) {
       await this.managerservice.getManageri(i).then(val => {
+        
         this.items.push(this.formBuilder.group({
           contactNumber: val[3],
           email: val[1],
@@ -52,6 +53,7 @@ export class UserviewComponent implements OnInit {
     await this.adminservice.getAdminCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.adminservice.getAdmini(i).then(val => {
+        console.log(val)
         this.items1.push(this.formBuilder.group({
           contactNumber: val[3],
           email: val[1],
