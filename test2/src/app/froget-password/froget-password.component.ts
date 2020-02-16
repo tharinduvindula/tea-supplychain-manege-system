@@ -23,6 +23,7 @@ export class FrogetPasswordComponent implements OnInit {
   }
 
   frogetpassword() {
+    const email = this.form.email;
     this.service.frogetPassword({_userName: this.form.email}).then(
       async data => {
         await this.adminservice.isUserAdmin(this.form.email).then(
@@ -33,6 +34,7 @@ export class FrogetPasswordComponent implements OnInit {
               await this.adminservice.getAdminToken(this.form.email).then(
                 data2 => {
                   console.log(data2)
+                  this.frogetPasswordMail(data2,email)
                 },
                 error =>{
                   console.log(error)
@@ -44,6 +46,7 @@ export class FrogetPasswordComponent implements OnInit {
               await this.managerservice.getManagerToken(this.form.email).then(
                 data2 => {
                   console.log(data2)
+                  this.frogetPasswordMail(data2,email)
                 },
                 error => {
                   console.log(error)
@@ -67,16 +70,17 @@ export class FrogetPasswordComponent implements OnInit {
     password: ''
   };
 
-  register() {
+  frogetPasswordMail(token,email) {
     let user = {
-      name: this.form.email,
-      email: this.form.email.split('@')[0]
+      name: email.split('@')[0],
+      token: token,
+      email: email
     }
-    this.http.post('https://emailsender1.herokuapp.com/sendmail', user).subscribe(
+    this.http.post('https://emailsender1.herokuapp.com/sendmailwebfrogetpassword', user).subscribe(
       data => {
         let res: any = data;
         console.log(
-          `👏 > 👏 > 👏 > 👏 ${user.name} is successfully register and mail has been sent and the message id is ${res.messageId}`
+          ` ${res.messageId}`
         );
       },
       err => {

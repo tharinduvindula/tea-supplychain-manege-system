@@ -49,10 +49,10 @@ export class OrderaddComponent implements OnInit {
     const orderName = this.form.orderId + '#' + this.form.date + '#' + this.form.contry;
     const progress = 'No#' + this.form.qun + '#0#0#0#0#0';
     await this.service.insertOrder(orderName, progress, this.form.qun, this.form.productName).then(
-      data => {
+      async data => {
         if (data != null) {
           console.log(data);
-          this.productAdd(this.form.qun, orderName)
+          await this.productAdd(this.form.qun, orderName)
           this.formValues.resetForm();
         }
 
@@ -92,20 +92,20 @@ export class OrderaddComponent implements OnInit {
         for (let index = 0; index < x; index++) {
           boxId++;
           let tempboxId = this.datePipe.transform(new Date(), 'yyyyMMdd') + '#' + (boxId)
-          this.boxService.insertBox(tempboxId, _orderId)
+          await this.boxService.insertBox(tempboxId, _orderId)
           console.log('box' + index)
           if (index === 0) {
-            this.boxService.insertOrder(_orderId, x)
+            await this.boxService.insertOrder(_orderId, x)
             console.log("boxo")
           }
 
           for (let index2 = 0; index2 < 20; index2++) {
             packetId++;
             let temppacketId = this.datePipe.transform(new Date(), 'yyyyMMdd') + '#' + (packetId);
-            this.packetService.insertPacket(temppacketId, _orderId, tempboxId)
+            await this.packetService.insertPacket(temppacketId, _orderId, tempboxId)
             console.log('packet' + index2)
             if (index === 0 && index2 === 0) {
-              this.packetService.insertOrder(_orderId, x * 20);
+              await this.packetService.insertOrder(_orderId, x * 20);
               console.log('packeto')
             }
 
