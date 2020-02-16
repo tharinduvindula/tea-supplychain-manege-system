@@ -9,7 +9,7 @@ export class DistributorserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-    // this.editacc('seller1@gmail.com', 5);
+   // this.editacc('distri1@gmail.com', 5);
     // console.log('sexy')
   }
 

@@ -40,7 +40,6 @@ export class EthcontractService {
 
 
 
-
   constructor() {
     this.web3Provider = new Web3('http://13.126.29.43:7545');
     // console.log(window.web3)
