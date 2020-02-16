@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-distributoradd',
@@ -25,7 +26,7 @@ export class DistributoraddComponent implements OnInit {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private service: DistributorserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
+  constructor(private http: HttpClient,private service: DistributorserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
     // this.addingby = this.Token.payload(this.Token.gettoken()).ud.fullname;
     // this.adddistributor('tv@gmail.com', 'tv');
@@ -50,6 +51,7 @@ export class DistributoraddComponent implements OnInit {
         console.log(data);
           this.service.getDistributorToken(this.form.email).then(val => {
               console.log(val)
+            this.registerdistributor(val)
             });
         this.formValues.resetForm();
         }
@@ -98,6 +100,28 @@ export class DistributoraddComponent implements OnInit {
       this.form.cunum = 94;
     }
   }
+
+  registerdistributor(token) {
+    let user = {
+      name: this.form.email,
+      token: token,
+      email: this.form.email.split('@')[0]
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailDistributorRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
+  }
+
 }
 
 

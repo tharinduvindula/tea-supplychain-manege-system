@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AdminserviceService } from 'app/service/adminservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-workeradd',
@@ -28,7 +29,7 @@ export class WorkeraddComponent implements OnInit {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
+  constructor(private http: HttpClient,private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
   }
 
@@ -51,7 +52,8 @@ export class WorkeraddComponent implements OnInit {
           if (data != null) {
             console.log(data);
             this.supervisorservice.getSupervisorToken(this.form.email).then(val => {
-              console.log(val)
+              console.log(val);
+              this.registersupervisor(val);
             });
             this.formValues.resetForm();
           }
@@ -71,7 +73,8 @@ export class WorkeraddComponent implements OnInit {
           if (data != null) {
             console.log(data);
             this.loaderservice.getLoaderToken(this.form.email).then(val => {
-              console.log(val)
+              console.log(val);
+              this.registerloader(val);
             });
             this.formValues.resetForm();
           }
@@ -102,6 +105,48 @@ export class WorkeraddComponent implements OnInit {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
+  }
+
+  registerloader(token) {
+    let user = {
+      name: this.form.email,
+      token: token,
+      email: this.form.email.split('@')[0]
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailLoaderRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
+  }
+
+  registersupervisor(token) {
+    let user = {
+      name: this.form.email,
+      token: token,
+      email: this.form.email.split('@')[0]
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailSupervisorRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
   }
 }
 

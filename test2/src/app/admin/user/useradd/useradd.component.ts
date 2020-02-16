@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AdminserviceService } from 'app/service/adminservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-useradd',
@@ -28,7 +29,7 @@ export class UseraddComponent implements OnInit {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private managerservice: ManagerserviceService, private adminservice: AdminserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
+  constructor(private http: HttpClient,private managerservice: ManagerserviceService, private adminservice: AdminserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
     // this.addingby = this.Token.payload(this.Token.gettoken()).ud.fullname;
     // this.addmanager('tv@gmail.com', 'tv');
@@ -54,7 +55,8 @@ export class UseraddComponent implements OnInit {
           if (data != null) {
             console.log(data);
             this.managerservice.getManagerToken(this.form.email).then(val => {
-              console.log(val)
+              console.log(val);
+              this.registermanager(val)
             });
             this.formValues.resetForm();
           }
@@ -76,6 +78,7 @@ export class UseraddComponent implements OnInit {
             console.log(data);
             this.adminservice.getAdminToken(this.form.email).then(val => {
               console.log(val)
+              this.registeradmin(val)
             });
             this.formValues.resetForm();
           }
@@ -106,6 +109,47 @@ export class UseraddComponent implements OnInit {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
+  }
+  registeradmin(token) {
+    let user = {
+      name: this.form.email,
+      token: token,
+      email: this.form.email.split('@')[0]
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailAdminRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
+  }
+
+  registermanager(token) {
+    let user = {
+      name: this.form.email,
+      token: token,
+      email: this.form.email.split('@')[0]
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailManagerRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
   }
 }
 
