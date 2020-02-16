@@ -49,6 +49,7 @@ export class UseraddComponent implements OnInit {
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address ;
     const telephone = this.form.cunum + this.form.telephone;
+    const email = this.form.email;
     if (this.form.usertype === 'Manager') {
       await this.managerservice.insertManager(this.form.email, name, address, telephone).then(
         data => {
@@ -56,7 +57,7 @@ export class UseraddComponent implements OnInit {
             console.log(data);
             this.managerservice.getManagerToken(this.form.email).then(val => {
               console.log(val);
-              this.registermanager(val)
+              this.registermanager(val,email)
             });
             this.formValues.resetForm();
           }
@@ -78,7 +79,7 @@ export class UseraddComponent implements OnInit {
             console.log(data);
             this.adminservice.getAdminToken(this.form.email).then(val => {
               console.log(val)
-              this.registeradmin(val)
+              this.registeradmin(val,email)
             });
             this.formValues.resetForm();
           }
@@ -110,11 +111,11 @@ export class UseraddComponent implements OnInit {
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   }
-  registeradmin(token) {
+  registeradmin(token,email) {
     let user = {
-      name: this.form.email,
+      name: email.split('@')[0],
       token: token,
-      email: this.form.email.split('@')[0]
+      email:email
     }
     this.http.post('https://emailsender1.herokuapp.com/sendmailAdminRegistation', user).subscribe(
       data => {
@@ -131,11 +132,11 @@ export class UseraddComponent implements OnInit {
     );
   }
 
-  registermanager(token) {
+  registermanager(token,email) {
     let user = {
-      name: this.form.email,
+      name: email.split('@')[0],
       token: token,
-      email: this.form.email.split('@')[0]
+      email:email
     }
     this.http.post('https://emailsender1.herokuapp.com/sendmailManagerRegistation', user).subscribe(
       data => {

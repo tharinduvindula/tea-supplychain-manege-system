@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DistributorserviceService } from 'app/service/distributorservice.service';
 import { HttpClient } from '@angular/common/http';
-
 @Component({
   selector: 'app-distributoradd',
   templateUrl: './distributoradd.component.html',
@@ -23,13 +22,13 @@ export class DistributoraddComponent implements OnInit {
     type: null,
   };
   error: null;
-
-
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient,private service: DistributorserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
     // this.addingby = this.Token.payload(this.Token.gettoken()).ud.fullname;
     // this.adddistributor('tv@gmail.com', 'tv');
+   
+
   }
 
   ngOnInit() {
@@ -45,13 +44,15 @@ export class DistributoraddComponent implements OnInit {
     const name = this.form.name + '#' + this.form.photo + '#' + this.form.type;
     const address = this.form.address + '#' + this.form.contry;
     const telephone = this.form.cunum + '' + this.form.telephone;
+    const email = this.form.email;
     await this.service.insertDistributor(this.form.email, name, address, telephone).then(
       data => {
         if ( data != null) {
         console.log(data);
           this.service.getDistributorToken(this.form.email).then(val => {
               console.log(val)
-            this.registerdistributor(val)
+             
+            this.registerdistributor(val,email)
             });
         this.formValues.resetForm();
         }
@@ -101,13 +102,13 @@ export class DistributoraddComponent implements OnInit {
     }
   }
 
-  registerdistributor(token) {
+  registerdistributor(token,email) {
     let user = {
-      name: this.form.email,
+      name: email.split('@')[0],
       token: token,
-      email: this.form.email.split('@')[0]
+      email: email
     }
-    this.http.post('https://emailsender1.herokuapp.com/sendmailDistributorRegistation', user).subscribe(
+    this.http.post('http://emailsender1.herokuapp.com/sendmailDistributorRegistation', user).subscribe(
       data => {
         let res: any = data;
         console.log(
@@ -120,6 +121,7 @@ export class DistributoraddComponent implements OnInit {
         console.log('hi');
       }
     );
+    
   }
 
 }

@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
     await this.service.getProductCount().then(val => x = val)
     for (i = 0; i < x; i++) {
       await this.service.getProducti(i).then(val => {
-        console.log(val[2].split('#')[1])
+        console.log(val)
         this.items.push(this.formBuilder.group({
           productName: val[1].split('#')[1],
           photo: val[2].split('#')[1],

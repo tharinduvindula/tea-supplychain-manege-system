@@ -46,6 +46,7 @@ export class WorkeraddComponent implements OnInit {
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address;
     const telephone = this.form.cunum + this.form.telephone;
+    const email = this.form.email;
     if (this.form.usertype === 'Supervisor') {
       await this.supervisorservice.insertSupervisor(this.form.email, name, address, telephone).then(
         data => {
@@ -53,7 +54,7 @@ export class WorkeraddComponent implements OnInit {
             console.log(data);
             this.supervisorservice.getSupervisorToken(this.form.email).then(val => {
               console.log(val);
-              this.registersupervisor(val);
+              this.registersupervisor(val,email);
             });
             this.formValues.resetForm();
           }
@@ -74,7 +75,7 @@ export class WorkeraddComponent implements OnInit {
             console.log(data);
             this.loaderservice.getLoaderToken(this.form.email).then(val => {
               console.log(val);
-              this.registerloader(val);
+              this.registerloader(val,email);
             });
             this.formValues.resetForm();
           }
@@ -107,11 +108,11 @@ export class WorkeraddComponent implements OnInit {
     return day !== 0 && day !== 6;
   }
 
-  registerloader(token) {
+  registerloader(token,email) {
     let user = {
-      name: this.form.email,
+      name: email.split('@')[0],
       token: token,
-      email: this.form.email.split('@')[0]
+      email: email
     }
     this.http.post('https://emailsender1.herokuapp.com/sendmailLoaderRegistation', user).subscribe(
       data => {
@@ -128,11 +129,11 @@ export class WorkeraddComponent implements OnInit {
     );
   }
 
-  registersupervisor(token) {
+  registersupervisor(token,email) {
     let user = {
-      name: this.form.email,
+      name: email.split('@')[0],
       token: token,
-      email: this.form.email.split('@')[0]
+      email: email
     }
     this.http.post('https://emailsender1.herokuapp.com/sendmailSupervisorRegistation', user).subscribe(
       data => {
