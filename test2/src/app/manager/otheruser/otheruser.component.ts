@@ -4,6 +4,7 @@ import { SupervisorserviceService } from 'app/service/supervisorservice.service'
 import { LoaderserviceService } from 'app/service/loaderservice.service';
 import { ManagerserviceService } from 'app/service/managerservice.service';
 import { AdminserviceService } from 'app/service/adminservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otheruser',
@@ -17,7 +18,7 @@ export class OtheruserComponent implements OnInit {
   items2: FormArray;
   items3: FormArray;
 
-  constructor(private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService,private managerservice: ManagerserviceService, private adminservice: AdminserviceService, private formBuilder: FormBuilder) {
+  constructor(private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService,private managerservice: ManagerserviceService, private adminservice: AdminserviceService, private formBuilder: FormBuilder, private router:Router) {
     this.create();
   }
 
@@ -87,5 +88,8 @@ export class OtheruserComponent implements OnInit {
         }));
       });
     }
+  }
+  oneuser(email){
+    this.router.navigate(['/oneuser'], { queryParams: { email:email } });
   }
 }

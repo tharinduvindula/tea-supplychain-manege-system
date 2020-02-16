@@ -11,7 +11,7 @@
         <div class="row">
 
           <div *ngFor="let item of items.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
-            <div class="card-wrapper">
+            <div (click)=oneuser(item.email) class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
@@ -51,7 +51,7 @@
         <div class="row">
 
           <div *ngFor="let item of items1.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
-            <div class="card-wrapper">
+            <div (click)=oneuser(item.email) class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
@@ -88,7 +88,7 @@
         <div class="row">
   
           <div *ngFor="let item of items2.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
-            <div class="card-wrapper">
+            <div (click)=oneuser(item.email) class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
@@ -125,7 +125,7 @@
         <div class="row">
   
           <div *ngFor="let item of items3.value" class="col-3" style="padding-top: -1%;padding-bottom: 3%;">
-            <div class="card-wrapper">
+            <div (click)=oneuser(item.email) class="card-wrapper">
               <div class="card1">
                 <div class="card1-header card1-header-warning">
                   <h4 class="card1-title">Other users</h4>
