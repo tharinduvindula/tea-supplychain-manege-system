@@ -18,10 +18,10 @@ export class DistributoraddComponent implements OnInit {
     telephone: null,
     contry: null,
     cunum: null,
-    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg',
+    photo: 'https://i.ibb.co/rbFXjG0/Max-R-Headshot-1.jpg',
     type: null,
   };
-  error: null;
+  error;
   // tslint:disable-next-line: max-line-length
   constructor(private http: HttpClient,private service: DistributorserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
@@ -61,7 +61,8 @@ export class DistributoraddComponent implements OnInit {
       error => {
        // this.handleError(error)
         if (error != null) {
-        console.log(error)
+          console.log(error)
+          this.error =error;
         }
       }
 

@@ -8,6 +8,9 @@
           <p class="card-category">add distributor</p>
         </div>
         <div class="card-body">
+          <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+          </div>
           <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
             <div class="form-group row">
               <div class="col-md-12">
@@ -20,7 +23,7 @@
             <div class="form-group row">
               <div class="col-md-8">
                 <mat-form-field>
-                  <input matInput name="email" placeholder="Enter email" [(ngModel)]="form.email" required>
+                  <input matInput name="email" placeholder="Enter email"  pattern="[a-zA-Z0-9-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)" [(ngModel)]="form.email" required>
                   <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
               </div>
@@ -56,8 +59,8 @@
                 <mat-form-field class="example-full-width">
                   <mat-label>Type</mat-label>
                   <mat-select name="usertype" [(ngModel)]="form.type">
-                    <mat-option (click)="changcnum('US')" value="1">Distributor</mat-option>
-                    <mat-option (click)="changcnum('AI')" value="0">Seller</mat-option>
+                    <mat-option  value="1">Distributor</mat-option>
+                    <mat-option  value="0">Seller</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
@@ -71,9 +74,7 @@
                 <button type="submit" [disabled]="!useraddForm.valid" style="background-color: green;"
                   class="btn pull-right">Add
                   Distributor</button>
-                <div class="alert alert-danger" [hidden]="!error">
-                  {{error}}
-                </div>
+                
 
 
 

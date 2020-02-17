@@ -20,7 +20,7 @@ export class WorkeraddComponent implements OnInit {
     telephone: null,
     usertype: null,
     cunum: 94,
-    photo: 'https://imgbbb.com/images/2019/11/19/csm_Julien_Konemann_2_8583d0abae.jpg'
+    photo: 'https://i.ibb.co/rbFXjG0/Max-R-Headshot-1.jpg'
   };
   public form1 = {
     email: null
@@ -85,6 +85,7 @@ export class WorkeraddComponent implements OnInit {
           // this.handleError(error)
           if (error != null) {
             console.log(error)
+            this.error = error;
           }
         }
 

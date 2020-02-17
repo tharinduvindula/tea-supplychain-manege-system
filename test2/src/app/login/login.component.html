@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" style="margin-top: 20px;" data-validate="Enter user Email">
-                    <input type="email" type="email"  email="email" class="input100" id="inputEmail3" placeholder="Email"
-                        [(ngModel)]="form.email" required  #email="ngModel" [ngModelOptions]="{standalone: true}">
+                    <input type="email"  type="email"  email="email" class="input100" id="inputEmail3" placeholder="Email"
+                        [(ngModel)]="form.email" required  pattern="[a-zA-Z0-9-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)"  #email="ngModel" [ngModelOptions]="{standalone: true}">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">

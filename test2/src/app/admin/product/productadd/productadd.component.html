@@ -8,6 +8,9 @@
           <p class="card-category">add product</p>
         </div>
         <div class="card-body"> 
+          <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+          </div>
           <form #productaddForm=ngForm (ngSubmit)="onsubmit()">
             <div class="form-group row">
               <div class="col-md-6">
@@ -63,9 +66,7 @@
                 <button type="submit" [disabled]="!productaddForm.valid" style="background-color: green;"
                   class="btn pull-right">Add
                   Product</button>
-                <div class="alert alert-danger" [hidden]="!error">
-                  {{error}}
-                </div>
+                
 
 
 

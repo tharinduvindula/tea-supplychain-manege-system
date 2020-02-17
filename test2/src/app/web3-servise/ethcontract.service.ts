@@ -71,7 +71,7 @@ export class EthcontractService {
     const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x3C4B372344f8f4b744EbD0D75dDeF02d996480b7');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
-      Sc.methods.frogetPassword(_userName, 1).call((er: any, ev: any) => {
+      Sc.methods.frogetPassword(_userName, 3).call((er: any, ev: any) => {
         if (er != null) {
           console.log(er)
           error(((er.message + '').split(':', 3)[2]).split('revert')[1]);

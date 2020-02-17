@@ -18,7 +18,7 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Enter Email">
-          <input type="email" name="email" class="input100" id="inputEmail3" placeholder="Email"
+          <input type="email"  pattern="[a-zA-Z0-9-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)" name="email" class="input100" id="inputEmail3" placeholder="Email"
             [(ngModel)]="form.email" required>
           <span class="focus-input100" data-placeholder="&#xf207;"></span>
         </div>

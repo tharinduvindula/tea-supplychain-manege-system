@@ -8,6 +8,9 @@
           <p class="card-category">add estate</p>
         </div>
         <div class="card-body">
+          <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+          </div>
           <form #estateaddForm=ngForm (ngSubmit)="onsubmit()">
             <div class="form-group row">
               <div class="col-md-6">
@@ -63,9 +66,7 @@
                 <button type="submit" [disabled]="!estateaddForm.valid" style="background-color: green;"
                   class="btn pull-right">Add
                   Estate</button>
-                <div class="alert alert-danger" [hidden]="!error">
-                  {{error}}
-                </div>
+                
 
 
 

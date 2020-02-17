@@ -59,6 +59,7 @@ export class ProductaddComponent implements OnInit {
       error => {
         this.handleError(error)
         if (error != null) {
+          this.error =error;
           console.log(error)
         }
       }
