@@ -41,7 +41,7 @@ export class ProducteditComponent implements OnInit {
     event.preventDefault();
     this.form.productNamei = productNamei;
     console.log(productNamei)
-    this.router.navigate(['/admin/product/update'], { queryParams: { productName: productNamei } });
+    this.router.navigate(['/admin/product/update'], { queryParams: { productName: productNamei }, skipLocationChange: true  });
   }
   async ondelete(event, email) {
     event.preventDefault();

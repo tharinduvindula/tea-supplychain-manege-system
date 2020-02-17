@@ -90,6 +90,6 @@ export class OtheruserComponent implements OnInit {
     }
   }
   oneuser(email){
-    this.router.navigate(['/oneuser'], { queryParams: { email:email } });
+    this.router.navigate(['/oneuser'], { queryParams: { email: email }, skipLocationChange: true  });
   }
 }

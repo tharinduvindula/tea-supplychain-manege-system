@@ -11,16 +11,26 @@ contract ContainerContract {
         string containerId;
         bytes32 containerIdCode;
         string mainDistributorScanDateAndTime;
-        order[] orderDetail;
+        string loaderScanDateAndTime;
+        mapping (uint=>Order) orderId;
+        uint orderIdCount;
         uint index;
+        uint scantime;
     }
 
     struct DisplayContainer{
         string containerId;
         bytes32 containerIdCode;
         string mainDistributorScanDateAndTime;
-        order[] orderDetail;
+        string loaderScanDateAndTime;
+        mapping (uint=>Order) orderId;
+        uint orderIdCount;
         uint index;
+    }
+    
+    struct Order{
+        bytes32 orderIdCode;
+        string orderId;
     }
 
     event LogNewContainer(
@@ -36,67 +46,88 @@ contract ContainerContract {
     mapping(bytes32 => Container) public ContainerArray;
     DisplayContainer[] private ContainerIndex;
 
-    // function isContainer(string memory _containerId)public view returns(bool isIndeed) {
-    //     bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
-    //     if(ContainerIndex.length == 0) return false;
-    //     return (ContainerIndex[ContainerArray[_containerIdCode].index].containerIdCode == _containerIdCode);
-    // }
-    // function isContainerx(bytes32 _containerIdCode)public view returns(bool isIndeed) {
-    //     if(ContainerIndex.length == 0) return false;
-    //     return (ContainerIndex[ContainerArray[_containerIdCode].index].containerIdCode == _containerIdCode);
-    // }
-    // function insertContainer
-    // (string memory _containerId,string memory _orderId) public returns(bool){
-    //     bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
-    //     require(isContainerx(_containerIdCode) != true,'container allredy in system');
+    function isContainer(string memory _containerId)public view returns(bool isIndeed) {
+        bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
+        if(ContainerIndex.length == 0) return false;
+        return (ContainerIndex[ContainerArray[_containerIdCode].index].containerIdCode == _containerIdCode);
+    }
+    function isContainerx(bytes32 _containerIdCode)public view returns(bool isIndeed) {
+        if(ContainerIndex.length == 0) return false;
+        return (ContainerIndex[ContainerArray[_containerIdCode].index].containerIdCode == _containerIdCode);
+    }
+     function isOrder(bytes32 _containerIdCode,string memory _orderId)public view returns(bool isIndeed) {
+        bytes32 _orderIdCode = keccak256(abi.encodePacked((_orderId)));
+        for(uint i=0;i<ContainerArray[_containerIdCode].orderIdCount;i++){
+            if(ContainerArray[_containerIdCode].orderId[i].orderIdCode == _orderIdCode){
+                return true;
+            }
+        }
+        return false;
+    }
+    function insertContainer
+    (string memory _containerId) public returns(bool){
+        bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
+        require(isContainerx(_containerIdCode) != true,'container allredy in system');
 
-    //     ContainerArray[_containerIdCode].containerId = _containerId;
-    //     ContainerArray[_containerIdCode].containerIdCode = _containerIdCode;
+        ContainerArray[_containerIdCode].containerId = _containerId;
+        ContainerArray[_containerIdCode].containerIdCode = _containerIdCode;
+        ContainerArray[_containerIdCode].containerIdCode = 0;
+        ContainerArray[_containerIdCode].orderIdCount = 0;
+        ContainerArray[_containerIdCode].index = ContainerIndex.length-1;
 
+        emit LogNewContainer (
+            _containerIdCode,
+            ContainerArray[_containerIdCode].index,
+            _containerId
+            );
+        return true;
+    }
 
-    //     ContainerArray[_containerIdCode].index = ContainerIndex.length-1;
+    function getContainer(string memory _containerId) public view returns
+    (bytes32 containerIdCode,string memory containerId,uint orderIdCount,string memory loaderScanDateAndTime,string memory mainDistributorScanDateAndTime){
+        bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
+        require(isContainerx(_containerIdCode) != true,'container not in system');
+        return(
+            _containerIdCode,
+            ContainerArray[_containerIdCode].containerId,
+            ContainerArray[_containerIdCode].orderIdCount,
+            ContainerArray[_containerIdCode].loaderScanDateAndTime,
+            ContainerArray[_containerIdCode].mainDistributorScanDateAndTime
+            );
 
-    //     emit LogNewContainer (
-    //         _containerIdCode,
-    //         ContainerArray[_containerIdCode].index,
-    //         _containerId,
-    //         _orderId
-    //         );
-    //     return true;
-    // }
+    }
+    
+    function getorderi(string memory _containerId,uint i) public view returns
+    (string memory orderId){
+        bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
+        require(isContainerx(_containerIdCode) != true,'container not in system');
+        return(
+           
+            ContainerArray[_containerIdCode].orderId[i].orderId
+            );
 
-    // function getContainer(string memory _containerId) public view returns
-    // (bytes32 containerIdCode,string memory containerId,string memory orderId,string memory loaderScanDateAndTime,uint distributorIdCount){
-    //     bytes32 _containerIdCode = keccak256(abi.encodePacked((_containerId)));
-    //     require(isContainerx(_containerIdCode) == true,'container not in system');
-    //     return(
-    //         _containerIdCode,
-    //         ContainerArray[_containerIdCode].containerId,
-    //         ContainerArray[_containerIdCode].orderId,
-    //         ContainerArray[_containerIdCode].containerId,
-    //         ContainerArray[_containerIdCode].loaderScanDateAndTime,
-    //         ContainerArray[_containerIdCode].distributorId.length
-    //         );
+    }
+    
+    function addOrder(bytes32 _containerIdCode,string memory orderId) public returns(bool)
+    {
+        require(isOrder(_containerIdCode,orderId) != true ,'order allredy add');
+        bytes32 orderIdCode = keccak256(abi.encodePacked((orderId)));
+        ContainerArray[_containerIdCode].orderId[ ContainerArray[_containerIdCode].orderIdCount].orderId = orderId;
+        ContainerArray[_containerIdCode].orderId[ ContainerArray[_containerIdCode].orderIdCount].orderIdCode = orderIdCode;
+        ContainerArray[_containerIdCode].orderIdCount++;
+        return true;
+    }
+     function scanContaine(bytes32 _containerIdCode,string memory distributorIdAnddateAndTime) public returns(bool)
+    {
+        ContainerArray[_containerIdCode].scantime++;
+        if(ContainerArray[_containerIdCode].scantime == 1){
+            ContainerArray[_containerIdCode].loaderScanDateAndTime = distributorIdAnddateAndTime;
+        } else if(ContainerArray[_containerIdCode].scantime == 2){
+            ContainerArray[_containerIdCode].mainDistributorScanDateAndTime = distributorIdAnddateAndTime;
+        }
+        return true;
+    }
 
-    // }
-
-    // function getContainerDistributori(bytes32 _containerIdCode,uint i) public view returns(string memory,string memory)
-    // {
-    //     return 
-    //     (
-    //         ContainerArray[_containerIdCode].distributorId[i].distributor,
-    //         ContainerArray[_containerIdCode].distributorId[i].dateAndTime
-    //     );
-    // }
-    // // function scanDistributor(bytes32 _containerIdCode,string memory distributorId,string memory dateAndTime) public returns(bool)
-    // // {
-    // //     Distributor memory distributorDetail;
-    // //     distributorDetail.distributor = distributorId;
-    // //     distributorDetail.dateAndTime = dateAndTime;
-    // //     ContainerArray[_containerIdCode].distributorId.push(distributorDetail);
-    // //     ContainerIndex[ContainerArray[_containerIdCode].index].distributorId.push(distributorDetail);
-    // //     return true;
-    // // }
 
 
 }

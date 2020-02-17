@@ -40,6 +40,6 @@ export class ProductComponent implements OnInit {
   }
 
   oneproduct(productName){
-    this.router.navigate(['/oneproduct'], { queryParams: { productName: productName } });
+    this.router.navigate(['/oneproduct'], { queryParams: { productName: productName }, skipLocationChange: true  });
   }
 }
