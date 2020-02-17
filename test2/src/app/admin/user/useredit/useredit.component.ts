@@ -46,7 +46,7 @@ export class UsereditComponent implements OnInit {
   onedit(event, email) {
     event.preventDefault();
     this.form.email = email;
-    this.router.navigate(['/admin/user/update'], { queryParams: { Email: email } });
+    this.router.navigate(['/admin/user/update'], { queryParams: { Email: email }, skipLocationChange: true  });
   }
   async ondelete1(event, email) {
     event.preventDefault();

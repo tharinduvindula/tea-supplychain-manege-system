@@ -39,11 +39,12 @@ export class DistributorComponent implements OnInit {
     
     for (i = 0; i < x; i++) {
       await this.service.getDistributori(i).then(val => {
+        console.log(val)
         let contry;
         let contryy;
         if( val[4].split('#')[1] === 'US'){
           contry = `flag-icon-us`;
-          contryy = 'Amarica';
+          contryy = 'America';
         }
         else if (val[4].split('#')[1] === 'AI') {
           contry = `flag-icon-ai`;

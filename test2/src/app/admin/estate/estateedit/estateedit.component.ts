@@ -37,7 +37,7 @@ export class EstateeditComponent implements OnInit {
   onedit(event, estateName) {
     event.preventDefault();
     this.form.estateName = estateName;
-    this.router.navigate(['/admin/estate/update'], { queryParams: { estateName: estateName } });
+    this.router.navigate(['/admin/estate/update'], { queryParams: { estateName: estateName }, skipLocationChange: true  });
   }
   async ondelete(event, email) {
     event.preventDefault();

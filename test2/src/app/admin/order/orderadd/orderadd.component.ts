@@ -47,7 +47,7 @@ export class OrderaddComponent implements OnInit {
 
     console.log(this.form)
     const orderName = this.form.orderId + '#' + this.form.date + '#' + this.form.contry;
-    const progress = 'No#' + this.form.qun + '#0#0#0#0#0';
+    const progress = 'No#' + this.form.qun * 20 + '#0#0#0#0#0#0';
     await this.service.insertOrder(orderName, progress, this.form.qun, this.form.productName).then(
       async data => {
         if (data != null) {
