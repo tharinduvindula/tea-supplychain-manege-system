@@ -30052,10 +30052,158 @@
       "links": {},
       "address": "0x1838Ece63A4750D5bC47303D1C0331b3EC663dC3",
       "transactionHash": "0x3ad8c503f12d58f19c3b7a0176e791922e062d39f2f7e7b5816775dcb3891bcb"
+    },
+    "1581923562133": {
+      "events": {
+        "0xe1ff156be6bced8bd204b6d37ac5ca0bd9cbbc129fc6647c272b8b87bfb34fd6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "productNamecode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteProduct",
+          "type": "event"
+        },
+        "0x658698f834b0c13f9740151fabaa541fc6532be36620da8761c82e426123e51f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewProduct",
+          "type": "event"
+        },
+        "0xff757f62d040f7e3d832721808f2e12f3df36f41c1060c4c814352ed0466f150": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "productNameCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "productName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "flaver",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "packetTypeAndWeight",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "productAccess",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "rate",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "unit",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateProduct",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xC3E37E7B1CC08a6609b869407cFc100aDf315D6a",
+      "transactionHash": "0x88750aa190c7b716020fdb2ed9251be34c15c68a78ab78784e333df23c1a1e29"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-14T23:38:48.558Z",
+  "updatedAt": "2020-02-17T07:14:36.532Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

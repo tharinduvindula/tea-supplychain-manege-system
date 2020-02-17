@@ -40282,10 +40282,16 @@
       "links": {},
       "address": "0x528B3a6A11A49da4b398795C0352d66F77756A01",
       "transactionHash": "0x5f2edcaa394b6c04c0ac175f2e7446b23c78353b9a6e722b6387b0144419c68a"
+    },
+    "1581923562133": {
+      "events": {},
+      "links": {},
+      "address": "0x85E5F08D0833Af7feb60b2ecf6870F8c846aF136",
+      "transactionHash": "0x271b5139cac07ca86afa864da35d1755a762a05030a0e92d3e9456ac65339aac"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-14T23:38:47.500Z",
+  "updatedAt": "2020-02-17T07:14:35.697Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
