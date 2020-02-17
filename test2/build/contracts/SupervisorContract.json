@@ -35530,10 +35530,282 @@
       "links": {},
       "address": "0x847ff35a56E5dEe29224F3b66205C864477753BC",
       "transactionHash": "0x266c07ff89174bff38a9411b7dc0cb7c094f9a1059c17fc106dd1f9013b6dbf7"
+    },
+    "1581928395609": {
+      "events": {
+        "0xa5c19fdb258d8c46ca76c3d6908a1eae940f60ab0c5efff1face636445aa89ad": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailcode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteSupervisor",
+          "type": "event"
+        },
+        "0x5b4a315693b2656459d62e0654a19fa40351916778bbbdbb52767e6a6348f0c1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "passwordCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "contactNumber",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "userAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "userAccess",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewSupervisor",
+          "type": "event"
+        },
+        "0xcb46eeb6bb50a8b5e92aedcd091536be514c5440f3b6ccbd538905454fe79f48": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "passwordCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "contactNumber",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "userAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "userAccess",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateSupervisor",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xB8943D8c3F94A4C10fC70B290af51a0475632Df4",
+      "transactionHash": "0x2a3fada291d239c4febb67db3d0434aa2d5210a8d3c66cf66ce9806aba896379"
+    },
+    "1581929038329": {
+      "events": {
+        "0xa5c19fdb258d8c46ca76c3d6908a1eae940f60ab0c5efff1face636445aa89ad": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailcode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDeleteSupervisor",
+          "type": "event"
+        },
+        "0x5b4a315693b2656459d62e0654a19fa40351916778bbbdbb52767e6a6348f0c1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "passwordCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "contactNumber",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "userAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "userAccess",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogNewSupervisor",
+          "type": "event"
+        },
+        "0xcb46eeb6bb50a8b5e92aedcd091536be514c5440f3b6ccbd538905454fe79f48": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "emailCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "index",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "passwordCode",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "contactNumber",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "userAddress",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "userAccess",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogUpdateSupervisor",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xE069237611DA84CfAD22F81B803Cfbac4798CC0a",
+      "transactionHash": "0x67082cd2500be7e2b50c15f2f3eaaf7d1c679eb26a8ea43899ab616282553940"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-02-17T07:14:36.298Z",
+  "updatedAt": "2020-02-17T08:45:50.967Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
