@@ -9,6 +9,7 @@ var OrderContract = artifacts.require("OrderContract");
 var ProdutContract = artifacts.require("ProductContract");
 var BoxContract = artifacts.require("BoxContract");
 var PacketContract = artifacts.require("PacketContract");
+var ContainerContract = artifacts.require("ContainerContract");
 
 module.exports = function (deployer) {
      deployer.deploy(ManagerContract).then(function () {
@@ -33,4 +34,5 @@ module.exports = function (deployer) {
     deployer.deploy(ProdutContract);
     deployer.deploy(PacketContract);
     deployer.deploy(BoxContract);
+    deployer.deploy(ContainerContract);
 };

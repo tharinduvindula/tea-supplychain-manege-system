@@ -34,7 +34,7 @@ export class EthcontractService {
   private web3: any;
   private contracts: {};
   private privateKey = Buffer.from('5dab5f22099b221e8a314ce3813bb478dd0d8ef5dbb87b8d974aaab44cddcacb', 'hex');
-  public curentaccount = '0x05346F5978995345Ab999311eE6A9eD614Bc4F95';
+  public curentaccount = '0x89e411d21B4b0129678Ea12e4b47EE240361B199';
   result;
 
 
