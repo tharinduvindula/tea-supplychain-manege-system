@@ -61,6 +61,7 @@ export class OrderaddComponent implements OnInit {
         this.handleError(error)
         if (error != null) {
           console.log(error)
+          this.error =error;
         }
       }
 

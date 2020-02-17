@@ -62,6 +62,7 @@ export class EstateaddComponent implements OnInit {
         this.handleError(error)
         if (error != null) {
           console.log(error)
+          this.error =error;
         }
       }
 

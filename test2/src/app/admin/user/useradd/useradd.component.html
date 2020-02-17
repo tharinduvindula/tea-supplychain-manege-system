@@ -8,6 +8,9 @@
           <p class="card-category">add user</p>
         </div>
         <div class="card-body">
+          <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+          </div>
           <form #useraddForm=ngForm (ngSubmit)="onsubmit()">
             <div class="form-group row">
               <div class="col-md-12">
@@ -19,7 +22,7 @@
             <div class="form-group row"> 
               <div class="col-md-8">
                 <mat-form-field>
-                  <input matInput name="email" placeholder="Enter email" [(ngModel)]="form.email" required>
+                  <input matInput name="email" placeholder="Enter email" pattern="[a-zA-Z0-9-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)" [(ngModel)]="form.email" required>
                   <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
               </div>
@@ -54,9 +57,7 @@
                 <button type="submit" [disabled]="!useraddForm.valid" style="background-color: green;"
                   class="btn pull-right">Add
                   Profile</button>
-                <div class="alert alert-danger" [hidden]="!error">
-                  {{error}}
-                </div>
+                
  
 
 
