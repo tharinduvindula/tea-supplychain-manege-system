@@ -109,6 +109,20 @@ contract BoxContract {
 
     }
 
+    function getBoxCode(bytes32 _boxIdCode) public view returns
+    (bytes32 boxIdCode,string memory boxId,string memory orderId,string memory containerId,string memory loaderScanDateAndTime,uint distributorIdCount){
+        require(isBoxx(_boxIdCode) == true,'box not in system');
+        return(
+            _boxIdCode,
+            BoxArray[_boxIdCode].boxId,
+            BoxArray[_boxIdCode].orderId,
+            BoxArray[_boxIdCode].containerId,
+            BoxArray[_boxIdCode].loaderScanDateAndTime,
+            BoxArray[_boxIdCode].scantime
+            );
+
+    }
+
     function getBoxi(uint i) public view returns
     (bytes32 boxIdCode,string memory boxId,string memory orderId){
         return(

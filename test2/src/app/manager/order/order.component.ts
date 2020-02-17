@@ -46,7 +46,7 @@ export class OrderComponent implements OnInit {
         let contryy;
         if ( val[1].split('#')[2] === 'US') {
           contry = `flag-icon-us`;
-          contryy = 'Amarica';
+          contryy = 'America';
         } else if ( val[1].split('#')[2] === 'AI') {
           contry = `flag-icon-ai`;
           contryy = 'Australia';
