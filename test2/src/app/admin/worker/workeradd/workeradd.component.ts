@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AdminserviceService } from 'app/service/adminservice.service';
 import { SupervisorserviceService } from 'app/service/supervisorservice.service';
 import { LoaderserviceService } from 'app/service/loaderservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-workeradd',
@@ -28,7 +29,7 @@ export class WorkeraddComponent implements OnInit {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
+  constructor(private http: HttpClient,private supervisorservice: SupervisorserviceService, private loaderservice: LoaderserviceService/*, private addDemoService: AddDemoService, private Token: TokenService, private User: UserService*/) {
 
   }
 
@@ -45,13 +46,15 @@ export class WorkeraddComponent implements OnInit {
     const name = this.form.name + '#' + this.form.photo;
     const address = this.form.address;
     const telephone = this.form.cunum + this.form.telephone;
+    const email = this.form.email;
     if (this.form.usertype === 'Supervisor') {
       await this.supervisorservice.insertSupervisor(this.form.email, name, address, telephone).then(
         data => {
           if (data != null) {
             console.log(data);
             this.supervisorservice.getSupervisorToken(this.form.email).then(val => {
-              console.log(val)
+              console.log(val);
+              this.registersupervisor(val,email);
             });
             this.formValues.resetForm();
           }
@@ -71,7 +74,8 @@ export class WorkeraddComponent implements OnInit {
           if (data != null) {
             console.log(data);
             this.loaderservice.getLoaderToken(this.form.email).then(val => {
-              console.log(val)
+              console.log(val);
+              this.registerloader(val,email);
             });
             this.formValues.resetForm();
           }
@@ -102,6 +106,48 @@ export class WorkeraddComponent implements OnInit {
     const day = d.getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
+  }
+
+  registerloader(token,email) {
+    let user = {
+      name: email.split('@')[0],
+      token: token,
+      email: email
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailLoaderRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
+  }
+
+  registersupervisor(token,email) {
+    let user = {
+      name: email.split('@')[0],
+      token: token,
+      email: email
+    }
+    this.http.post('https://emailsender1.herokuapp.com/sendmailSupervisorRegistation', user).subscribe(
+      data => {
+        let res: any = data;
+        console.log(
+          ` ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        console.log('hi');
+      }
+    );
   }
 }
 
