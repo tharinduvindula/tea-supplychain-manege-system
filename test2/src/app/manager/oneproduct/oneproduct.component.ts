@@ -32,7 +32,7 @@ export class OneproductComponent implements OnInit {
   async getProduct(productName) {
     console.log(productName)
     await this.service.getProduct(productName).then(val => {
-      if (val[4] !== '4') {
+    
         this.form.productId = val[1].split('#')[0];
         this.form.productName = val[1].split('#')[1];
         this.form.flaver = val[2].split('#')[0],
@@ -40,7 +40,7 @@ export class OneproductComponent implements OnInit {
         this.form.price = val[5],
         this.form.packetType = val[3].split('#')[0],
         this.form.weight = val[3].split('#')[1]
-      }
+      
     });
   }
 }

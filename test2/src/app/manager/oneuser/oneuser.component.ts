@@ -14,7 +14,6 @@ export class OneuserComponent implements OnInit {
     telephone: null,
     name: null,
     photo: null,
-    type: null,
   };
   item:FormArray
 
@@ -28,13 +27,12 @@ export class OneuserComponent implements OnInit {
   async getadmin(email){
     console.log(email)
     await this.service.getAdmin(email).then(val => {
-      if (val[5] !== '4') {
         console.log(val)
-        this.form.name = val[1].split('#')[1];
+        this.form.name = val[2].split('#')[0],
+        this.form.photo= val[2].split('#')[1],
         this.form.email = val[1].split('#')[0];
-        this.form.telephone = val[1].split('#')[3];
-        this.form.type= val[1].split('#')[4];
-      }
+        this.form.telephone = val[3].split('#')[0];
+      
     });
   }
 }
