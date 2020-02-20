@@ -30,6 +30,7 @@ export class WorldmapComponent implements OnInit {
 
     for (i = 0; i < x; i++) {
       await this.service.getOrderi(i).then(async val => {
+        if (val[5] === '1'){
 
         if (val[1].split('#')[2] === 'US') {
           this.America = this.America + val[4] * 20;
@@ -48,6 +49,7 @@ export class WorldmapComponent implements OnInit {
         } else if (val[1].split('#')[2] === 'LK') {
           this.SriLanka = this.SriLanka + val[4] * 20;
         }
+      }
       });
     }
   }
