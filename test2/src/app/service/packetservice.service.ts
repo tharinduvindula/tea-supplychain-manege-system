@@ -72,7 +72,7 @@ export class PacketserviceService {
     return this.result;
   }
   async getOrder(email) {
-    await this.web3.getPacketvalue().getPacket(email).call((er: any, ev: any) => {
+    await this.web3.getPacketvalue().getOrder(email).call((er: any, ev: any) => {
       if (er == null) {
         this.result = ev;
       } else {

@@ -14,7 +14,7 @@ export class ProductaddComponent implements OnInit {
   public form = {
     productId: null,
     productName: null,
-    photo: 'https://i.ibb.co/fNwMyzz/mmp6178-edited.jpg',
+    photo: null,
     packetType: null,
     flaver: null,
     weight: null,
@@ -57,7 +57,7 @@ export class ProductaddComponent implements OnInit {
 
       },
       error => {
-        this.handleError(error)
+      //  this.handleError(error)
         if (error != null) {
           this.error =error;
           console.log(error)

@@ -9,14 +9,24 @@ import { ManagerLayoutComponent } from './layouts/manager-layout/manager-layout.
 import { FrogetPasswordComponent } from './froget-password/froget-password.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RegistationComponent } from './registation/registation.component';
+import { AdminauthService } from './service/adminauth.service';
+import { ManagerauthService } from './service/managerauth.service';
 
 const routes: Routes = [
   {
+     //canActivate: [ManagerauthService], 
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
   {
+    //canActivate: [AdminauthService],
+    path: '',
+    redirectTo: 'admin/dashboard',
+    pathMatch: 'full',
+  },
+  {
+    //canActivate: [ManagerauthService], 
     path: 'manager',
     redirectTo: 'manager/dashboard',
     pathMatch: 'full',
@@ -33,6 +43,7 @@ const routes: Routes = [
     path: 'registaition',
     component: RegistationComponent,
   },  {
+    // canActivate: [AdminauthService],
     path: 'admin',
     component: AdminLayoutComponent,
     children: [{
@@ -40,6 +51,7 @@ const routes: Routes = [
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
     }]
   }, {
+     //canActivate: [ManagerauthService], 
     path: '',
     component: ManagerLayoutComponent,
     children: [{

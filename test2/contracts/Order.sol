@@ -150,7 +150,7 @@ contract OrderContract {
         return OrderIndex.length;
     }
 
-    function updateOrderOrderProgress (string memory _orderName,string memory _progress) public returns(bool success){
+    function updateupdateOrderOrderProgress (string memory _orderName,string memory _progress) public returns(bool success){
         bytes32 _orderNameCode = keccak256(abi.encodePacked((_orderName)));
         require(isOrder(_orderNameCode) == true,'order not in system');
         OrderArray[_orderNameCode].progress = _progress;

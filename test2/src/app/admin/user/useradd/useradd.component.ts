@@ -20,7 +20,7 @@ export class UseraddComponent implements OnInit {
     telephone: null,
     usertype: null,
     cunum: 94,
-    photo: 'https://i.ibb.co/rbFXjG0/Max-R-Headshot-1.jpg'
+    photo: null
   };
   public form1 = {
     email: null

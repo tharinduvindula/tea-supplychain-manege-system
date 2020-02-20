@@ -10,6 +10,7 @@ export class OrderserviceService {
   constructor(private web3: EthcontractService) {
     // this.editacc('distributor2@gmail.com', 3);
     // console.log('sexy')
+    //this.updateOrderOrderProgress('o0005#2020/02/17#AI', 'Yes#40#0#0#0#0#0#0')
   }
 
   async getOrderCount() {
@@ -122,20 +123,20 @@ export class OrderserviceService {
     });
   }
 
-  updateOrder(orderName, index, orderAddress, ownerName, contactnumberAndEmail): Promise<any> {
+  updateOrderOrderProgress(orderName, progress): Promise<any> {
     // tslint:disable-next-line: max-line-length
     // tslint:disable-next-line: no-unused-expression
     return new Promise((dt, er) => {
       this.web3.setOrdervalue()
         .then(async (deployed: {
-          updateOrder: (arg0: string, arg1: number[], arg2: string, arg3: string, arg4: string, arg5: { from: string; }) =>
+          updateOrderOrderProgress: (arg0: string, arg1: string, arg2: { from: string; }) =>
             { er: string; ev: string; }
         }) => {
           try {
             // tslint:disable-next-line: max-line-length
-            this.result = await deployed.updateOrder(orderName, index, orderAddress, ownerName, contactnumberAndEmail, { from: this.web3.curentaccount })
+            this.result = await deployed.updateOrderOrderProgress(orderName, progress ,{ from: this.web3.curentaccount })
           } catch (error) {
-            console.log('error');
+            console.log(error);
           }
           if (this.result != null) {
             dt(this.result.logs[0].args.orderName);
@@ -159,7 +160,7 @@ export class OrderserviceService {
           try {
             this.result = await deployed.deleteOrder(orderName, { from: this.web3.curentaccount })
           } catch (error) {
-            console.log('error');
+            console.log(error);
           }
           if (this.result != null) {
             dt(this.result.logs[0].args.name);

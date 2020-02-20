@@ -66,9 +66,10 @@ result;
     });
     return this.result;
   }
-  async getOrder(email) {
-    await this.web3.getBoxvalue().getBox(email).call((er: any, ev: any) => {
+  async getOrder(order) {
+    await this.web3.getBoxvalue().getOrder(order).call((er: any, ev: any) => {
       if (er == null) {
+        console.log(order)
         this.result = ev;
       } else {
         this.result = er;

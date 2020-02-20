@@ -9,7 +9,7 @@ export class ManagerserviceService {
   result;
 
   constructor(private web3: EthcontractService) {
-     //this.editacc('manager1@gmail.com',5)
+    this.editacc('danushkanuwan252@gmail.com@gmail.com',5)
   }
 
   async getManagerCount() {
@@ -236,6 +236,25 @@ export class ManagerserviceService {
             console.log(this.result)
           }
         });
+    });
+  }
+  async isUserManager(email) {
+    // await this.web3.getAdminvalue().isAdminx(email).call((er: any, ev: any) => {
+    //   if (er == null) {
+    //     this.result = ev;
+    //   } else {
+    //     this.result = er;
+    //   }
+    // });
+    return await new Promise((data1, error) => {
+      this.web3.getManagervalue().isManagerx(email).call((er: any, ev: any) => {
+        if (er != null) {
+          console.log(er)
+          error('not user');
+        }
+
+        data1(ev);
+      })
     });
   }
 }

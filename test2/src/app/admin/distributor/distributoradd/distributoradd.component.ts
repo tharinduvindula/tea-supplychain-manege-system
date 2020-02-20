@@ -18,7 +18,7 @@ export class DistributoraddComponent implements OnInit {
     telephone: null,
     contry: null,
     cunum: null,
-    photo: 'https://i.ibb.co/rbFXjG0/Max-R-Headshot-1.jpg',
+    photo: null,
     type: null,
   };
   error;
@@ -50,8 +50,7 @@ export class DistributoraddComponent implements OnInit {
         if ( data != null) {
         console.log(data);
           this.service.getDistributorToken(this.form.email).then(val => {
-              console.log(val)
-             
+              console.log(val);
             this.registerdistributor(val,email)
             });
         this.formValues.resetForm();

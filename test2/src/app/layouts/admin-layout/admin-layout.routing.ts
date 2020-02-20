@@ -34,6 +34,10 @@ import { WorkereditComponent } from 'app/admin/worker/workeredit/workeredit.comp
 import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdate.component';
 import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
 import { WorkerupdateComponent } from 'app/admin/worker/workerupdate/workerupdate.component';
+import { OneproductComponent } from 'app/manager/oneproduct/oneproduct.component';
+import { OneuserComponent } from 'app/manager/oneuser/oneuser.component';
+import { OneorderComponent } from 'app/manager/oneorder/oneorder.component';
+import { OrderdeleteComponent } from 'app/admin/order/orderdelete/orderdelete.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full',},
@@ -53,6 +57,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'estate/update', component: EstateupdateComponent },
     { path: 'order/view', component: OrderComponent },
     { path: 'order/add', component: OrderaddComponent },
+    { path: 'order/delete', component: OrderdeleteComponent },
     { path: 'order/summary', component: OrdersummaryComponent },
     { path: 'product/add', component: ProductaddComponent },
     { path: 'product/view', component: ProductComponent },
@@ -69,5 +74,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'worker/edit', component: WorkereditComponent },
     { path: 'worker/update', component: WorkerupdateComponent },
     { path: 'worker/block', component: WorkerblockComponent },
-    
+    { path: 'product/oneproduct', component: OneproductComponent },
+    { path: 'user/oneuser', component: OneuserComponent },
+    { path: 'order/oneorder', component: OneorderComponent },
 ];

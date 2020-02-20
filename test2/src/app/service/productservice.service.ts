@@ -43,7 +43,7 @@ export class ProductserviceService {
             console.log(this.result)
             dt(this.result.logs[0].args.productName);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });
@@ -67,7 +67,7 @@ export class ProductserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.productName);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });
@@ -92,7 +92,7 @@ export class ProductserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.productName);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });
@@ -116,7 +116,7 @@ export class ProductserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.productName);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });
@@ -141,7 +141,7 @@ export class ProductserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.productName);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });
@@ -165,7 +165,7 @@ export class ProductserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.name);
           } else {
-            er('user alredy in system');
+            er('Product alredy in system');
             console.log(this.result)
           }
         });

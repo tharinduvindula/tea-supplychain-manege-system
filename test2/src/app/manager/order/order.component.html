@@ -10,9 +10,9 @@
         <div *ngIf="!isMobile()">
           <div class="row">
             <div class="col-12" *ngFor="let item of Order.value">
-              <div class="col-12" (click)="oneOrder(item.orderId)"  style="padding-top: 10%;">
-                <div class="card card-profile" style="packet-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                  <div class="card1 card-avatar" style="max-height: unset;max-width: unset;">
+              <div class="col-12" (click)="oneOrder(item)"  style="padding-top: 10%;">
+                <div class="card card-profile" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                  <div class="card2 card-stats card-avatar" *ngIf="startPro(item.startingpro)" style="max-height: unset;max-width: unset;">
                     <p style="font-size: 18px;font-weight: bolder;text-align: left;padding: 1%;padding-left: 3%;line-height: 60px;">
                       <img src="../../../assets/icon/gear.png" style=" height: 40px;width: 40px;display: inline-block;">
                     &nbsp;Start Procesing : <span style="font-weight: bold;color: #000000;">{{item.startingpro}}</span><br>
@@ -32,8 +32,31 @@
                     </p>
               
                   </div>
+                  <div class="card1 card-avatar"  *ngIf="!startPro(item.startingpro)" style="max-height: unset;max-width: unset;">
+                    <p style="font-size: 18px;font-weight: bolder;text-align: left;padding: 1%;padding-left: 3%;line-height: 60px;">
+                      <img src="../../../assets/icon/gear.png" style=" height: 40px;width: 40px;display: inline-block;">
+                      &nbsp;Start Procesing : <span style="font-weight: bold;color: #000000;">{{item.startingpro}}</span><br>
+                      <img src="../../../assets/icon/factory.png" style="height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;Factory: <span style="font-weight: bold;color: #000000;">{{item.factory/item.packet*100}}%</span>&nbsp;&nbsp;
+                      <img src="../../../assets/icon/ship.png" style=" height: 50px;width: 50px;display: inline-block;">
+                      &nbsp;Shipment: <span
+                        style="font-weight: bold;color: #000000;">{{item.shipment/item.packet*100}}%</span>&nbsp;&nbsp;
+                      <img src="../../../assets/icon/maindistributor.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;Main Distribtor: <span
+                        style="font-weight: bold;color: #000000;">{{item.mainDistributor/item.packet*100}}%</span>&nbsp;&nbsp;
+                      <img src="../../../assets/icon/truck.png" style=" height: 40px;width: 40px;display: inline-block;">
+                      &nbsp;Distributors: <span
+                        style="font-weight: bold;color: #000000;">{{item.distributor/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/ware.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;Seller: <span
+                        style="font-weight: bold;color: #000000;">{{item.seller/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/customer.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;End Customers: <span style="font-weight: bold;color: #000000;">{{item.endcustomer/item.packet*100}}%</span>
+                    </p>
+                  
+                  </div>
                   <div class="card-body" style="margin-top: 100px;">
-                    <pre class="card-text" style="font-size: 18px;font-weight: bolder;">country :- <i class="flag-icon {{item.contryx}}"></i> {{item.contryxx}}    order date :- {{item.orderDate}}    Product :- {{item.product}}    <br>Quntity :- {{item.box}} Boxes
+                    <pre class="card-text" style="font-size: 18px;font-weight: bolder;">Order:{{item.orderId}} country :- <i class="flag-icon {{item.contryx}}"></i> {{item.contryxx}}    order date :- {{item.orderDate}}    Product :- {{item.productName}}    <br>Quntity :- {{item.box}} Boxes
                                 </pre>
                   </div>
                 </div>
@@ -44,10 +67,10 @@
         <div *ngIf="isMobile()">
           <div class="row">
             <div  class="col-12" *ngFor="let item of Order.value">
-              <div class="col-12" style="padding-top: 10%;">
+              <div class="col-12" (click)="oneOrder(item)"  style="padding-top: 10%;">
                 <div class="card card-profile"
                   style="packet-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                  <div class="card1 card-avatar" style="max-height: unset;max-width: unset;height: 75%;">
+                  <div class="card2 card-avatar" *ngIf="startPro(item.startingpro)" style="max-height: unset;max-width: unset;height: 75%;">
                     <p style="font-size: 18px;font-weight: bolder;text-align: left;padding: 1%;padding-left: 4%;line-height: 30px;">
                       <img src="../../../assets/icon/gear.png" style=" height: 40px;width: 40px;display: inline-block;">
                       &nbsp; : <span style="font-weight: bold;color: #000000;">{{item.startingpro}}</span><br>
@@ -66,8 +89,29 @@
                     </p>
             
                   </div>
+                  <div class="card1 card-avatar" *ngIf="startPro(item.startingpro)" style="max-height: unset;max-width: unset;height: 75%;">
+                    <p style="font-size: 18px;font-weight: bolder;text-align: left;padding: 1%;padding-left: 4%;line-height: 30px;">
+                      <img src="../../../assets/icon/gear.png" style=" height: 40px;width: 40px;display: inline-block;">
+                      &nbsp; : <span style="font-weight: bold;color: #000000;">{{item.startingpro}}</span><br>
+                      <img src="../../../assets/icon/factory.png" style="height: 30px;width: 30px;display: inline-block;">
+                      &nbsp; : <span style="font-weight: bold;color: #000000;">{{item.factory/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/ship.png" style=" height: 50px;width: 50px;display: inline-block;">
+                      &nbsp;: <span style="font-weight: bold;color: #000000;">{{item.shipment/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/maindistributor.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;: <span
+                        style="font-weight: bold;color: #000000;">{{item.mainDistributor/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/truck.png" style=" height: 40px;width: 40px;display: inline-block;">
+                      &nbsp;: <span
+                        style="font-weight: bold;color: #000000;">{{item.distributor/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/ware.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;: <span style="font-weight: bold;color: #000000;">{{item.seller/item.packet*100}}%</span>&nbsp;&nbsp;&nbsp;
+                      <img src="../../../assets/icon/customer.png" style=" height: 30px;width: 30px;display: inline-block;">
+                      &nbsp;: <span style="font-weight: bold;color: #000000;">{{item.endcustomer/item.packet*100}}%</span>
+                    </p>
+                  
+                  </div>
                   <div class="card-body" style="margin-top: 100px;">
-                    <pre class="card-text" style="font-size: 18px;font-weight: bolder;"><i class="flag-icon {{item.contryx}}"></i> {{item.contryxx}} {{item.orderDate}} <br> {{item.product}} {{item.box}} Boxes
+                    <pre class="card-text" style="font-size: 18px;font-weight: bolder;">{{item.orderId}}<i class="flag-icon {{item.contryx}}"></i> {{item.contryxx}} {{item.orderDate}} <br> {{item.productName}} {{item.box}} Boxes
                             </pre>
                   </div>
                 </div>

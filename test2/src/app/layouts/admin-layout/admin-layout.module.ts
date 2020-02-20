@@ -53,6 +53,7 @@ import { EstateupdateComponent } from 'app/admin/estate/estateupdate/estateupdat
 import { OrderaddComponent } from 'app/admin/order/orderadd/orderadd.component';
 import { OrdereditComponent } from 'app/admin/order/orderedit/orderedit.component';
 import { WorkerupdateComponent } from 'app/admin/worker/workerupdate/workerupdate.component';
+import { OrderdeleteComponent } from 'app/admin/order/orderdelete/orderdelete.component';
 
 @NgModule({
   imports: [
@@ -89,6 +90,7 @@ import { WorkerupdateComponent } from 'app/admin/worker/workerupdate/workerupdat
     EstateupdateComponent,
     OrderaddComponent,
     OrdereditComponent,
+    OrderdeleteComponent,
     OrdersummaryComponent,
     ProductaddComponent,
     ProducteditComponent,

@@ -71,7 +71,7 @@ export class EthcontractService {
     const Sc = new this.web3.eth.Contract(tokenAbi.abi, '0x3C4B372344f8f4b744EbD0D75dDeF02d996480b7');
     // tslint:disable-next-line: no-shadowed-variable
     return await new Promise((data, error) => {
-      Sc.methods.frogetPassword(_userName, 3).call((er: any, ev: any) => {
+      Sc.methods.frogetPassword(_userName, 1).call((er: any, ev: any) => {
         if (er != null) {
           console.log(er)
           error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
@@ -171,25 +171,27 @@ export class EthcontractService {
           console.log(er)
           error(((er.message + '').split(':', 3)[2]).split('revert')[1]);
         } else {
-          if (ev[1] === 11) {
+
+          if (ev[1] === '11') {
             this.setAdminvalue().then(async (deployed: {
               setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
                 { er: string; ev: string; }
             }) => {
               try {
-                this.result = await deployed.setPassword( _userName, _password, { from: this.web3.curentaccount })
+                this.result = await deployed.setPassword( _userName, _password, { from: this.curentaccount })
               } catch (error) {
                 console.log(error);
               }
             });
 
-          } else if (ev[1] === 12) {
+          } else if (ev[1] === '12') {
             this.setManagervalue().then(async (deployed: {
               setPassword: (arg0: string, arg1: string, arg2: { from: string; }) =>
                 { er: string; ev: string; }
             }) => {
               try {
-                this.result = await deployed.setPassword(_userName, _password, { from: this.web3.curentaccount })
+                this.result = await deployed.setPassword(_userName, _password, { from: this.curentaccount })
+                console.log(this.result)
               } catch (error) {
                 console.log(error);
               }

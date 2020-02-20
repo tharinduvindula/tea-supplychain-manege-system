@@ -43,7 +43,7 @@ export class EstateserviceService {
           console.log(this.result)
           dt(this.result.logs[0].args.estateName);
         } else {
-          er('user alredy in system');
+          er('Estate alredy in system');
           console.log(this.result)
         }
       });
@@ -67,7 +67,7 @@ export class EstateserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.estateName);
           } else {
-            er('user alredy in system');
+            er('Estate alredy in system');
             console.log(this.result)
           }
         });
@@ -91,7 +91,7 @@ export class EstateserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.estateName);
           } else {
-            er('user alredy in system');
+            er('Estate alredy in system');
             console.log(this.result)
           }
         });
@@ -115,7 +115,7 @@ export class EstateserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.estateName);
           } else {
-            er('user alredy in system');
+            er('Estate alredy in system');
             console.log(this.result)
           }
         });
@@ -140,7 +140,7 @@ export class EstateserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.estateName);
           } else {
-            er('user alredy in system');
+            er('Estate alredy in system');
             console.log(this.result)
           }
         });
@@ -164,7 +164,7 @@ export class EstateserviceService {
           if (this.result != null) {
             dt(this.result.logs[0].args.name);
           } else {
-            er('user alredy in system');
+            er('Estate alredy in system');
             console.log(this.result)
           }
         });

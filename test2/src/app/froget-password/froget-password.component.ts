@@ -46,7 +46,7 @@ export class FrogetPasswordComponent implements OnInit {
               await this.managerservice.getManagerToken(this.form.email).then(
                 data2 => {
                   console.log(data2)
-                  this.frogetPasswordMail(data2,email)
+                  this.frogetPasswordMail(data2,  email)
                 },
                 error => {
                   console.log(error)
@@ -71,6 +71,7 @@ export class FrogetPasswordComponent implements OnInit {
   };
 
   frogetPasswordMail(token,email) {
+    console.log(token)
     let user = {
       name: email.split('@')[0],
       token: token,

@@ -14,7 +14,7 @@ export class EstateaddComponent implements OnInit {
   public form = {
     estateId: null,
     estateName: null,
-    photo: 'https://i.ibb.co/K6KH5V7/beb29b45d9e431b294dd2510c371f25c-XL.jpg',
+    photo: null,
     address: null,
     ownerName: null,
     contactNumber: null,
@@ -59,7 +59,7 @@ export class EstateaddComponent implements OnInit {
 
       },
       error => {
-        this.handleError(error)
+       // this.handleError(error)
         if (error != null) {
           console.log(error)
           this.error =error;

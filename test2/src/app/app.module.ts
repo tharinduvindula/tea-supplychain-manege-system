@@ -52,6 +52,9 @@ import { WorkerupdateComponent } from './admin/worker/workerupdate/workerupdate.
 import { OrderaddComponent } from './admin/order/orderadd/orderadd.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { OneorderComponent } from './manager/oneorder/oneorder.component';
+import { AdminauthService } from './service/adminauth.service';
+import { ManagerauthService } from './service/managerauth.service';
+import { OrderdeleteComponent } from './admin/order/orderdelete/orderdelete.component';
 
 
 
@@ -94,7 +97,7 @@ import { OneorderComponent } from './manager/oneorder/oneorder.component';
     PasswordResetComponent,
     FrogetPasswordComponent,
   ],
-  providers: [EthcontractService, HttpClientModule, DatePipe],
+  providers: [EthcontractService, HttpClientModule, DatePipe,AdminauthService,ManagerauthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

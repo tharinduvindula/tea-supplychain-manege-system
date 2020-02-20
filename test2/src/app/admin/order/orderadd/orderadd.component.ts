@@ -58,7 +58,7 @@ export class OrderaddComponent implements OnInit {
 
       },
       error => {
-        this.handleError(error)
+       // this.handleError(error)
         if (error != null) {
           console.log(error)
           this.error =error;
@@ -66,6 +66,7 @@ export class OrderaddComponent implements OnInit {
       }
 
     );
+    await this.productAdd(this.form.qun, orderName)
 
   }
 

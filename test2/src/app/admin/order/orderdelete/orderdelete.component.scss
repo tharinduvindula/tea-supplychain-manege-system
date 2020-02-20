@@ -1,0 +1,14 @@
+.card {
+    .card-header {
+        background: linear-gradient(45deg, #d81f1f, #ff7e43);
+    }
+}
+
+.btn-danger {
+    color: #fff;
+    background: linear-gradient(45deg, #d81f1f, #ff8e8e);
+    border-color: #d60000;
+    box-shadow: 0 2px 2px 0 #d81f1f,
+        0 3px 1px -2px #d81f1f,
+        0 1px 5px 0 #d81f1f;
+}

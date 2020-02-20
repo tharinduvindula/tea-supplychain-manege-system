@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
 
     for (i = 0; i < x; i++) {
       await this.service.getOrderi(i).then(async val => {
-        
+        console.log(val)
         let contry;
         let contryy;
         if ( val[1].split('#')[2] === 'US') {
@@ -76,7 +76,7 @@ export class OrderComponent implements OnInit {
             orderId: val[1].split('#')[0],
             orderDate: val[1].split('#')[1],
             productId: val[2].split('#')[0],
-            productName: val[2].split('#')[2],
+            productName: val[2].split('#')[1],
             box: val[4],
             packet: val[4] * 20,
             access: val[5],
@@ -89,7 +89,8 @@ export class OrderComponent implements OnInit {
             endcustomer: val[3].split('#')[6],
             rate: val[7],
             contryx: contry,
-            contryxx: contryy
+            contryxx: contryy,
+            contryxxx : val[1].split('#')[2]
           }));
         }
       });
@@ -107,8 +108,35 @@ export class OrderComponent implements OnInit {
     return true;
   };
 
-  oneOrder(OrderId) {
-    this.router.navigate(['/oneorder'], { queryParams: { orderId: OrderId }, skipLocationChange: true });
+  startPro(startingpro){
+    if (startingpro == 'No'){
+      return false;
+    }
+    return true;
+  }
+
+  oneOrder(Order) {
+    this.router.navigate(['admin/order/oneorder'], { queryParams: { 
+      orderIdCode: Order.orderIdCode,
+      orderId: Order.orderId,
+      orderDate: Order.orderDate,
+      productId: Order.productId,
+      productName: Order.productName,
+      box: Order.box,
+      packet: Order.packet,
+      access: Order.access,
+      startingpro: Order.startingpro,
+      factory: Order.factory,
+      shipment: Order.shipment,
+      mainDistributor: Order.mainDistributor,
+      distributor: Order.distributor,
+      seller: Order.seller,
+      endcustomer: Order.endcustomer,
+      rate: Order.rate,
+      contryx: Order.contryx,
+      contryxx: Order.contryxx,
+      contryxxx: Order.contryxxx,
+    }, skipLocationChange: true });
   }
 
 

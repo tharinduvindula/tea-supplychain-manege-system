@@ -59,8 +59,8 @@ export const estate: RouteInfo[] = [
 export const order: RouteInfo[] = [
   { path: '/admin/order/view', title: 'orders view', icon: 'public', class: '' },
   { path: '/admin/order/add', title: 'orders add', icon: 'edit', class: '' },
-  { path: '/admin/order/add', title: 'orders delete', icon: 'edit', class: '' },
-  { path: '/admin/order/add', title: 'blendSheets delete', icon: 'edit', class: '' },
+  { path: '/admin/order/delete', title: 'orders delete', icon: 'edit', class: '' },
+  // { path: '/admin/order/add', title: 'blendSheets delete', icon: 'edit', class: '' },
   { path: '/admin/order/summary', title: 'summary of orders', icon: 'assignment', class: '' },
 ];
 

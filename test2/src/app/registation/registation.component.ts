@@ -34,10 +34,11 @@ export class RegistationComponent implements OnInit {
       data => {
         console.log(data);
         console.log('tr')
-        this.router.navigateByUrl('/login');
+         this.router.navigateByUrl('/login');
       },
       error => {
         console.log(error)
+        this.error = error
       }
 
     )
