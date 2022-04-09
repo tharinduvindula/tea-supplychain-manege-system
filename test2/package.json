@@ -65,7 +65,7 @@
     "intl": "^1.2.5",
     "jquery": "^3.4.1",
     "jquery-mapael": "^2.2.0",
-    "moment": "2.22.1",
+    "moment": "2.29.2",
     "ngx-print": "^1.2.0-beta.3",
     "ngx-qrcode2": "0.0.9",
     "ngx-uploadcare-widget": "^1.2.5",
